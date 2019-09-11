@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,29 +13,25 @@ import java.util.List;
 
 /**
  *
- * @author Igori
+ * @author mathe
  */
-public class AdministradorDAO {
-    public static List<Adm> obterADMs() throws ClassNotFoundException, SQLException{
+public class FabricanteDAO {
+    public static List<Fabricante> obterFabricantes() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
-        List<Adm> adms = new ArrayList<Adm>();
-        Adm adm = null;
+        List<Fabricante> fabricantes = new ArrayList<Fabricante>();
+        Fabricante fabricante = null;
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from adm");
+            ResultSet rs = comando.executeQuery("select * from fabricante");
             while(rs.next()){
-                adm = instanciarAdm(rs);
-                adms.add(adm);
+                fabricante = instanciarFabricante(rs);
+                Fabricantes.add(fabricante);
             }
         }  finally{
                    DAO.fecharConexao(conexao, comando); 
                     }
-        return adms;
+        return fabricantes;
     }
-    
-    //public static Adm instanciarAdm(ResultSet rs)throws 
-    
-    
 }

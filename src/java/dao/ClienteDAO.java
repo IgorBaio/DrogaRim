@@ -14,29 +14,25 @@ import java.util.List;
 
 /**
  *
- * @author Igori
+ * @author mathe
  */
-public class AdministradorDAO {
-    public static List<Adm> obterADMs() throws ClassNotFoundException, SQLException{
+public class ClienteDAO {
+    public static List<Cliente> obterClientes() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
-        List<Adm> adms = new ArrayList<Adm>();
-        Adm adm = null;
+        List<Cliente> Clientes = new ArrayList<Cliente>();
+        Cliente cliente = null;
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from adm");
+            ResultSet rs = comando.executeQuery("select * from cliente");
             while(rs.next()){
-                adm = instanciarAdm(rs);
-                adms.add(adm);
+                cliente = instanciarCliente(rs);
+                Clientes.add(cliente);
             }
         }  finally{
                    DAO.fecharConexao(conexao, comando); 
                     }
-        return adms;
+        return Clientes;
     }
-    
-    //public static Adm instanciarAdm(ResultSet rs)throws 
-    
-    
 }

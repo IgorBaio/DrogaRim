@@ -8,34 +8,33 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema gerenciadefarmacia
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema gerenciadefarmacia
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `gerenciadefarmacia` DEFAULT CHARACTER SET utf8 ;
+USE `gerenciadefarmacia` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`ENDERECOS`
+-- Table `gerenciadefarmacia`.`ENDERECOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`ENDERECOS` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE  `gerenciadefarmacia`.`ENDERECOS` (
+  `ID` int NOT NULL AUTO_INCREMENT,
   `CEP` VARCHAR(45) NULL,
   `LOGRADOURO` VARCHAR(45) NULL,
   ` BAIRRO` VARCHAR(45) NULL,
   `CIDADE` VARCHAR(45) NULL,
   `UF` VARCHAR(45) NULL,
-  PRIMARY KEY (`ID`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`ID`));
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PESSOAS`
+-- Table `gerenciadefarmacia`.`PESSOAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PESSOAS` (
-  `ID` INT NOT NULL,
+CREATE TABLE `gerenciadefarmacia`.`PESSOAS` (
+  `ID` int NOT NULL,
   `NOME` VARCHAR(45) NULL,
   `CPF` VARCHAR(45) NULL,
   `TELEFONE` VARCHAR(45) NULL,
@@ -46,66 +45,59 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PESSOAS` (
   `SEXO` TINYINT(1) NULL,
   `ENDERECOS_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_PESSOAS_ENDERECOS1_idx` (`ENDERECOS_ID` ASC) VISIBLE,
   CONSTRAINT `fk_PESSOAS_ENDERECOS1`
     FOREIGN KEY (`ENDERECOS_ID`)
-    REFERENCES `mydb`.`ENDERECOS` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`ENDERECOS` (`ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`FUNCIONARIOS`
+-- Table `gerenciadefarmacia`.`FUNCIONARIOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`FUNCIONARIOS` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`FUNCIONARIOS` (
   `ID` INT NOT NULL,
   `FUNCAO` VARCHAR(45) NULL,
   `LOGIN` VARCHAR(45) NULL,
   `SENHA` VARCHAR(45) NULL,
   `PESSOAS_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_FUNCIONARIOS_PESSOAS1_idx` (`PESSOAS_ID` ASC) VISIBLE,
   CONSTRAINT `fk_FUNCIONARIOS_PESSOAS1`
     FOREIGN KEY (`PESSOAS_ID`)
-    REFERENCES `mydb`.`PESSOAS` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`PESSOAS` (`ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CLIENTE`
+-- Table `gerenciadefarmacia`.`CLIENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CLIENTE` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`CLIENTE` (
   `ID` INT NOT NULL,
   `PESSOAS_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_CLIENTE_PESSOAS1_idx` (`PESSOAS_ID` ASC) VISIBLE,
   CONSTRAINT `fk_CLIENTE_PESSOAS1`
     FOREIGN KEY (`PESSOAS_ID`)
-    REFERENCES `mydb`.`PESSOAS` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`PESSOAS` (`ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PAGAMENTO`
+-- Table `gerenciadefarmacia`.`PAGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PAGAMENTO` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`PAGAMENTO` (
   `ID` INT NOT NULL,
   `TIPO` VARCHAR(45) NULL,
   `VALOR_RECEBIDO` DOUBLE NULL,
   `TROCO` DOUBLE NULL,
-  PRIMARY KEY (`ID`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`ID`));
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`VENDAS`
+-- Table `gerenciadefarmacia`.`VENDAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`VENDAS` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`VENDAS` (
   `ID` INT NOT NULL,
   `PRECO_TOTAL` DOUBLE NULL,
   `DT_VENDA` DATE NULL,
@@ -114,55 +106,49 @@ CREATE TABLE IF NOT EXISTS `mydb`.`VENDAS` (
   `PAGAMENTO_ID` INT NOT NULL,
   `CLIENTE_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_VENDAS_FUNCIONARIOS1_idx` (`FUNCIONARIOS_ID` ASC) VISIBLE,
-  INDEX `fk_VENDAS_CLIENTE1_idx` (`CLIENTE_ID` ASC) VISIBLE,
-  INDEX `fk_VENDAS_PAGAMENTO1_idx` (`PAGAMENTO_ID` ASC) VISIBLE,
   CONSTRAINT `fk_VENDAS_FUNCIONARIOS1`
     FOREIGN KEY (`FUNCIONARIOS_ID`)
-    REFERENCES `mydb`.`FUNCIONARIOS` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`FUNCIONARIOS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDAS_CLIENTE1`
     FOREIGN KEY (`CLIENTE_ID`)
-    REFERENCES `mydb`.`CLIENTE` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDAS_PAGAMENTO1`
     FOREIGN KEY (`PAGAMENTO_ID`)
-    REFERENCES `mydb`.`PAGAMENTO` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`PAGAMENTO` (`ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ESTOQUE`
+-- Table `gerenciadefarmacia`.`ESTOQUE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`ESTOQUE` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`ESTOQUE` (
   `ID` INT NOT NULL,
   `QUANT_MIN` INT NULL,
   `QUANTIDADE` INT NULL,
-  PRIMARY KEY (`ID`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`ID`));
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`MEDICAMENTO`
+-- Table `gerenciadefarmacia`.`MEDICAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`MEDICAMENTO` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`MEDICAMENTO` (
   `ID` INT NOT NULL,
   `CATEGORIA` VARCHAR(45) NULL,
   `TIPO` VARCHAR(45) NULL,
   `RECEITA` TINYINT(1) NULL,
   `CONTRAINDICACOES` VARCHAR(45) NULL,
-  PRIMARY KEY (`ID`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`ID`));
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PRODUTOS`
+-- Table `gerenciadefarmacia`.`PRODUTOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PRODUTOS` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`PRODUTOS` (
   `ID` INT NOT NULL,
   `NOME` VARCHAR(45) NULL,
   `PRECO` DOUBLE NULL,
@@ -170,75 +156,62 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PRODUTOS` (
   `ESTOQUE_ID` INT NOT NULL,
   `MEDICAMENTO_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_PRODUTO_ESTOQUE1_idx` (`ESTOQUE_ID` ASC) VISIBLE,
-  INDEX `fk_PRODUTOS_MEDICAMENTO1_idx` (`MEDICAMENTO_ID` ASC) VISIBLE,
   CONSTRAINT `fk_PRODUTO_ESTOQUE1`
     FOREIGN KEY (`ESTOQUE_ID`)
-    REFERENCES `mydb`.`ESTOQUE` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`ESTOQUE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRODUTOS_MEDICAMENTO1`
     FOREIGN KEY (`MEDICAMENTO_ID`)
-    REFERENCES `mydb`.`MEDICAMENTO` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`MEDICAMENTO` (`ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
--- -----------------------------------------------------
--- Table `mydb`.`table1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`table1` (
-)
-ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PRODUTO_VENDIDO`
+-- Table `gerenciadefarmacia`.`PRODUTO_VENDIDO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PRODUTO_VENDIDO` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`PRODUTO_VENDIDO` (
   `ID` INT NOT NULL,
   `PRODUTOS_ID` INT NOT NULL,
   `VENDAS_ID` INT NOT NULL,
   `PRECO` DOUBLE NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_LISTA_PRODUTOS_PRODUTOS1_idx` (`PRODUTOS_ID` ASC) VISIBLE,
-  INDEX `fk_LISTA_PRODUTOS_VENDAS1_idx` (`VENDAS_ID` ASC) VISIBLE,
   CONSTRAINT `fk_LISTA_PRODUTOS_PRODUTOS1`
     FOREIGN KEY (`PRODUTOS_ID`)
-    REFERENCES `mydb`.`PRODUTOS` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`PRODUTOS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_LISTA_PRODUTOS_VENDAS1`
     FOREIGN KEY (`VENDAS_ID`)
-    REFERENCES `mydb`.`VENDAS` (`ID`)
+    REFERENCES `gerenciadefarmacia`.`VENDAS` (`ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`MEDICAMENTO`
+-- Table `gerenciadefarmacia`.`MEDICAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`MEDICAMENTO` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`MEDICAMENTO` (
   `ID` INT NOT NULL,
   `CATEGORIA` VARCHAR(45) NULL,
   `TIPO` VARCHAR(45) NULL,
   `RECEITA` TINYINT(1) NULL,
   `CONTRAINDICACOES` VARCHAR(45) NULL,
-  PRIMARY KEY (`ID`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`ID`));
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ADMINISTRADOR`
+-- Table `gerenciadefarmacia`.`ADMINISTRADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`ADMINISTRADOR` (
+CREATE TABLE IF NOT EXISTS `gerenciadefarmacia`.`ADMINISTRADOR` (
   `ID` INT NOT NULL,
   `LOGIN` VARCHAR(45) NULL,
   `SENHA` VARCHAR(45) NULL,
-  PRIMARY KEY (`ID`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`ID`));
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

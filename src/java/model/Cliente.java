@@ -7,5 +7,9 @@ package model;
 
 
 public class Cliente extends Pessoa{
+
+    public Cliente(int id, String nome, String cpf, String telefone, String email, Endereco endereco, String dataNascimento, boolean sexo) {
+        super(id, nome, cpf, telefone, email, endereco, dataNascimento, sexo);
+    }
     
 }

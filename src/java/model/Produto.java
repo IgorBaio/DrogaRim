@@ -12,8 +12,40 @@ package model;
 public class Produto {
     private int id;
     private String nome;
-    private double preco;
+    private float preco;
     private String lote;
+    private Estoque estoque;
+    private int chaveEstoque;
+
+    public Produto(int id, String nome, float preco,String lote ,Estoque estoque) {
+        this.id = id;
+        this.nome = nome;
+        this.lote = lote;
+        this.estoque = estoque;
+    }
+
+    public Estoque getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Estoque estoque) {
+        this.estoque = estoque;
+    }
+
+
+    public int getChaveEstoque() {
+        return chaveEstoque;
+    }
+
+    public void setChaveEstoque(int chaveEstoque) {
+        this.chaveEstoque = chaveEstoque;
+    }
+
+    
+
+    public Produto(int aInt, int aInt0, int aInt1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public int getId() {
         return id;
@@ -35,7 +67,7 @@ public class Produto {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 

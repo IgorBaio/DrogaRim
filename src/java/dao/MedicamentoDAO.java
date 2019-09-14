@@ -11,43 +11,44 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.Produto;
+import model.Medicamento;
 
 /**
  *
  * @author Igori
  */
-public class ProdutoDAO {
-    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
+public class MedicamentoDAO {
+    public static List<Medicamento> obterMedicamentos() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
-        List<Produto> produtos = new ArrayList<Produto>();
-        Produto produto = null;
+        List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+        Medicamento medicamento = null;
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from produto");
+            ResultSet rs = comando.executeQuery("select * from medicamento");
             while(rs.next()){
-                produto = instanciarProduto(rs);
-                produtos.add(produto);
+                medicamento = instanciarMedicamento(rs);
+                medicamentos.add(medicamento);
             }
         }  finally{
                    DAO.fecharConexao(conexao, comando); 
                     }
-        return produtos;
+        return medicamentos;
     }
     
-    public static Produto instanciarProduto(ResultSet rs)throws SQLException{
-        Produto produto = new Produto(
+    /*public static Medicamento instanciarMedicamento(ResultSet rs)throws SQLException{
+        Medicamento medicamento = new Medicamento(
                 rs.getInt("ID"),
                 rs.getString("NOME"),
                 rs.getFloat("PRECO"),
                 rs.getString("LOTE"),
                 null
         );
-        produto.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
-        return produto;
+        medicamento.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
+        return medicamento;
     
     
     }
+*/
 }

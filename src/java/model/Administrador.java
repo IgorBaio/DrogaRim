@@ -9,7 +9,55 @@ package model;
  *
  * @author Igori
  */
-public class Administrador extends Funcionario {
+public class Administrador extends Pessoa {
+        private int id;
+    private String login;
+    private String senha;
     
     //crud func
+
+     public Administrador(int id, String nome, String cpf, String telefone, 
+            String email,String numeroCasa, String complemento
+            ,  String dataNascimento, String sexo, Endereco endereco, String login, String senha) {
+        super(id, nome,cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, endereco);
+        
+     }
+
+    public Administrador(int id, String login, String senha) {
+        super(0, null, null, null, null, null, null, null, null, null);
+        this.id = id;
+        this.login = login;
+        this.senha = senha;
+    }
+     
+     
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+   
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
+
+    
 }

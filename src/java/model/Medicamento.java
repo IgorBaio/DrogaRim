@@ -16,6 +16,18 @@ public class Medicamento extends Produto {
     private String contraIndicacao;
     private String nomeFarmaco;
 
+    public Medicamento(int id,String nome, float preco, String lote, Estoque estoque, String categoria,
+            String tipo, boolean receita, String contraIndicacao, String nomeFarmaco) {
+        super(id,nome, preco, lote, estoque);
+        this.categoria = categoria;
+        this.contraIndicacao= contraIndicacao;
+        this.nomeFarmaco = nomeFarmaco;
+        this.receita = receita;
+        this.tipo = tipo;
+    }
+
+    
+    
     public String getNomeFarmaco() {
         return nomeFarmaco;
     }

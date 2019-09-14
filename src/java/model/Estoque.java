@@ -14,6 +14,12 @@ public class Estoque {
     private int quantidade;
     private int quantidadeMinima;
 
+    public Estoque(int id, int quantidade, int quantidadeMinima) {
+        this.id = id;
+        this.quantidade = quantidade;
+        this.quantidadeMinima = quantidadeMinima;
+    }
+
     public int getId() {
         return id;
     }

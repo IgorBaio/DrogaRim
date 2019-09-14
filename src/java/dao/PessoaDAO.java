@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Pessoa;
 
 /**
  *
@@ -35,4 +36,21 @@ public class PessoaDAO {
                     }
         return pessoas;
     }
-}
+    
+    public static Pessoa instanciarPessoa(ResultSet rs) throws SQLException {
+        Pessoa pessoa = new Pessoa(
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("cpf"),
+                    rs.getString("telefone"),
+                    rs.getString("email"),
+                    rs.getString("numero"),
+                    rs.getString("complemento"),
+                    rs.getString("datanascimento"),
+                    rs.getString("sexo"),
+                    null
+        );
+                    pessoa.setChaveEndereco(rs.getInt("id"));
+                    return pessoa;
+        }
+    }

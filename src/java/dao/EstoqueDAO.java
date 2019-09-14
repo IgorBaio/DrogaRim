@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Estoque;
 
 /**
  *
@@ -34,5 +35,14 @@ public class EstoqueDAO {
                    DAO.fecharConexao(conexao, comando); 
                     }
         return estoques;
+    }
+    
+    public static Estoque instanciarEstoque(ResultSet rs)throws SQLException{
+        Estoque estoque = new Estoque(
+                rs.getInt("ID"),
+                rs.getInt("QUANT_MIN"),
+                rs.getInt("QUANTIDADE")
+        );
+        return estoque;
     }
 }

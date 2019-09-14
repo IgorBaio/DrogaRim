@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Funcionario;
 
 /**
  *
@@ -35,4 +36,16 @@ public class FuncionarioDAO {
                     }
         return funcionarios;
     }
+    
+     
+    public static Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
+        Funcionario funcionario = new Funcionario(
+                    rs.getInt("id"),
+                    rs.getString("funcao"),
+                    rs.getString("login"),
+                    rs.getString("senha"),
+                    null);
+                    return funcionario;
+       }
+    
 }

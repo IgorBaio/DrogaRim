@@ -10,10 +10,21 @@ package model;
  * @author Igori
  */
 public class Pagamento {
+    private int id;
     private String tipo;
     private double valorRecebido;
     private double troco;
     private double preco;
+
+    public Pagamento(int id,String tipo, double valorRecebido, double troco, double preco) {
+        this.id = id;
+        this.tipo = tipo;
+        this.valorRecebido = valorRecebido;
+        this.troco = troco;
+        this.preco = preco;
+    }
+
+    
 
     public String getTipo() {
         return tipo;

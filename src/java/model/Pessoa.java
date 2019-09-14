@@ -12,7 +12,56 @@ public class Pessoa {
     private String cpf;
     private String telefone;
     private String email;
+    private String numeroCasa;
+    private String complemento;
+    private String dataNascimento;
+    private String sexo;
     private Endereco endereco;
+    private int chaveEndereco;
+
+    public Pessoa(int id, String nome, String cpf, String telefone, 
+            String email,String numeroCasa, String complemento
+            ,  String dataNascimento, String sexo, Endereco endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.numeroCasa = numeroCasa;
+        this.complemento = complemento;
+        this.dataNascimento = dataNascimento;
+        this.sexo = sexo;
+        this.endereco = endereco;
+    }
+
+    
+    
+    public int getChaveEndereco() {
+        return chaveEndereco;
+    }
+
+    public void setChaveEndereco(int chaveEndereco) {
+        this.chaveEndereco = chaveEndereco;
+    }
+
+    public String getNumeroCasa() {
+        return numeroCasa;
+    }
+
+    public void setNumeroCasa(String numeroCasa) {
+        this.numeroCasa = numeroCasa;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    
+    
 
     public Endereco getEndereco() {
         return endereco;
@@ -21,8 +70,7 @@ public class Pessoa {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    private String dataNascimento;
-    private boolean sexo;
+    
 
     public int getId() {
         return id;
@@ -72,11 +120,11 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public boolean isSexo() {
+    public String isSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
     

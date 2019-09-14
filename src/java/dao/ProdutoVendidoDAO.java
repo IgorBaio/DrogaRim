@@ -11,17 +11,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.ProdutoVendido;
 
 /**
  *
  * @author mathe
  */
 public class ProdutoVendidoDAO {
-    public static List<ProdutoVendido> obterProdutosVendidos() throws ClassNoteFoundException, SQLException{
+    public static List<ProdutoVendido> obterProdutosVendidos() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
         List<ProdutoVendido> produtosVendidos = new ArrayList<ProdutoVendido>();
-        Produto produto = null;
+        ProdutoVendido produtoVendido = null;
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -33,10 +34,21 @@ public class ProdutoVendidoDAO {
         }  finally{
                    DAO.fecharConexao(conexao, comando); 
                     }
-        return ProdutosVendidos;
+        return produtosVendidos;
     }
     
-    //public static Adm instanciarAdm(ResultSet rs)throws 
+    public static ProdutoVendido instanciarProdutoVendido(ResultSet rs)throws SQLException{
+        ProdutoVendido produtoVendido = new ProdutoVendido(
+                rs.getInt("ID"),
+                rs.getFloat("PRECO"),
+                null,
+                null
+        );
+        produtoVendido.setChaveProduto(rs.getInt("PRODUTOS_ID"));
+        produtoVendido.setChaveVenda(rs.getInt("VENDA_ID"));
+
+        return produtoVendido;
+    }
     
     
 }

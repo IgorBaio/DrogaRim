@@ -34,4 +34,13 @@ public class FabricanteDAO {
                     }
         return fabricantes;
     }
+    
+    public static Fabricante instanciarFabricante(ResultSet rs) throws SQLException {
+        Fabricante fabricante = new Fabricante(
+                rs.getInt("id"),
+                rs.getString("nome")
+        );
+        return fabricante;
+    }
+    
 }

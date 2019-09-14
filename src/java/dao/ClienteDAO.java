@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Cliente;
 
 /**
  *
@@ -35,4 +36,13 @@ public class ClienteDAO {
                     }
         return Clientes;
     }
-}
+    
+     
+    public static Cliente instanciarCliente(ResultSet rs) throws SQLException {
+        Cliente cliente = new Cliente(
+                    null);
+                    cliente.setChavePessoa(rs.getInt("id"));//nao tem essa ligacao no banco, so no diagrama de classe
+                    return cliente;
+        }
+    }
+

@@ -31,6 +31,14 @@ public class Endereco {
         this.complemento = complemento;
     }
 
+    public Endereco(int id, int cep, String logradouro, String bairro, String cidade, String uf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    
+
    
 
         

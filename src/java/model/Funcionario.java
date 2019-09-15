@@ -18,15 +18,16 @@ public class Funcionario extends Pessoa {
     public Funcionario(String funcao, String login, String senha,int id, String nome, String cpf, String telefone, 
             String email,String numeroCasa, String complemento
             ,  String dataNascimento, String sexo, Endereco endereco) {
-        super(id, nome, cpf, telefone, email,numeroCasa,complemento, endereco, dataNascimento, sexo);
+        //super(id, nome, cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, endereco);
+        super(id, nome, cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, endereco);
         this.funcao = funcao;
         this.login = login;
         this.senha = senha;
     }
 
-    private Funcionario(int id, String nome, String cpf, String telefone, String email, String numeroCasa, String complemento, Endereco endereco, String dataNascimento, String sexo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+
+    
 
     public String getFuncao() {
         return funcao;

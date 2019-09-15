@@ -10,27 +10,35 @@ package model;
  * @author Igori
  */
 public class Venda {
-    private double precoTotal;
+    private int id;
+    private float precoTotal;
     private int dataVenda;
     private int horario;
     private Funcionario funcionario;
     private Pagamento pagamento;
     private Cliente cliente;
     private int chaveFuncionario;
-    private int ChvePagamento;
+    private int chavePagamento;
     private int chaveCliente;
     
-    public Venda(double precoTotal, int dataVenda, int horario ) {
+    public Venda(int id,float precoTotal, int dataVenda, int horario, Funcionario funcionario, Pagamento pagamento,Cliente cliente ) {
+        this.id = id;
         this.precoTotal = precoTotal;
         this.dataVenda = dataVenda;
         this.horario = horario;
+        this.funcionario = funcionario;
+        this.cliente = cliente;
+        this.pagamento = pagamento;
+        
     }
+
+    
 
     public double getPrecoTotal() {
         return precoTotal;
     }
 
-    public void setPrecoTotal(double precoTotal) {
+    public void setPrecoTotal(float precoTotal) {
         this.precoTotal = precoTotal;
     }
 
@@ -82,12 +90,12 @@ public class Venda {
         this.chaveFuncionario = chaveFuncionario;
     }
 
-    public int getChvePagamento() {
-        return ChvePagamento;
+    public int getChavePagamento() {
+        return chavePagamento;
     }
 
-    public void setChvePagamento(int ChvePagamento) {
-        this.ChvePagamento = ChvePagamento;
+    public void setChavePagamento(int chavePagamento) {
+        this.chavePagamento = chavePagamento;
     }
 
     public int getChaveCliente() {

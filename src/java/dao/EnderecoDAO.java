@@ -46,6 +46,7 @@ public class EnderecoDAO {
                 rs.getString("BAIRRO"),
                 rs.getString("CIDADE"),
                 rs.getString("UF")
+                
         );
         return endereco;
     }

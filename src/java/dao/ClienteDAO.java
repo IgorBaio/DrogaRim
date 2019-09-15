@@ -5,6 +5,7 @@
  */
 package dao;
 
+import static dao.PessoaDAO.instanciarPessoa;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class ClienteDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from cliente");
             while(rs.next()){
-                cliente = instanciarCliente(rs);
+                cliente = (Cliente) instanciarPessoa(rs);
                 Clientes.add(cliente);
             }
         }  finally{
@@ -38,11 +39,5 @@ public class ClienteDAO {
     }
     
      
-    public static Cliente instanciarCliente(ResultSet rs) throws SQLException {
-        Cliente cliente = new Cliente(
-                    null);
-                    cliente.setChavePessoa(rs.getInt("id"));//nao tem essa ligacao no banco, so no diagrama de classe
-                    return cliente;
-        }
-    }
+}
 

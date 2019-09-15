@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Fabricante;
 
 /**
  *
@@ -27,7 +28,7 @@ public class FabricanteDAO {
             ResultSet rs = comando.executeQuery("select * from fabricante");
             while(rs.next()){
                 fabricante = instanciarFabricante(rs);
-                Fabricantes.add(fabricante);
+                fabricantes.add(fabricante);
             }
         }  finally{
                    DAO.fecharConexao(conexao, comando); 

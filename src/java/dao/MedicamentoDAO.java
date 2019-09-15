@@ -28,7 +28,7 @@ public class MedicamentoDAO {
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from medicamento");
             while(rs.next()){
-                medicamento = instanciarMedicamento(rs);
+                medicamento = (Medicamento) ProdutoDAO.instanciarProduto(rs);
                 medicamentos.add(medicamento);
             }
         }  finally{

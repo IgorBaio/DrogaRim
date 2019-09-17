@@ -18,6 +18,22 @@ import model.Venda;
  * @author mathe
  */
 public class VendaDAO {
+    
+    public static Venda obterVenda(int id) throws ClassNotFoundException, SQLException{
+         Connection conexao = null;
+        Statement comando = null;
+        Venda venda = null;    
+     try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from venda where id =" + id);
+            rs.first();
+            venda = instanciarVenda(rs);
+        } finally {
+            DAO.fecharConexao(conexao, comando);
+        }
+        return venda;
+    };
 
     public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException {
         Connection conexao = null;

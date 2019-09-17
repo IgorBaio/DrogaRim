@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.ProdutoDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Igori
@@ -26,9 +30,21 @@ public class ProdutoVendido {
 
      
 
-    public Produto getProdutos() {
+    public Produto getProduto() throws ClassNotFoundException, SQLException{
+        if((this.chaveProduto != 0) && (this.produtos == null)){
+            this.produtos = ProdutoVendido.obterProduto(this.chaveProduto);
+        }
         return produtos;
     }
+    
+     public static Produto obterProduto(int id) throws ClassNotFoundException, SQLException{
+        return ProdutoDAO.obterProduto(id);
+    };
+    
+    
+    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
+        return ProdutoDAO.obterProdutos();
+    };
 
     public void setProdutos(Produto produtos) {
         this.produtos = produtos;

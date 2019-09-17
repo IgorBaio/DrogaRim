@@ -5,6 +5,7 @@
  */
 package dao;
 
+import static dao.DAO.fecharConexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,25 @@ import model.Produto;
  * @author Igori
  */
 public class ProdutoDAO {
+    public static Produto obterProduto(int id) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        Produto produto = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery(
+            "select * from produto where id = "+id
+            );
+        rs.first();
+        produto = instanciarProduto(rs);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+        return produto;
+    };
+    
+    
     public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;

@@ -18,6 +18,22 @@ import model.Pessoa;
  * @author Igori
  */
 public class PessoaDAO {
+    public static Pessoa obterPessoa(int id) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        Pessoa pessoa = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from pessoa where id = " + id);
+            rs.first();
+            pessoa = instanciarPessoa(rs);
+        } finally {
+            DAO.fecharConexao(conexao, comando);
+        }
+        return pessoa;
+    };
+    
     public static List<Pessoa> obterPessoas() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;

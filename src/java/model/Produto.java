@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.EstoqueDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Igori
@@ -17,6 +21,8 @@ public class Produto {
     private Estoque estoque;
     private int chaveEstoque;
 
+    
+    
     public Produto(int id, String nome, float preco,String lote ,Estoque estoque) {
         this.id = id;
         this.nome = nome;
@@ -24,9 +30,21 @@ public class Produto {
         this.estoque = estoque;
     }
 
-    public Estoque getEstoque() {
+    public Estoque getEstoque() throws ClassNotFoundException, SQLException{
+        if((this.chaveEstoque != 0) && (this.estoque == null)){
+            this.estoque = Produto.obterEstoque(this.chaveEstoque);
+        }
         return estoque;
     }
+    
+     public static Estoque obterEstoque(int id) throws ClassNotFoundException, SQLException{
+        return EstoqueDAO.obterEstoque(id);
+    };
+    
+    
+    public static List<Estoque> obterEstoques() throws ClassNotFoundException, SQLException{
+        return EstoqueDAO.obterEstoques();
+    };
 
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
@@ -43,9 +61,7 @@ public class Produto {
 
     
 
-    public Produto(int aInt, int aInt0, int aInt1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     public int getId() {
         return id;

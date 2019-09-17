@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.PagamentoDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Igori
@@ -24,7 +28,14 @@ public class Pagamento {
         this.preco = preco;
     }
 
+    public static Pagamento obterPagamento(int id) throws ClassNotFoundException, SQLException{
+        return PagamentoDAO.obterPagamento(id);
+    };
     
+    
+    public static List<Pagamento> obterPagamentos() throws ClassNotFoundException, SQLException{
+        return PagamentoDAO.obterPagamentos();
+    };
 
     public String getTipo() {
         return tipo;

@@ -4,8 +4,26 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Pessoa.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Medicamento.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/ProdutoVendidoDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Estoque.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Cliente.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/EstoqueDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Administrador.java</file>
             <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Venda.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/PagamentoDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Pagamento.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/EnderecoDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/PessoaDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Endereco.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/MedicamentoDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/FabricanteDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/ProdutoVendido.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/ProdutoDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Funcionario.java</file>
             <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/VendaDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Produto.java</file>
         </group>
     </open-files>
 </project-private>

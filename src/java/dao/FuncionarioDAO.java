@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Funcionario;
+import model.Pessoa;
 
 /**
  *
@@ -39,14 +40,18 @@ public class FuncionarioDAO {
     
      
     public static Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
-        Funcionario funcionario = new Funcionario(
+        Funcionario funcionario = new Pessoa(
+                PessoaDAO.instanciarPessoa(rs)
+        )
+        /*Funcionario funcionario = new Funcionario(
                     rs.getInt("ID"),
                     rs.getString("FUNCAO"),
                     rs.getString("LOGIN"),
                     rs.getString("SENHA"),
                     null // erro no pessoas_id
         );
-                    return funcionario;
+                    
+                    return funcionario;*/
        }
     
 }

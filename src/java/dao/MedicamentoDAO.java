@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Medicamento;
+import model.Produto;
 
 /**
  *
@@ -37,18 +38,23 @@ public class MedicamentoDAO {
         return medicamentos;
     }
     
-    /*public static Medicamento instanciarMedicamento(ResultSet rs)throws SQLException{
-        Medicamento medicamento = new Medicamento(
+    public static Medicamento instanciarMedicamento(ResultSet rs)throws SQLException{
+        Produto produto = new Medicamento(
                 rs.getInt("ID"),
                 rs.getString("NOME"),
                 rs.getFloat("PRECO"),
                 rs.getString("LOTE"),
+                rs.getString("CATEGORIA"),
+                rs.getString("TIPO"),
+                rs.getBoolean("RECEITA"),
+                rs.getString("CONTRAINDICACOES"),
+                rs.getString("NOME_FARMACO"),
                 null
         );
-        medicamento.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
-        return medicamento;
+        produto.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
+        return produto;
     
     
     }
-*/
+
 }

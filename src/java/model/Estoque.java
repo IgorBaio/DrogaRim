@@ -13,6 +13,8 @@ public class Estoque {
     private int id;
     private int quantidade;
     private int quantidadeMinima;
+    
+    
 
     public Estoque(int id, int quantidade, int quantidadeMinima) {
         this.id = id;

@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.VendaDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Igori
@@ -32,7 +36,14 @@ public class Venda {
         
     }
 
+    public static Venda obterVenda(int id) throws ClassNotFoundException, SQLException{
+        return VendaDAO.obterVenda(id);
+    };
     
+    
+    public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException{
+        return VendaDAO.obterVendas();
+    };
 
     public double getPrecoTotal() {
         return precoTotal;

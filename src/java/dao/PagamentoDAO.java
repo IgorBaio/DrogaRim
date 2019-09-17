@@ -5,6 +5,7 @@
  */
 package dao;
 
+import static dao.DAO.fecharConexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,25 @@ import model.Pagamento;
  * @author Igori
  */
 public class PagamentoDAO {
+    public static Pagamento obterPagamento(int id) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        Pagamento pagamento = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery(
+            "select * from pagamento where id = "+id
+            );
+        rs.first();
+        pagamento = instanciarPagamento(rs);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+        return pagamento;
+    };
+    
+    
     public static List<Pagamento> obterPagamentos() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;

@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.PessoaDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 
 public class Pessoa {
     private int id;
@@ -34,7 +38,14 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
+    public static Pessoa obterPessoa(int id) throws ClassNotFoundException, SQLException{
+        return PessoaDAO.obterPessoa(id);
+    };
     
+    
+    public static List<Pessoa> obterPessoas() throws ClassNotFoundException, SQLException{
+        return PessoaDAO.obterPessoas();
+    };
     
     public int getChaveEndereco() {
         return chaveEndereco;

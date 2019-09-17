@@ -5,6 +5,7 @@
  */
 package dao;
 
+import static dao.DAO.fecharConexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,25 @@ import model.Estoque;
  * @author mathe
  */
 public class EstoqueDAO {
+    public static Estoque obterEstoque(int id) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        Estoque estoque = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery(
+            "select * from estoque where id = "+id
+            );
+        rs.first();
+        estoque = instanciarEstoque(rs);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+        return estoque;
+    };
+    
+    
     public static List<Estoque> obterEstoques() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;

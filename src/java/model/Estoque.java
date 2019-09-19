@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.EstoqueDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Igori
@@ -20,6 +24,14 @@ public class Estoque {
         this.id = id;
         this.quantidade = quantidade;
         this.quantidadeMinima = quantidadeMinima;
+    }
+    
+     public static Estoque obterEstoque(int idEstoque) throws ClassNotFoundException, SQLException{
+        return EstoqueDAO.obterEstoque(idEstoque);
+    }
+    
+    public static List<Estoque> obterEstoques() throws ClassNotFoundException, SQLException{
+        return EstoqueDAO.obterEstoques();
     }
 
     public int getId() {

@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.AdministradorDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Igori
@@ -30,6 +34,13 @@ public class Administrador extends Pessoa {
         this.senha = senha;
     }
      
+    public static Administrador obterAdministrador(int idAdministrador) throws ClassNotFoundException, SQLException{
+        return AdministradorDAO.obterAdministrador(idAdministrador);
+    }
+    
+    public static List<Administrador> obterAdministradores() throws ClassNotFoundException, SQLException{
+        return AdministradorDAO.obterAdministradores();
+    }
      
 
     public int getId() {

@@ -19,7 +19,24 @@ import model.Administrador;
  */
 public class AdministradorDAO {
 
-    public static List<Administrador> obterADMs() throws ClassNotFoundException, SQLException {
+    public static Administrador obterAdministrador(int idAdministrador) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        Administrador administrador = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from administrador =" + idAdministrador);
+            rs.first();
+            administrador = instanciarAdministrador(rs);
+        } finally {
+            DAO.fecharConexao(conexao, comando);
+        }
+        return administrador;
+    };
+    
+   
+    public static List<Administrador> obterAdministradores() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Administrador> adms = new ArrayList<Administrador>();

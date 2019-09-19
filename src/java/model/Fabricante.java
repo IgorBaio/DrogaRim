@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.FabricanteDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author mathe
@@ -16,6 +20,14 @@ public class Fabricante {
     public Fabricante(int id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+    
+    public static Fabricante obterFabricante(int idFabricante) throws ClassNotFoundException, SQLException{
+        return FabricanteDAO.obterFabricante(idFabricante);
+    }
+    
+    public static List<Fabricante> obterFabricantes() throws ClassNotFoundException, SQLException{
+        return FabricanteDAO.obterFabricantes();
     }
 
     public int getId() {

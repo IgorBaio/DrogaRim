@@ -74,10 +74,12 @@ public class Pessoa {
     
     
 
-    public Endereco getEndereco() {
+    public Endereco getEndereco() throws ClassNotFoundException, SQLException{
+        if((this.chaveEndereco != 0) && (this.endereco == null)){
+            this.endereco = Endereco.obterEndereco(this.chaveEndereco);
+        }
         return endereco;
     }
-
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }

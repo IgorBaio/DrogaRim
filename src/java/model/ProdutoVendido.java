@@ -6,6 +6,7 @@
 package model;
 
 import dao.ProdutoDAO;
+import dao.VendaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -45,14 +46,27 @@ public class ProdutoVendido {
     public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
         return ProdutoDAO.obterProdutos();
     };
+    
+    public Venda getVenda() throws ClassNotFoundException, SQLException{
+        if((this.chaveVenda != 0) && (this.venda == null)){
+            this.venda = Venda.obterVenda(this.chaveVenda);
+        }
+        return venda;
+    }
 
     public void setProdutos(Produto produtos) {
         this.produtos = produtos;
     }
 
-    public Venda getVenda() {
-        return venda;
-    }
+    public static Venda obterVenda(int id) throws ClassNotFoundException, SQLException{
+        return VendaDAO.obterVenda(id);
+    };
+    
+    
+    public static List<Venda> obterVenda() throws ClassNotFoundException, SQLException{
+        return VendaDAO.obterVendas();
+    };
+   
 
     public void setVenda(Venda venda) {
         this.venda = venda;

@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Igori
@@ -24,6 +26,14 @@ public class Funcionario extends Pessoa {
         this.login = login;
         this.senha = senha;
     }
+    
+    /* public static Funcionario obterFuncionario(int idFuncionario) throws ClassNotFoundException, SQLException{
+        return FuncionarioDAO.obterFuncionario(idFuncionario);
+    }
+    
+    public static List<Funcionario> obterFuncionarios() throws ClassNotFoundException, SQLException{
+        return FuncionarioDAO.obterFuncionarios();
+    }*/
 
     public String getFuncao() {
         return funcao;

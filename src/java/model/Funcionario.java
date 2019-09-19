@@ -13,19 +13,31 @@ import java.sql.SQLException;
  */
 public class Funcionario extends Pessoa {
 
+    private Integer idFuncionario;
     private String funcao;
     private String login;
     private String senha;
 
-    public Funcionario(String funcao, String login, String senha,int id, String nome, String cpf, String telefone, 
+    public Funcionario(Integer idFunc,String funcao, String login, String senha,int idPessoa, String nome, String cpf, String telefone, 
             String email,String numeroCasa, String complemento
             ,  String dataNascimento, String sexo, Endereco endereco) {
         //super(id, nome, cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, endereco);
-        super(id, nome, cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, endereco);
+        super(idPessoa, nome, cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, endereco);
+        this.idFuncionario = idFunc;
         this.funcao = funcao;
         this.login = login;
         this.senha = senha;
     }
+
+    public Funcionario(Integer idFunc,String funcao, String login, String senha, Pessoa pessoa) {
+        super (pessoa);
+        this.idFuncionario = idFunc;
+        this.funcao = funcao;
+        this.login = login;
+        this.senha = senha;
+    }
+
+   
     
     /* public static Funcionario obterFuncionario(int idFuncionario) throws ClassNotFoundException, SQLException{
         return FuncionarioDAO.obterFuncionario(idFuncionario);

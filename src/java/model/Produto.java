@@ -6,6 +6,7 @@
 package model;
 
 import dao.EstoqueDAO;
+import dao.ProdutoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import java.util.List;
  * @author Igori
  */
 public class Produto {
+
+    
     private int id;
     private String nome;
     private float preco;
@@ -45,7 +48,15 @@ public class Produto {
     public static List<Estoque> obterEstoques() throws ClassNotFoundException, SQLException{
         return EstoqueDAO.obterEstoques();
     };
-
+    
+    /*public static Estoque obterEstoque(int id) throws ClassNotFoundException, SQLException{
+        return EstoqueDAO.obterEstoque(id);
+    };*/
+    
+    
+    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
+        return ProdutoDAO.obterProdutos();
+    };
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
     }

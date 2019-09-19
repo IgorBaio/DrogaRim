@@ -40,18 +40,19 @@ public class FuncionarioDAO {
     
      
     public static Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
-        Funcionario funcionario = new Pessoa(
-                PessoaDAO.instanciarPessoa(rs)
-        )
         /*Funcionario funcionario = new Funcionario(
+                PessoaDAO.instanciarPessoa(rs)
+        );*/
+        Funcionario funcionario = new Funcionario(
                     rs.getInt("ID"),
                     rs.getString("FUNCAO"),
                     rs.getString("LOGIN"),
                     rs.getString("SENHA"),
-                    null // erro no pessoas_id
+                    PessoaDAO.instanciarPessoa(rs)
         );
                     
-                    return funcionario;*/
-       }
+                    return funcionario;
+     //return funcionario;  
+    }
     
 }

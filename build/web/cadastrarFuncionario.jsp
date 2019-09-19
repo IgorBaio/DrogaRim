@@ -9,26 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>DrogaRIM</title>
         <title>Cadastro Funcionário</title>
     </head>
     <body>
         <div id="head2">
-        <table>
-            <tr>
-                <td>
-                    <a href="cadastrarCliente.jsp"><h2>Cadastrar Cliente</h2></a>
-                </td>
-                <td>
-                    <a href="cadastrarFabricante.jsp"><h2>Cadastrar Fabricante</h2></a>
-                </td>
-                <td>
-                    <a href="cadastrarProduto.jsp"><h2>Cadastrar Produto</h2></a>
-                </td>
-                <td>
-                    <h2>Cadastrar Funcionário</h2>
-                </td>
-            </tr>
-        </table>
+     
     <form>
         <table>
             <tr>

@@ -16,22 +16,22 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="PesquisaVendaController">Venda</a>
+                        <a href="index.jsp">Venda</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="PesquisaEstoqueController">Estoque</a>
+                        <a href="estoque.jsp">Estoque</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="PesquisaClienteController">Cliente</a>
+                        <a href="cliente.jsp">Cliente</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="PesquisaFunicionarioController">Funcionario</a>
+                        <a href="funcionario.jsp">Funcionário</a>
                     </td>
                 </tr>
              </table>

@@ -27,7 +27,7 @@ public class ProdutoDAO {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery(
-            "select * from produto where id = "+id
+            "select * from produtos where id = "+id
             );
         rs.first();
         produto = instanciarProduto(rs);
@@ -46,7 +46,7 @@ public class ProdutoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from produto");
+            ResultSet rs = comando.executeQuery("select * from produtos");
             while(rs.next()){
                 produto = instanciarProduto(rs);
                 produtos.add(produto);

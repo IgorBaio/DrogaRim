@@ -37,6 +37,19 @@ public class Pessoa {
         this.sexo = sexo;
         this.endereco = endereco;
     }
+    
+    public Pessoa(Pessoa pessoa){
+        this.id = pessoa.id;
+        this.nome = pessoa.nome;
+        this.cpf = pessoa.cpf;
+        this.telefone = pessoa.telefone;
+        this.email = pessoa.email;
+        this.numeroCasa = pessoa.numeroCasa;
+        this.complemento = pessoa.complemento;
+        this.dataNascimento = pessoa.dataNascimento;
+        this.sexo = pessoa.sexo;
+        this.endereco = pessoa.endereco;
+    }
 
     public static Pessoa obterPessoa(int id) throws ClassNotFoundException, SQLException{
         return PessoaDAO.obterPessoa(id);

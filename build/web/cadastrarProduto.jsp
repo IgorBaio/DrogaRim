@@ -9,26 +9,11 @@
     </head>
     <body>
         <div id="head2">
-        <table>
-            <tr>
-                <td>
-                    <a href="cadastrarCliente.jsp"><h2>Cadastrar Cliente</h2></a>
-                </td>
-                <td>
-                    <a href="cadastrarFabricante.jsp"><h2>Cadastrar Fabricante</h2></a>
-                </td>
-                <td>
-                    <h2>Cadastrar Produto</h2>
-                </td>
-                <td>
-                    <a href="cadastrarFuncionario.jsp"><h2>Cadastrar Funcionário</h2></a>
-                </td>
-            </tr>
-        </table>
+       
         <form>
          <table>
              <tr>
-                 <input type="radio" name="produtos" id='produto' value="ProdutoSimples"/>Produtos Simples
+                 <input type="radio" name="produto" id='produto' value="ProdutoSimples"/>Produtos Simples
               <input type="radio" name="produto" id='produto' value="Medicamento"/>Medicamentos
              </tr>
                 <tr>

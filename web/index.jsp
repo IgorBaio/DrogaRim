@@ -11,7 +11,7 @@
          <table>
                 <tr>
                     <td>
-                        <a href="produto.jsp">Produto</a>
+                        <a href="PesquisaProdutoController">Produto</a>
                     </td>
                 </tr>
                 <tr>

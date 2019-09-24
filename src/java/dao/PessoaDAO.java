@@ -25,7 +25,7 @@ public class PessoaDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from pessoa where id = " + id);
+            ResultSet rs = comando.executeQuery("select * from pessoas where id = " + id);
             rs.first();
             pessoa = instanciarPessoa(rs);
         } finally {
@@ -42,7 +42,7 @@ public class PessoaDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from pessoa");
+            ResultSet rs = comando.executeQuery("select * from pessoas");
             while(rs.next()){
                 pessoa = instanciarPessoa(rs);
                 pessoas.add(pessoa);
@@ -62,7 +62,7 @@ public class PessoaDAO {
                     rs.getString("email"),
                     rs.getString("numero"),
                     rs.getString("complemento"),
-                    rs.getString("datanascimento"),
+                    rs.getString("data_nasc"),
                     rs.getString("sexo"),
                     null
         );

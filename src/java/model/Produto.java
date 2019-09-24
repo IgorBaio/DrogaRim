@@ -49,9 +49,9 @@ public class Produto {
         return EstoqueDAO.obterEstoques();
     };
     
-    /*public static Estoque obterEstoque(int id) throws ClassNotFoundException, SQLException{
-        return EstoqueDAO.obterEstoque(id);
-    };*/
+    public static Produto obterProduto(int id) throws ClassNotFoundException, SQLException{
+        return ProdutoDAO.obterProduto(id);
+    };
     
     
     public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{

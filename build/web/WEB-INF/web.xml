@@ -4,9 +4,49 @@
         <servlet-name>PesquisaProdutoController</servlet-name>
         <servlet-class>controller.PesquisaProdutoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PesquisaClienteController</servlet-name>
+        <servlet-class>controller.PesquisaClienteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaClientController</servlet-name>
+        <servlet-class>controller.PesquisaClienteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaFabricanteController</servlet-name>
+        <servlet-class>controller.PesquisaFabricanteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaVendaController</servlet-name>
+        <servlet-class>controller.PesquisaVendaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaFuncionarioController</servlet-name>
+        <servlet-class>controller.PesquisaFuncionarioController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaProdutoController</servlet-name>
         <url-pattern>/PesquisaProdutoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaClienteController</servlet-name>
+        <url-pattern>/PesquisaClienteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaClientController</servlet-name>
+        <url-pattern>/PesquisaClientController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaFabricanteController</servlet-name>
+        <url-pattern>/PesquisaFabricanteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaVendaController</servlet-name>
+        <url-pattern>/PesquisaVendaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaFuncionarioController</servlet-name>
+        <url-pattern>/PesquisaFuncionarioController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

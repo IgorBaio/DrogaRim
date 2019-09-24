@@ -26,9 +26,9 @@ public class Medicamento extends Produto {
         this.tipo = tipo;
     }
 
-    public Medicamento(int id, String nome, float preco, String lote, String categoria, String contraINd, boolean receita, String nomeFarma, Object endereco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    //public Medicamento(int id, String nome, float preco, String lote, String categoria, String contraINd, boolean receita, String nomeFarma, Object endereco) {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
 
 
     

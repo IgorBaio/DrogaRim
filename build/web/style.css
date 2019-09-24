@@ -1,0 +1,93 @@
+/* Fonts from Google Fonts - more at https://fonts.google.com */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+
+body {
+  background-color: white;
+  font-family: HKGrotesk, Roboto, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  color: #444;
+  min-width: 1366px;
+  font-weight: 400;
+}
+
+h1 {
+  font-family: HKGrotesk, Roboto, serif;
+  font-size: 32px;
+}
+
+hr {
+  background-color: #e0e0e0;
+  height: 1px;
+  border: 0;
+  width: inherit;
+  clear: both;
+}
+
+
+header nav td, .subnav td{
+  position: relative;
+  font-size: 19px;
+  float: left;
+  margin: -4px 50px -4px 10px;
+}
+
+.subnav{
+  padding: 15px 0;
+  display: block;
+}
+
+section{
+  clear: both;
+  padding: 10px;
+
+}
+
+#filtroVenda, #filtroProduto, #filtroCliente, #filtroFabricante, #filtroFuncionario, #filtroEstoque {
+  float: left;
+  width:235px;
+  height:650px;
+  border-right: 1px solid #e0e0e0;
+  margin-right: 10px;
+}
+
+#listaProdutoVenda{
+  float: left;
+  width:700px;
+  height:650px;
+  border-right: 1px solid #e0e0e0;
+  margin-right: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: #a9a9a9;
+}
+
+a:hover {
+  color: salmon;
+}
+
+a.paginaSelecionada{
+  text-decoration:none;
+  border-bottom: 2px solid;
+  padding-bottom: 7px;
+  color: #0094ff;
+  font-weight: 600;
+
+}
+
+header .barralogo {
+    display: block;
+    padding: 0 10px;
+
+
+}
+.barralogo h1 {
+  float: left;
+}
+
+.barralogo span {
+  float: right;
+}

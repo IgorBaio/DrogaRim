@@ -19,6 +19,25 @@ import model.Pessoa;
  * @author Igori
  */
 public class FuncionarioDAO {
+    public static Funcionario obterFuncionario(int id) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        Funcionario funcionario = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery(
+            "select * from funcionarios where id = "+id
+            );
+        rs.first();
+        funcionario = instanciarFuncionario(rs);
+        }finally{
+            DAO.fecharConexao(conexao, comando);
+        }
+        return funcionario;
+    };
+    
+    
     public static List<Funcionario> obterFuncionarios() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
@@ -27,7 +46,7 @@ public class FuncionarioDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from funcionario");
+            ResultSet rs = comando.executeQuery("select * from funcionarios");
             while(rs.next()){
                 funcionario = instanciarFuncionario(rs);
                 funcionarios.add(funcionario);

@@ -1,56 +1,90 @@
-<%-- 
-    Document   : funcionario
-    Created on : 10/09/2019, 11:38:40
-    Author     : mathe
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Funcionario</title>
-    </head>
-    <body>
-        <header>
-            <table>
-                <tr>
-                    <td>
-                        <a href="produto.jsp">Produto</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="index.jsp">Venda</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="estoque.jsp">Estoque</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="cliente.jsp">Cliente</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="funcionario.jsp" class="paginaSelecionada">Funcionário</a>
-                    </td>
-                </tr>
-            </table>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html">
+    <link rel="stylesheet" href="style.css">
+    <title>Cadastrar funcionário</title>
+  </head>
+  <body>
+    <header>
+      <div class="barralogo">
+          <h1>DROGARIM</h1>
+          <span id="usuario">Vendedor</span>
+      </div>
+      <hr>
+      <nav>
+          <table>
+              <tr>
+                  <td>
+                      <a href="index.jsp">Venda</a>
+                  </td>
 
-        </header>
+                  <td>
+                      <a href="PesquisaProdutoController">Produto</a>
+                  </td>
+
+                  <td>
+                      <a href="estoque.jsp">Estoque</a>
+                  </td>
+
+                  <td>
+                      <a href="cliente.jsp">Cliente</a>
+                  </td>
+
+                  <td>
+                      <a href="funcionario.jsp" class="paginaSelecionada">Funcionário</a>
+                  </td>
+
+                  <td>
+                      <a href="PesquisaFabricanteController">Fabricante</a>
+                  </td>
+              </tr>
+          </table>
+        </nav>
+        <hr>
+      </header>
+
+      <div class="subnav">
         <table>
             <tr>
                 <td>
-                    <a href="funcionario.jsp" class="paginaSelecionada"><h2>Funcionário</h2></a>
+                    <a href="funcionario.jsp" class="paginaSelecionada">
+                        Funcionários
+                    </a>
                 </td>
+
                 <td>
-                    <a href="cadastrarFuncionario.jsp"><h2>Cadastrar Funcionário</h2></a>
+                    <a href="cadastrarFuncionario.jsp">
+                        Cadastrar Funcionário
+                    </a>
                 </td>
             </tr>
         </table>
+
+      </div>
+
+      <section>
+        <div id="secaoFuncionario">
+          <div id="buscaFuncionario">
+            <input type="text" id="textoBusca" placeholder="Pesquisar"/>
+            <button id="botaoBusca">Buscar</button>
+            <hr>
+          </div>
+          <div id="filtroFuncionario">
+            Filtros
+          </div>
+          <div id="listaFuncionario">
+            Resultados
+            <table>
+              <tr>
+                <td>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
     </body>
 </html>

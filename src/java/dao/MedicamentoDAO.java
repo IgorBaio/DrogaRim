@@ -38,7 +38,7 @@ public class MedicamentoDAO {
         return medicamentos;
     }
     
-    public static Medicamento instanciarMedicamento(ResultSet rs)throws SQLException{
+    /*public static Medicamento instanciarMedicamento(ResultSet rs)throws SQLException{
         Produto produto = new Medicamento(
                 rs.getInt("ID"),
                 rs.getString("NOME"),
@@ -55,6 +55,6 @@ public class MedicamentoDAO {
         return produto;
     
     
-    }
+    }*/
 
 }

@@ -34,7 +34,7 @@ public class PesquisaProdutoController extends HttpServlet {
             throws ServletException, IOException {
         try {
             request.setAttribute("produtos", Produto.obterProdutos());
-            RequestDispatcher view = request.getRequestDispatcher("pesquisaProduto.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("produto.jsp");
             view.forward(request, response);
         }catch(ClassNotFoundException e){
             throw new ServletException(e);

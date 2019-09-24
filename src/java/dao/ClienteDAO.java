@@ -19,6 +19,25 @@ import model.Cliente;
  * @author mathe
  */
 public class ClienteDAO {
+    public static Cliente obterCliente(int id) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        Cliente cliente = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery(
+            "select * from cliente where id = "+id
+            );
+        rs.first();
+        cliente = (Cliente)instanciarPessoa(rs);
+        }finally{
+            DAO.fecharConexao(conexao, comando);
+        }
+        return cliente;
+    };
+    
+    
     public static List<Cliente> obterClientes() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;

@@ -26,7 +26,7 @@ public class VendaDAO {
      try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from venda where id =" + id);
+            ResultSet rs = comando.executeQuery("select * from vendas where id =" + id);
             rs.first();
             venda = instanciarVenda(rs);
         } finally {
@@ -43,7 +43,7 @@ public class VendaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from venda");
+            ResultSet rs = comando.executeQuery("select * from vendas");
             while (rs.next()) {
                 venda = instanciarVenda(rs);
                 vendas.add(venda);

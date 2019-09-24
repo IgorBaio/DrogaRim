@@ -1,56 +1,102 @@
-<%-- 
-    Document   : produto.jsp
-    Created on : 05/09/2019, 09:03:25
-    Author     : mathe
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Produto</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Produto</title>
     </head>
     <body>
-        <header>
-       <table>
-                <tr>
-                    <td>
-                        <a href="produto.jsp" class="paginaSelecionada">Produto</a>
-                    </td>
-                </tr>
+      <header>
+        <div class="barralogo">
+            <h1>DROGARIM</h1>
+            <span id="usuario">Vendedor</span>
+        </div>
+        <hr>
+        <nav>
+            <table>
                 <tr>
                     <td>
                         <a href="index.jsp">Venda</a>
                     </td>
-                </tr>
-                <tr>
+
+                    <td>
+                        <a href="PesquisaProdutoController" class="paginaSelecionada">Produto</a>
+                    </td>
+
                     <td>
                         <a href="estoque.jsp">Estoque</a>
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="cliente.jsp">Cliente</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="funcionario.jsp">Funcionario</a>
-                    </td>
-                </tr>
-             </table>
 
+                    <td>
+                        <a href="PesquisaClienteController">Cliente</a>
+                    </td>
+
+                    <td>
+                        <a href="funcionario.jsp">Funcionário</a>
+                    </td>
+
+                    <td>
+                        <a href="PesquisaFabricanteController">Fabricante</a>
+                    </td>
+                </tr>
+            </table>
+          </nav>
+          <hr>
         </header>
-    <table>
-            <tr>
-                <td>
-                    <a href="produto.jsp" class="paginaSelecionada"><h2>Produto</h2></a>
-                </td>
-                <td>
-                    <a href="cadastrarProduto.jsp"><h2>Cadastrar Produto</h2></a>
-                </td>
-            </tr>
-        </table>
-        
+
+        <div class="subnav">
+          <table>
+              <tr>
+                  <td>
+                      <a href="PesquisaProdutoController" class="paginaSelecionada">
+                          Produtos
+                      </a>
+                  </td>
+
+                  <td>
+                      <a href="cadastrarProduto.jsp">
+                          Cadastrar Produto
+                      </a>
+                  </td>
+              </tr>
+          </table>
+        </div>
+
+        <section>
+          <div id="secaoProduto">
+            <div id="buscaProduto">
+              <input type="text" id="textoBusca" placeholder="Pesquisar"/>
+              <button id="botaoBusca">Buscar</button>
+              <hr>
+            </div>
+            <div id="filtroProduto">
+              Filtros
+            </div>
+            <div id="listaProduto">
+              Resultados
+              <table>
+                <tr>
+                  <th>
+                  </th>
+                </tr>
+                 <c:forEach items="${produtos}" var="produto">
+                <tr>
+                    <td><c:out value="${produto.id}" /></td>
+                    <td><c:out value="${produto.nome}" /></td>    
+                </tr>
+                 </c:forEach>
+              </table>
+            </div>
+          </div>
+        </section>
+  </body>
+
 </html>

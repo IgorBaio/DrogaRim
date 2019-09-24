@@ -5,7 +5,9 @@
  */
 package model;
 
+import dao.FuncionarioDAO;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -39,13 +41,13 @@ public class Funcionario extends Pessoa {
 
    
     
-    /* public static Funcionario obterFuncionario(int idFuncionario) throws ClassNotFoundException, SQLException{
+    public static Funcionario obterFuncionario(int idFuncionario) throws ClassNotFoundException, SQLException{
         return FuncionarioDAO.obterFuncionario(idFuncionario);
     }
     
     public static List<Funcionario> obterFuncionarios() throws ClassNotFoundException, SQLException{
         return FuncionarioDAO.obterFuncionarios();
-    }*/
+    }
 
     public String getFuncao() {
         return funcao;

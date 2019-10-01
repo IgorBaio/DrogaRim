@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastrar produto</title>
+    <title>Cadastrar produto - ${operacao}</title>
 </head>
 
 <body>
@@ -49,6 +49,7 @@
     </header>
 
     <div class="subnav">
+      
       <table>
           <tr>
               <td>
@@ -68,9 +69,74 @@
 
     <section>
       <div id="cadastrarProduto">
-        <form method="" action="">
+        <form action="ManterClienteController?acao=prepararOperacao&operaca=${operacao}"
+          method="post" name="frmCadastrarCliente">
+          
           <table>
+              <tr>
+                  <td>Código do cliente</td>
+                  <td><input type="text" name="txtCodCliente" value="${cliente.id}" /></td>
+              </tr>
+              <tr>
+                  <td>Nome</td>
+                  <td><input type="text" name="txtNomeCliente" value="${cliente.nome}" /></td>
+              </tr>
             <tr>
+                  <td>CPF</td>
+                  <td><input type="text" name="txtCodCliente" value="${cliente.cpf}" /></td>
+              </tr>
+              <tr>
+                  <td>Estado</td>
+                  <td>
+                      <select name="optEstado">
+                          <option value="Minas Gerais" <c:if test="${cliente.endereco.uf}"  selected</c:if>
+                          Minas Gerais
+                          </option>
+                          <option value="Rio de Janeiro" <c:if test="${cliente.endereco.uf}"  selected</c:if>
+                          Rio de Janeiro
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Data de Nascimento</td>
+                  <td><input type="date" name="txtDataNascimentoCliente" value="${cliente.dataNascimento}" /></td>
+              </tr>
+              <tr>
+                  <td>Sexo</td>
+                  <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}" />M</td>
+                  <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}" />F</td>
+              </tr>
+              <tr>
+                  <td>E-Mail</td>
+                  <td><input type="text" name="txtEmailCliente"  maxlength="50" value="${cliente.email}" /></td>
+              </tr>
+              <tr>
+                  <td>CEP</td>
+                  <td><input type="number" name="txtCEPCliente" maxlength="9" value="${cliente.endereco.cep}" /></td>
+              </tr>
+              <tr>
+                  <td>Logradouro</td>
+                  <td><input type="text" name="txtLogradouroCliente" value="${cliente.endereco.logradouro}" /></td>
+                  <td>Número</td>
+                  <td><input type="number" name="txtNumeroCliente" value="${cliente.endereco.logradouro}" /></td>
+              </tr>
+              <tr>
+                  <td>Cidade</td>
+                  <td><input type="text" name="txtCidadeCliente" value="${cliente.endereco.cidade}" /></td>
+              </tr>
+              <tr>
+                  <td>Bairro</td>
+                  <td><input type="text" name="txtBairroCliente" value="${cliente.endereco.bairro}" /></td>
+              </tr>
+              <tr>
+                  <td>Complemento</td>
+                  <td><input type="text" name="txtComplementoCliente" value="${cliente.endereco.complemento}" /></td>
+              </tr>
+              <tr>
+                  <td>Telefone</td>
+                  <td><input type="number" name="txtTelefoneCliente" value="${cliente.telefone}" /></td>
+              </tr>
+         <!--     <tr>
               <td>
                 <label for="iNome">Nome Completo</label>
               </td>
@@ -173,7 +239,7 @@
               <td>
                 <input type="number" id="iTelefone" name="tTelefone" max="20"/>
               </td>
-
+-->
             </table>
           <p><input type="reset" value="Cancelar"><input type="submit" value="Cadastrar"></p>
         </form>

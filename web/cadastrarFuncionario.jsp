@@ -81,7 +81,70 @@
                           </select>
                       </td>
                   </tr>
-          <tr>
+                  <tr>
+                  <td>Código do cliente</td>
+                  <td><input type="text" name="txtCodFuncionario" value="${cliente.id}" /></td>
+              </tr>
+              <tr>
+                  <td>Nome</td>
+                  <td><input type="text" name="txtNomeFuncionario" value="${cliente.nome}" /></td>
+              </tr>
+            <tr>
+                  <td>CPF</td>
+                  <td><input type="text" name="txtCodFuncionario" value="${cliente.cpf}" /></td>
+              </tr>
+              <tr>
+                  <td>Estado</td>
+                  <td>
+                      <select name="optEstado">
+                          <option value="Minas Gerais" <c:if test="${cliente.endereco.uf}"  selected</c:if>
+                          Minas Gerais
+                          </option>
+                          <option value="Rio de Janeiro" <c:if test="${cliente.endereco.uf}"  selected</c:if>
+                          Rio de Janeiro
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Data de Nascimento</td>
+                  <td><input type="date" name="txtDataNascimentoFuncionario" value="${cliente.dataNascimento}" /></td>
+              </tr>
+              <tr>
+                  <td>Sexo</td>
+                  <td><input type="radio" name="txtSexoFuncionario" value="${cliente.sexo}" />M</td>
+                  <td><input type="radio" name="txtSexoFuncionario" value="${cliente.sexo}" />F</td>
+              </tr>
+              <tr>
+                  <td>E-Mail</td>
+                  <td><input type="text" name="txtEmailFuncionario"  maxlength="50" value="${cliente.email}" /></td>
+              </tr>
+              <tr>
+                  <td>CEP</td>
+                  <td><input type="number" name="txtCEPFuncionario" maxlength="9" value="${cliente.endereco.cep}" /></td>
+              </tr>
+              <tr>
+                  <td>Logradouro</td>
+                  <td><input type="text" name="txtLogradouroFuncionario" value="${cliente.endereco.logradouro}" /></td>
+                  <td>Número</td>
+                  <td><input type="number" name="txtNumeroFuncionario" value="${cliente.endereco.logradouro}" /></td>
+              </tr>
+              <tr>
+                  <td>Cidade</td>
+                  <td><input type="text" name="txtCidadeFuncionario" value="${cliente.endereco.cidade}" /></td>
+              </tr>
+              <tr>
+                  <td>Bairro</td>
+                  <td><input type="text" name="txtBairroFuncionario" value="${cliente.endereco.bairro}" /></td>
+              </tr>
+              <tr>
+                  <td>Complemento</td>
+                  <td><input type="text" name="txtComplementoFuncionario" value="${cliente.endereco.complemento}" /></td>
+              </tr>
+              <tr>
+                  <td>Telefone</td>
+                  <td><input type="number" name="txtTelefoneFuncionario" value="${cliente.telefone}" /></td>
+              </tr>
+          <!--<tr>
               <td>
                   <label for="nome">Nome </label>
               </td>
@@ -188,6 +251,7 @@
                   <input type="text" id="uf">
               </td>
           </tr>
+         -->
           <tr>
               <td>
                   <label for="login">Login</label>

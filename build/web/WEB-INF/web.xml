@@ -24,6 +24,18 @@
         <servlet-name>PesquisaFuncionarioController</servlet-name>
         <servlet-class>controller.PesquisaFuncionarioController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterProdutoController</servlet-name>
+        <servlet-class>controller.ManterProdutoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterFuncionarioController</servlet-name>
+        <servlet-class>controller.ManterFuncionarioController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterClienteController</servlet-name>
+        <servlet-class>controller.ManterClienteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaProdutoController</servlet-name>
         <url-pattern>/PesquisaProdutoController</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>PesquisaFuncionarioController</servlet-name>
         <url-pattern>/PesquisaFuncionarioController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterProdutoController</servlet-name>
+        <url-pattern>/ManterProdutoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterFuncionarioController</servlet-name>
+        <url-pattern>/ManterFuncionarioController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterClienteController</servlet-name>
+        <url-pattern>/ManterClienteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

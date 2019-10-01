@@ -69,6 +69,11 @@
           </tr>
       </table>
     </div>
+    
+    <form action="ManterClienteController?acao=prepararOperacao&operaca=Incluir"
+          method="post">
+          <input type="submit" name="btnIncluir" value="Incluir"
+    </form>
 
     <section>
       <div id="secaoCliente">

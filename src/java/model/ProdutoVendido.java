@@ -6,6 +6,7 @@
 package model;
 
 import dao.ProdutoDAO;
+import dao.ProdutoVendidoDAO;
 import dao.VendaDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -36,6 +37,14 @@ public class ProdutoVendido {
             this.produtos = ProdutoVendido.obterProduto(this.chaveProduto);
         }
         return produtos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
      public static Produto obterProduto(int id) throws ClassNotFoundException, SQLException{
@@ -98,4 +107,7 @@ public class ProdutoVendido {
         this.preco = preco;
     }
     
+    public void gravar() throws SQLException, ClassNotFoundException{
+        ProdutoVendidoDAO.gravar(this);
+    }
 }

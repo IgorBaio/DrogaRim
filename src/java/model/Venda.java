@@ -49,6 +49,14 @@ public class Venda {
         return precoTotal;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setPrecoTotal(float precoTotal) {
         this.precoTotal = precoTotal;
     }
@@ -117,6 +125,8 @@ public class Venda {
         this.chaveCliente = chaveCliente;
     }
     
-    
+    public void gravar() throws SQLException, ClassNotFoundException{
+        VendaDAO.gravar(this);
+    }
     
 }

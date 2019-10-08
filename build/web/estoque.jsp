@@ -65,6 +65,9 @@
           </table>
         </div>
 
+        <form action="ManterEstoqueController?acao=prepararOperacao&operacao=Incluir" method="post">
+            <input type="submit" name="btnIncluir" value="Incluir">
+        </form>
         <section>
           <div id="secaoEstoque">
             <div id="buscaEstoque">

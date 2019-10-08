@@ -112,4 +112,7 @@ public class Endereco {
         this.complemento = complemento;
     }
     
+    public void gravar() throws SQLException, ClassNotFoundException{
+        EnderecoDAO.gravar(this);
+    }
 }

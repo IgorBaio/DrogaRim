@@ -5,10 +5,13 @@
  */
 package dao;
 
+import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import model.Venda;
@@ -70,4 +73,39 @@ public class VendaDAO {
     }
 //public static Adm instanciarAdm(ResultSet rs)throws 
 
+     public static void gravar(Venda venda) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into vendas(idVenda, preco_total, data_venda, horario, idFuncionario,"
+                            +" idPagamento, idCliente)"
+                    +" values(?,?,?,?,?)");
+            comando.setInt(1, venda.getId());
+            comando.setDouble(2 , venda.getPrecoTotal());
+            comando.setInt(3 , venda.getDataVenda());
+            comando.setInt(4 , venda.getHorario());
+            if(venda.getFuncionario()== null){
+                comando.setNull(5, Types.INTEGER);
+            }else{
+                comando.setInt(5, venda.getFuncionario().getId());
+            }
+            if(venda.getPagamento()== null){
+                comando.setNull(6, Types.INTEGER);
+            }else{
+                comando.setInt(6, venda.getPagamento().getId());
+            }
+            if(venda.getCliente()== null){
+                comando.setNull(7, Types.INTEGER);
+            }else{
+                comando.setInt(7, venda.getCliente().getIdCliente());
+            }
+            comando.executeUpdate();
+        }finally{
+            fecharConexao(conexao, comando);
+            
+        }
+    }
+    
 }

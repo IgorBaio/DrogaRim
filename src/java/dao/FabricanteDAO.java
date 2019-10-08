@@ -6,6 +6,7 @@
 package dao;
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -61,6 +62,21 @@ public class FabricanteDAO {
                 rs.getString("nome")
         );
         return fabricante;
+    }
+    
+    public void  gravar(Fabricante fabricante) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement ("insert into fabricantes (idFabricante, nome) values (?, ?)");
+            comando.setInt(1, fabricante.getId());
+            comando.setString(2,fabricante.getNome());
+            comando.executeUpdate();
+        }
+        finally {
+            fecharConexao(conexao, comando);
+        }
     }
     
 }

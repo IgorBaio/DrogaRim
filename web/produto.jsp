@@ -70,6 +70,9 @@
           </table>
         </div>
 
+        <form action="ManterProdutoController?acao=prepararOperacao&operacao=Incluir" method="post">
+            <input type="submit" name="btnIncluir" value="Incluir">
+        </form>
         <section>
           <div id="secaoProduto">
             <div id="buscaProduto">

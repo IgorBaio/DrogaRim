@@ -7,6 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,12 +60,25 @@ public class PagamentoDAO {
     
     public static Pagamento instanciarPagamento(ResultSet rs)throws SQLException{
         Pagamento pagamento = new Pagamento(
-                rs.getInt("ID"),
-                rs.getString("TIPO"),
-                rs.getDouble("VALOR_RECEBIDO"),
-                rs.getDouble("TROCO"),
-                rs.getDouble("preco")
+                rs.getInt("idPagamento"),
+                rs.getString("tipo")
         );
         return pagamento;
+    }
+    
+    public void  gravar(Pagamento pagamento) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement ("insert into fabricantes (idPagamento, tipo) values (?, ?)");
+            comando.setInt(1, pagamento.getId());
+            comando.setString(2,pagamento.getTipo());
+           // comando.setDouble(5, pagamento.getPreco()); >>>>>>>>>>> necessário criar preço no banco de dados? <<<<<<<<<<<<
+            comando.executeUpdate();
+        }
+        finally {
+            fecharConexao(conexao, comando);
+        }
     }
 }

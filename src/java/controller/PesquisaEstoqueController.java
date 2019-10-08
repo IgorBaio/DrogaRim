@@ -6,21 +6,20 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cliente;
-import model.Pessoa;
-
+import model.Produto;
 
 /**
  *
  * @author Igori
  */
-public class PesquisaClienteController extends HttpServlet {
+public class PesquisaEstoqueController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,8 +33,8 @@ public class PesquisaClienteController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            request.setAttribute("cliente", Cliente.obterClientes());
-            RequestDispatcher view = request.getRequestDispatcher("cliente.jsp");
+            request.setAttribute("produtos", Produto.obterProdutos());
+            RequestDispatcher view = request.getRequestDispatcher("estoque.jsp");
             view.forward(request, response);
         }catch(ClassNotFoundException e){
             throw new ServletException(e);
@@ -43,7 +42,6 @@ public class PesquisaClienteController extends HttpServlet {
            throw new ServletException(e);
         }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

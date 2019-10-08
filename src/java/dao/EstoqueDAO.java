@@ -7,6 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,10 +60,32 @@ public class EstoqueDAO {
     
     public static Estoque instanciarEstoque(ResultSet rs)throws SQLException{
         Estoque estoque = new Estoque(
-                rs.getInt("ID"),
-                rs.getInt("QUANT_MIN"),
-                rs.getInt("QUANTIDADE")
+                rs.getInt("idEstoque"),
+                rs.getInt("quant_min"),
+                rs.getInt("quant_max")
         );
         return estoque;
     }
+    
+    public static void gravar(Estoque estoque)throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao =BD.getConexao();
+            comando = conexao.prepareStatement("insert into estoque (idEstoque, quant_min, quant_max)" 
+                    + "values(?, ?, ?)");
+            comando.setInt(1, estoque.getId());
+            comando.setInt(2, estoque.getQuantidade());
+            comando.setInt(3, estoque.getQuantidadeMinima());
+            comando.executeUpdate();
+        }finally{
+            fecharConxecao(conexao, comando);
+        }
+        
+    }
+
+    private static void fecharConxecao(Connection conexao, PreparedStatement comando) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

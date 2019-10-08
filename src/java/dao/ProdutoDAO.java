@@ -7,9 +7,11 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import model.Produto;
@@ -69,5 +71,29 @@ public class ProdutoDAO {
         return produto;
     
     
+    }
+    
+    public static void gravar(Produto produto) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into produtos(idProduto, nome, preco, lote, estoque_id)"
+                    +" values(?,?,?,?,?)");
+            comando.setInt(1, produto.getId());
+            comando.setString(2 , produto.getNome());
+            comando.setDouble(3 , produto.getPreco());
+            comando.setString(4 , produto.getLote());
+            if(produto.getEstoque() == null){
+                comando.setNull(5, Types.INTEGER);
+            }else{
+                comando.setInt(5, produto.getEstoque().getId());
+            }
+            comando.executeUpdate();
+        }finally{
+            fecharConexao(conexao, comando);
+            
+        }
     }
 }

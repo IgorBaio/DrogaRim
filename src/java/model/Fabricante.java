@@ -45,5 +45,9 @@ public class Fabricante {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    
+ /*   public void gravar() throws SQLException, ClassNotFoundException{
+        FabricanteDAO.gravar(this);
+    }
+*/
 }

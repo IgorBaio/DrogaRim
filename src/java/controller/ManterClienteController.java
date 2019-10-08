@@ -7,13 +7,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Funcionario;
 
 /**
  *
@@ -32,31 +30,26 @@ public class ManterClienteController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String acao = request.getParameter("acao");
-        if(acao.equals("prepararOpercao")){
+        String  acao = request.getParameter("acao");
+        if(acao.equals("prepararOperacao")){
             prepararOperacao(request, response);
         }
     }
     
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException{
-        try{
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-//            request.setAttribute("funcionarios", Funcionario.obterFuncionarios());
             RequestDispatcher view = request.getRequestDispatcher("/cadastrarCliente.jsp");
             view.forward(request, response);
-        }catch(ServletException e){
+        }
+        catch (ServletException e){
             throw e;
-        }catch(IOException e){
+        }
+        catch (IOException e){
             throw new ServletException(e);
-        }/*  }catch(SQLException e){
-            throw new ServletException(e);
-        }catch(ClassNotFoundException e){
-            throw new ServletException(e);
-        }*/
+        }
     }
-        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -98,3 +91,4 @@ public class ManterClienteController extends HttpServlet {
     }// </editor-fold>
 
 }
+

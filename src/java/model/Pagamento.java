@@ -16,17 +16,21 @@ import java.util.List;
 public class Pagamento {
     private int id;
     private String tipo;
-    private double valorRecebido;
-    private double troco;
-    private double preco;
 
-    public Pagamento(int id,String tipo, double valorRecebido, double troco, double preco) {
+    public Pagamento(int id,String tipo) {
         this.id = id;
         this.tipo = tipo;
-        this.valorRecebido = valorRecebido;
-        this.troco = troco;
-        this.preco = preco;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public static Pagamento obterPagamento(int id) throws ClassNotFoundException, SQLException{
         return PagamentoDAO.obterPagamento(id);
@@ -44,30 +48,8 @@ public class Pagamento {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    //public void gravar() throws SQLException, ClassNotFoundException{
+    //    PagamentoDAO.gravar(this);
+    //}
 
-    public double getValorRecebido() {
-        return valorRecebido;
-    }
-
-    public void setValorRecebido(double valorRecebido) {
-        this.valorRecebido = valorRecebido;
-    }
-
-    public double getTroco() {
-        return troco;
-    }
-
-    public void setTroco(double troco) {
-        this.troco = troco;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-    
-    
 }

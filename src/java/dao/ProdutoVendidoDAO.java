@@ -7,9 +7,11 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import model.ProdutoVendido;
@@ -59,17 +61,42 @@ public class ProdutoVendidoDAO {
     
     public static ProdutoVendido instanciarProdutoVendido(ResultSet rs)throws SQLException{
         ProdutoVendido produtoVendido = new ProdutoVendido(
-                rs.getInt("ID"),
-                rs.getFloat("PRECO"),
+                rs.getInt("idProdutoVendido"),
+                rs.getFloat("preco"),
                 null,
                 null
         );
-        produtoVendido.setChaveProduto(rs.getInt("PRODUTOS_ID"));
-        produtoVendido.setChaveVenda(rs.getInt("VENDA_ID"));
+        produtoVendido.setChaveProduto(rs.getInt("idProduto"));
+        produtoVendido.setChaveVenda(rs.getInt("idVenda"));
 
         return produtoVendido;
     }
-    
+     public static void gravar(ProdutoVendido produtoVendido) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into produtos(idProdutoVendido, produtos_id, vendas_id, preco)"
+                    +" values(?,?,?,?,?)");
+            comando.setInt(1, produtoVendido.getId());
+            if(produtoVendido.getProduto()== null){
+                comando.setNull(2, Types.INTEGER);
+            }else{
+                comando.setInt(2, produtoVendido.getProduto().getId());
+            }
+            if(produtoVendido.getVenda()== null){
+                comando.setNull(3, Types.INTEGER);
+            }else{
+                comando.setInt(3, produtoVendido.getVenda().getId());
+            }            
+            comando.setDouble(4 , produtoVendido.getPreco());
+            comando.executeUpdate();
+        }finally{
+            fecharConexao(conexao, comando);
+            
+        }
+    }
     
 }
 

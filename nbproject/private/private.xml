@@ -3,17 +3,39 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterProdutoController.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterFuncionarioController.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarCliente.jsp</file>
             <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cliente.jsp</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarFuncionario.jsp</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Endereco.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/pesquisaCliente.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/ProdutoVendidoDAO.java</file>
             <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/index.jsp</file>
             <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterClienteController.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Cliente.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarProduto.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Fabricante.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/EstoqueDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterVendaController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Venda.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterEstoqueController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/PesquisaFuncionarioController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarFuncionario.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Endereco.java</file>
             <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/funcionario.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/ProdutoDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/VendaDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarCliente.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/pesquisaCliente.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Cliente.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/PesquisaEstoqueController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Pagamento.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/PagamentoDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarEstoque.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/EnderecoDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterProdutoController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterFuncionarioController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/PessoaDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/PesquisaProdutoController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/estoque.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/FabricanteDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/ProdutoVendido.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/produto.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Produto.java</file>
         </group>
     </open-files>
 </project-private>

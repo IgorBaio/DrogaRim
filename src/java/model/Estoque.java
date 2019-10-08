@@ -57,6 +57,8 @@ public class Estoque {
     public void setQuantidadeMinima(int quantidadeMinima) {
         this.quantidadeMinima = quantidadeMinima;
     }
-    
+    public void gravar() throws SQLException, ClassNotFoundException{
+        EstoqueDAO.gravar(this);
+    }
     
 }

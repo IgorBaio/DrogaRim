@@ -5,10 +5,13 @@
  */
 package dao;
 
+import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import model.Endereco;
@@ -55,14 +58,37 @@ public class EnderecoDAO {
 
     public static Endereco instanciarEndereco(ResultSet rs) throws SQLException {
         Endereco endereco = new Endereco(
-                rs.getInt("ID"),
-                rs.getInt("CEP"),
-                rs.getString("LOGRADOURO"),
-                rs.getString("BAIRRO"),
-                rs.getString("CIDADE"),
-                rs.getString("UF")
+                rs.getInt("idEndereco"),
+                rs.getInt("cep"),
+                rs.getString("logradouro"),
+                rs.getString("bairro"),
+                rs.getString("cidade"),
+                rs.getString("uf")
                 
         );
         return endereco;
     }
+    
+     public static void gravar(Endereco endereco) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into enderecos(idEndereco, cep, logradouro, bairro, cidade, uf)"
+                    +" values(?,?,?,?,?)");
+            comando.setInt(1, endereco.getId());
+            comando.setInt(2 , endereco.getCep());
+            comando.setString(3 , endereco.getLogradouro() );
+            comando.setString(4 , endereco.getBairro());
+            comando.setString(5, endereco.getCidade());
+            comando.setString(6, endereco.getUf());
+
+            
+        }finally{
+            fecharConexao(conexao, comando);
+            
+        }
+    }
+    
 }

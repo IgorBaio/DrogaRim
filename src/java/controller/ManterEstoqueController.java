@@ -6,21 +6,18 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cliente;
-import model.Pessoa;
-
 
 /**
  *
  * @author Igori
  */
-public class PesquisaClienteController extends HttpServlet {
+public class ManterEstoqueController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +30,27 @@ public class PesquisaClienteController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            request.setAttribute("cliente", Cliente.obterClientes());
-            RequestDispatcher view = request.getRequestDispatcher("cliente.jsp");
-            view.forward(request, response);
-        }catch(ClassNotFoundException e){
-            throw new ServletException(e);
-        }catch(SQLException e){
-           throw new ServletException(e);
+        String  acao = request.getParameter("acao");
+        if(acao.equals("prepararOperacao")){
+            prepararOperacao(request, response);
         }
     }
     
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        try {
+            String operacao = request.getParameter("operacao");
+            request.setAttribute("operacao", operacao);
+           // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
+            RequestDispatcher view = request.getRequestDispatcher("/cadastrarEstoque.jsp");
+            view.forward(request, response);
+        }
+        catch (ServletException e){
+            throw e;
+        }
+        catch (IOException e){
+            throw new ServletException(e);
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

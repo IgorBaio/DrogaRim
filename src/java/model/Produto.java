@@ -105,4 +105,8 @@ public class Produto {
     public void setLote(String lote) {
         this.lote = lote;
     }
+    
+    public void gravar() throws SQLException, ClassNotFoundException{
+        ProdutoDAO.gravar(this);
+    }
 }

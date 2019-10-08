@@ -13,33 +13,19 @@ import java.util.List;
  *
  * @author Igori
  */
-public class Funcionario extends Pessoa {
+public class Funcionario {
 
     private Integer idFuncionario;
     private String funcao;
     private String login;
     private String senha;
 
-    public Funcionario(Integer idFunc,String funcao, String login, String senha,int idPessoa, String nome, String cpf, String telefone, 
-            String email,String numeroCasa, String complemento
-            ,  String dataNascimento, String sexo, Endereco endereco) {
-        //super(id, nome, cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, endereco);
-        super(idPessoa, nome, cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, endereco);
-        this.idFuncionario = idFunc;
+    public Funcionario(Integer idFuncionario, String funcao, String login, String senha) {
+        this.idFuncionario = idFuncionario;
         this.funcao = funcao;
         this.login = login;
         this.senha = senha;
     }
-
-    public Funcionario(Integer idFunc,String funcao, String login, String senha, Pessoa pessoa) {
-        super (pessoa);
-        this.idFuncionario = idFunc;
-        this.funcao = funcao;
-        this.login = login;
-        this.senha = senha;
-    }
-
-   
     
     public static Funcionario obterFuncionario(int idFuncionario) throws ClassNotFoundException, SQLException{
         return FuncionarioDAO.obterFuncionario(idFuncionario);
@@ -47,6 +33,14 @@ public class Funcionario extends Pessoa {
     
     public static List<Funcionario> obterFuncionarios() throws ClassNotFoundException, SQLException{
         return FuncionarioDAO.obterFuncionarios();
+    }
+
+    public Integer getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(Integer idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
     public String getFuncao() {
@@ -72,5 +66,7 @@ public class Funcionario extends Pessoa {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    
 
 }

@@ -29,7 +29,7 @@ public class ClienteDAO {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery(
-            "select * from CLIENTE where id = "+id
+            "select * from CLIENTE where idCliente = "+id
             );
         rs.first();
         cliente = (Cliente)instanciarCliente(rs);
@@ -66,13 +66,13 @@ public class ClienteDAO {
                     rs.getString("cpf"),
                     rs.getString("telefone"),
                     rs.getString("email"),
-                    rs.getString("numero"),
+                    rs.getString("numeroCasa"),
                     rs.getString("complemento"),
-                    rs.getString("data_nasc"),
+                    rs.getString("data_nascimento"),
                     rs.getBoolean("sexo"),
                     null
         );
-                    cliente.setChaveEndereco(rs.getInt("idEndereco"));
+                    cliente.setChaveEndereco(rs.getInt("Endereco"));
                     return cliente;
         }
     

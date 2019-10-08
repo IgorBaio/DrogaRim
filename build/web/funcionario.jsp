@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastrar funcionário</title>
+    <title>Cadastrar funcionÃ¡rio</title>
   </head>
   <body>
     <header>
@@ -34,7 +38,7 @@
                   </td>
 
                   <td>
-                      <a href="funcionario.jsp" class="paginaSelecionada">Funcionário</a>
+                      <a href="funcionario.jsp" class="paginaSelecionada">FuncionÃ¡rio</a>
                   </td>
 
                   <td>
@@ -51,13 +55,13 @@
             <tr>
                 <td>
                     <a href="funcionario.jsp" class="paginaSelecionada">
-                        Funcionários
+                        FuncionÃ¡rios
                     </a>
                 </td>
 
                 <td>
                     <a href="cadastrarFuncionario.jsp">
-                        Cadastrar Funcionário
+                        Cadastrar FuncionÃ¡rio
                     </a>
                 </td>
             </tr>
@@ -83,10 +87,12 @@
           <div id="listaFuncionario">
             Resultados
             <table>
-              <tr>
-                <td>
-                </td>
-              </tr>
+              <c:forEach items="${funcionarios}" var="funcionario">
+                <tr>
+                    <td><c:out value="${funcionario.idFuncionario}" /></td>
+                    <td><c:out value="${funcionario.login}" /></td>    
+                </tr>
+                 </c:forEach>
             </table>
           </div>
         </div>

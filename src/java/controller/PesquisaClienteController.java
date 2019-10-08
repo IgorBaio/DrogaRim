@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
-import model.Pessoa;
 
 
 /**
@@ -34,7 +33,7 @@ public class PesquisaClienteController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            request.setAttribute("cliente", Cliente.obterClientes());
+            request.setAttribute("clientes", Cliente.obterClientes());
             RequestDispatcher view = request.getRequestDispatcher("cliente.jsp");
             view.forward(request, response);
         }catch(ClassNotFoundException e){

@@ -90,7 +90,7 @@
           <table>
              <c:forEach items="${clientes}" var="cliente">
                 <tr>
-                    <td><c:out value="${cliente.id}" /></td>
+                    <td><c:out value="${cliente.idCliente}" /></td>
                     <td><c:out value="${cliente.nome}" /></td>    
                 </tr>
                  </c:forEach>

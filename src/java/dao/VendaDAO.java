@@ -46,7 +46,7 @@ public class VendaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from vendas");
+            ResultSet rs = comando.executeQuery("select * from venda");
             while (rs.next()) {
                 venda = instanciarVenda(rs);
                 vendas.add(venda);
@@ -89,7 +89,7 @@ public class VendaDAO {
             if(venda.getFuncionario()== null){
                 comando.setNull(5, Types.INTEGER);
             }else{
-                comando.setInt(5, venda.getFuncionario().getId());
+                comando.setInt(5, venda.getFuncionario().getIdFuncionario());
             }
             if(venda.getPagamento()== null){
                 comando.setNull(6, Types.INTEGER);

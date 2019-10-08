@@ -27,7 +27,7 @@ public class FuncionarioDAO {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery(
-            "select * from funcionarios where id = "+id
+            "select * from funcionario where idFuncionario = "+id
             );
         rs.first();
         funcionario = instanciarFuncionario(rs);
@@ -46,7 +46,7 @@ public class FuncionarioDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from funcionarios");
+            ResultSet rs = comando.executeQuery("select * from funcionario");
             while(rs.next()){
                 funcionario = instanciarFuncionario(rs);
                 funcionarios.add(funcionario);
@@ -64,8 +64,7 @@ public class FuncionarioDAO {
                     rs.getInt("idFuncionario"),
                     rs.getString("funcao"),
                     rs.getString("login"),
-                    rs.getString("senha"),
-                    PessoaDAO.instanciarPessoa(rs)
+                    rs.getString("senha")
         );
                     
                     return funcionario;

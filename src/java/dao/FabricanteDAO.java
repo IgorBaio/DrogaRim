@@ -27,7 +27,7 @@ public class FabricanteDAO {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery(
-            "select * from fabricante where id = "+id
+            "select * from fabricante where idFabricante = "+id
             );
         rs.first();
         fabricante = instanciarFabricante(rs);
@@ -58,7 +58,7 @@ public class FabricanteDAO {
     
     public static Fabricante instanciarFabricante(ResultSet rs) throws SQLException {
         Fabricante fabricante = new Fabricante(
-                rs.getInt("id"),
+                rs.getInt("idFabricante"),
                 rs.getString("nome")
         );
         return fabricante;

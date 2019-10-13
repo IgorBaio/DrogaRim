@@ -20,14 +20,14 @@ public class Cliente {
     private String complemento;
     private String dataNascimento;
     private boolean sexo;
-    private Endereco endereco;
-    private int chaveEndereco;
-    
-    
-    public Cliente(int id, String nome, String cpf, String telefone, 
-            String email,String numeroCasa, String complemento
-            ,  String dataNascimento, boolean sexo, Endereco endereco) {
-        this.idCliente = id;
+    private String cep;
+    private String logradouro;
+    private String bairro;
+    private String cidade;
+    private String uf;
+
+    public Cliente(int idCliente, String nome, String cpf, String telefone, String email, String numeroCasa, String complemento, String dataNascimento, boolean sexo, String cep, String logradouro, String bairro, String cidade, String uf) {
+        this.idCliente = idCliente;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -36,8 +36,32 @@ public class Cliente {
         this.complemento = complemento;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
-        this.endereco = endereco;
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
     }
+    
+    
+    
+//    
+//    public Cliente(int idCliente, String nome, String cpf, String estado, String data, boolean sexo, String email, String cep, String logradouro, String numeroCasa, String cidade, String bairro, String complemento, String telefone) {
+//        this.idCliente = idCliente;
+//        this.nome = nome;
+//        this.cpf = cpf;
+//        this.telefone = telefone;
+//        this.email = email;
+//        this.numeroCasa = numeroCasa;
+//        this.complemento = complemento;
+//        this.dataNascimento = dataNascimento;
+//        this.sexo = sexo;
+//         this.cep = cep;
+//        this.logradouro = logradouro;
+//        this.bairro = bairro;
+//        this.cidade = cidade;
+//        this.uf = uf;
+//    }
     
     public static List<Cliente> obterClientes() throws ClassNotFoundException, SQLException{
         return ClienteDAO.obterClientes();
@@ -46,6 +70,9 @@ public class Cliente {
     public static Cliente obterCliente(int idCliente) throws ClassNotFoundException, SQLException{
         return ClienteDAO.obterCliente(idCliente);
     }
+
+    
+
     public int getIdCliente() {
         return idCliente;
     }
@@ -118,21 +145,47 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public String getCep() {
+        return cep;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
-    public int getChaveEndereco() {
-        return chaveEndereco;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setChaveEndereco(int chaveEndereco) {
-        this.chaveEndereco = chaveEndereco;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    
 
     public void gravar() throws SQLException, ClassNotFoundException{
         ClienteDAO.gravar(this);

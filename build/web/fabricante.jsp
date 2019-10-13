@@ -10,42 +10,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastrar fabricante</title>
+    <title>Lista de fabricantes</title>
 </head>
+  <body>
+        <header>
+      <div class="barralogo">
+          <div class="logo"></div>
+            <span class="usuario">Vendedor</span>
+      </div>
+      <nav>
+        <hr id="hr1">
+          <table>
+              <tr>
+                  <td>
+                      <a href="PesquisaVendaController">Venda</a>
+                  </td>
 
-<body>
-  <header>
-    <div class="barralogo">
-        <h1>DROGARIM</h1>
-        <span id="usuario">Vendedor</span>
-    </div>
-    <hr>
-    <nav>
-        <table>
-            <tr>
-                <td>
-                    <a href="index.jsp">Venda</a>
-                </td>
+                  <td>
+                      <a href="PesquisaProdutoController">Produto</a>
+                  </td>
 
-                <td>
-                    <a href="PesquisaProdutoController">Produto</a>
-                </td>
+                  <td>
+                      <a href="PesquisaEstoqueController">Estoque</a>
+                  </td>
 
-                <td>
-                    <a href="estoque.jsp">Estoque</a>
-                </td>
+                  <td>
+                      <a href="PesquisaClienteController">Cliente</a>
+                  </td>
 
-                <td>
-                    <a href="cliente.jsp">Cliente</a>
-                </td>
+                  <td>
+                      <a href="PesquisaFuncionarioController">Funcionário</a>
+                  </td>
 
-                <td>
-                    <a href="funcionario.jsp">FuncionÃ¡rio</a>
-                </td>
-
-                <td>
-                    <a href="PesquisaFabricanteController"  class="paginaSelecionada">Fabricante</a>
-                </td>
+                  <td>
+                      <a href="PesquisaFabricanteController"  class="paginaSelecionada">Fabricante</a>
+                  </td>
             </tr>
         </table>
       </nav>
@@ -61,7 +60,7 @@
                   </a>
               </td>
               <td>
-                  <a href="cadastrarFabricante.jsp">
+                  <a href="ManterFabricanteController?acao=prepararOperacao&operacao=Incluir">
                       Cadastrar Fabricante
                   </a>
               </td>

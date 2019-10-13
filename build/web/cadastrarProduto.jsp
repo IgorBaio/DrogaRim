@@ -6,42 +6,41 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta content="text/html">
         <link rel="stylesheet" href="style.css">
-        <title>Cadastrar produto</title>
+        <title>Cadastrar produto - ${operacao}</title>
     </head>
-
-    <body>
+  <body>
         <header>
-            <div class="barralogo">
-                <h1>DROGARIM</h1>
-                <span id="usuario">Vendedor</span>
-            </div>
-            <hr>
-            <nav>
-                <table>
-                    <tr>
-                        <td>
-                            <a href="index.jsp">Venda</a>
-                        </td>
+      <div class="barralogo">
+          <div class="logo"></div>
+            <span class="usuario">Vendedor</span>
+      </div>
+      <nav>
+        <hr id="hr1">
+          <table>
+              <tr>
+                  <td>
+                      <a href="PesquisaVendaController">Venda</a>
+                  </td>
 
-                        <td>
-                            <a href="produto.jsp" class="paginaSelecionada">Produto</a>
-                        </td>
+                  <td>
+                      <a href="PesquisaProdutoController"  class="paginaSelecionada">Produto</a>
+                  </td>
 
-                        <td>
-                            <a href="estoque.jsp">Estoque</a>
-                        </td>
+                  <td>
+                      <a href="PesquisaEstoqueController">Estoque</a>
+                  </td>
 
-                        <td>
-                            <a href="cliente.jsp">Cliente</a>
-                        </td>
+                  <td>
+                      <a href="PesquisaClienteController">Cliente</a>
+                  </td>
 
-                        <td>
-                            <a href="funcionario.jsp">FuncionÃ¡rio</a>
-                        </td>
+                  <td>
+                      <a href="PesquisaFuncionarioController">Funcionário</a>
+                  </td>
 
-                        <td>
-                            <a href="fabricante.jsp">Fabricante</a>
-                        </td>
+                  <td>
+                      <a href="PesquisaFabricanteController">Fabricante</a>
+                  </td>
                     </tr>
                 </table>
             </nav>
@@ -52,15 +51,15 @@
             <table>
                 <tr>
                     <td>
-                        <a href="produto.jsp">
-                            Produtos
-                        </a>
-                    </td>
+                       <a href="PesquisaProdutoController">
+                          Produtos
+                      </a>
+                  </td>
 
-                    <td>
-                        <a href="cadastrarProduto.jsp" class="paginaSelecionada">
-                            Cadastrar Produto
-                        </a>
+                  <td>
+                      <a href="ManterProdutoController?acao=prepararOperacao&operacao=Incluir" class="paginaSelecionada">
+                          Cadastrar Produto
+                      </a>
                     </td>
                 </tr>
             </table>
@@ -69,49 +68,50 @@
 
         <section>
             <div id="cadastrarProduto">
-                <form action="ManterProdutoController?acao=confirmarOperacao&operacao=$(operacao)" method="post" name="txtManterProduto">
+                          <form action="ManterProdutoController?acao=confirmarOperacao&operacao=Incluir" method="post" name="frmManterCliente">
                     <table>
                         <tr>
-                        <input type="radio" name="produto" id='produto' value="ProdutoSimples" />Produtos Simples
-                        <input type="radio" name="produto" id='produto' value="Medicamento" />Medicamentos
+                        <input type="radio" name="medicamento" id='produto' value=$"ProdutoSimples" />Produtos Simples
+                        <input type="radio" name="medicamento" id='produto' value="Medicamento" />Medicamentos
                         </tr>
                         <tr>
                             <td>
                                 <label for="nomeComercial">Nome Comercial:</label>
                             </td>
                             <td>
-                                <input type="text" name="txtNomeComercial" id="nomeComercial" value="Produto.nome"/>
+                                <input type="text" name="txtNomeComercial" id="nomeComercial" value="${produto.nome}"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>
                             <td>
                                 <label for="idProduto">Id:</label>
                             </td>
                             <td>
-                                <input type="text" name="txtIdProduto" id="idProduto" value="Produto.id"/>
+                                <input type="text" name="txtIdProduto" id="idProduto" value="${produto.id}"/>
                             </td>
                         </tr>
-                        <tr>
+                         <tr>
+                            <td>
+                                <label for="precoProduto">Preço:</label>
+                            </td>
+                            <td>
+                                <input type="text" name="txtPrecoProduto" id="precoProduto" value="${produto.preco}"/>
+                            </td>
+                        </tr>
+                       <!-- <tr>
                             <td>
                             <td>
                                 <label for="loteProduto">Lote:</label>
                             </td>
                             <td>
-                                <input type="text" name="txtLoteProdutol" id="loteProduto" value="Produto.lote"/>
+                                <input type="text" name="txtLoteProduto" id="loteProduto" value="Produto.lote"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                            <td>
-                                <label for="nomeComercial">Nome Comercial:</label>
-                            </td>
-                            <td>
-                                <input type="text" name="txtNomeComercial" id="nomeComercial" value="Produto.nome"/>
-                            </td>
+                            
                         </tr>
-                        <tr>
-                            <td>
+                        <tr> 
+                            <td> -->
                                 <!--         <label for="principioAtivo">Nome Genérico/PrincÃ­pio Ativo</label>
                                      </td>
                                      <td>
@@ -201,9 +201,8 @@
                 </tr> -->
 
                     </table>
-                    <p>
-                        <input type="submit" value="Confirmar"><input type="reset" value="Retornar">
-                    </p>
+                    <p><input type="submit" value="Incluir" name="btnIncluir">
+                  <input type="submit" value="Limpar"></p>
                 </form>
         </section>
     </body>

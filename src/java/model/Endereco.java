@@ -16,28 +16,33 @@ import java.util.List;
  */
 public class Endereco {
     private int id;
-    private int cep;
+    private String cep;
     private String logradouro;
     private String bairro;
     private String cidade;
     private String uf;
-    private String numero;
-    private String complemento;
+    
 
-    public Endereco(int id, int cep, String logradouro, String bairro, String cidade, String uf, String numero, String complemento) {
+    public Endereco(int id, String cep, String logradouro, String bairro, String cidade, String uf) {
         this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cidade = cidade;
         this.uf = uf;
-        this.numero = numero;
-        this.complemento = complemento;
+        
+    }
+    
+    public Endereco( String cep, String logradouro, String bairro, String cidade, String uf) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+       
     }
 
-    public Endereco(int id, int cep, String logradouro, String bairro, String cidade, String uf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
      public static Endereco obterEndereco(int idEndereco) throws ClassNotFoundException, SQLException{
         return EnderecoDAO.obterEndereco(idEndereco);
@@ -56,11 +61,11 @@ public class Endereco {
         this.id = id;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -96,21 +101,7 @@ public class Endereco {
         this.uf = uf;
     }
 
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
+    
     
     public void gravar() throws SQLException, ClassNotFoundException{
         EnderecoDAO.gravar(this);

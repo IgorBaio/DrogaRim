@@ -11,11 +11,11 @@
     <body>
       <header>
         <div class="barralogo">
-            <h1>DROGARIM</h1>
-            <span id="usuario">Vendedor</span>
+            <div class="logo"></div>
+              <span class="usuario">Vendedor</span>
         </div>
-        <hr>
         <nav>
+          <hr id="hr1">
             <table>
                 <tr>
                     <td>
@@ -27,7 +27,7 @@
                     </td>
 
                     <td>
-                        <a href="estoque.jsp">Estoque</a>
+                        <a href="PesquisaEstoqueController">Estoque</a>
                     </td>
 
                     <td>
@@ -35,7 +35,7 @@
                     </td>
 
                     <td>
-                        <a href="PesquisaFuncionarioController">Funcion√°rio</a>
+                        <a href="PesquisaFuncionarioController">Funcion·rio</a>
                     </td>
 
                     <td>
@@ -51,13 +51,13 @@
           <table>
               <tr>
                   <td>
-                      <a href="index.jsp" class="paginaSelecionada">
+                      <a href="PesquisaVendaController" class="paginaSelecionada">
                           Vendas
                       </a>
                   </td>
 
                   <td>
-                      <a href="cadastrarVenda.jsp">
+                      <a href="ManterVendaController?acao=prepararOperacao&operacao=Incluir">
                           Nova venda
                       </a>
                   </td>
@@ -65,9 +65,10 @@
           </table>
         </div>
 
-        <form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
+        <!--<form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+        </form> -->
+        
         <section>
           <div id="secaoVenda">
             <div id="buscaVenda">

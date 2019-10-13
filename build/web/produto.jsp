@@ -10,42 +10,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
+    <title>Lista de produtos</title>
+ </head>
+ 
+ <body>
+  <header>
+      <div class="barralogo">
+          <div class="logo"></div>
+            <span class="usuario">Vendedor</span>
+      </div>
+      <nav>
+        <hr id="hr1">
+          <table>
+              <tr>
+                  <td>
+                      <a href="PesquisaVendaController">Venda</a>
+                  </td>
 
-    <title>Produto</title>
-    </head>
-    <body>
-      <header>
-        <div class="barralogo">
-            <h1>DROGARIM</h1>
-            <span id="usuario">Vendedor</span>
-        </div>
-        <hr>
-        <nav>
-            <table>
-                <tr>
-                    <td>
-                        <a href="index.jsp">Venda</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaProdutoController"  class="paginaSelecionada">Produto</a>
+                  </td>
 
-                    <td>
-                        <a href="PesquisaProdutoController" class="paginaSelecionada">Produto</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaEstoqueController">Estoque</a>
+                  </td>
 
-                    <td>
-                        <a href="estoque.jsp">Estoque</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaClienteController">Cliente</a>
+                  </td>
 
-                    <td>
-                        <a href="PesquisaClienteController">Cliente</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaFuncionarioController">Funcionário</a>
+                  </td>
 
-                    <td>
-                        <a href="funcionario.jsp">Funcionário</a>
-                    </td>
-
-                    <td>
-                        <a href="PesquisaFabricanteController">Fabricante</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaFabricanteController">Fabricante</a>
+                  </td>
                 </tr>
             </table>
           </nav>
@@ -62,7 +62,7 @@
                   </td>
 
                   <td>
-                      <a href="cadastrarProduto.jsp">
+                      <a href="ManterProdutoController?acao=prepararOperacao&operacao=Incluir">
                           Cadastrar Produto
                       </a>
                   </td>
@@ -70,9 +70,9 @@
           </table>
         </div>
 
-        <form action="ManterProdutoController?acao=prepararOperacao&operacao=Incluir" method="post">
+        <!--<form action="ManterProdutoController?acao=prepararOperacao&operacao=Incluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+        </form>-->
         <section>
           <div id="secaoProduto">
             <div id="buscaProduto">
@@ -87,19 +87,75 @@
               Resultados
               <table>
                 <tr>
-                  <th>
-                  </th>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Nome Fármaco</th>
+                    <th>Preço</th>
+                    <th>Categoria</th>
+                    <th>Tipo</th>
+                    <th>Receita</th>
+                    <th>Quantidade</th>
                 </tr>
                  <c:forEach items="${produtos}" var="produto">
                 <tr>
                     <td><c:out value="${produto.id}" /></td>
-                    <td><c:out value="${produto.nome}" /></td>    
+                    <td><c:out value="${produto.nome}" /></td>  
+                    <td></td>
+                    <td><c:out value="${produto.preco}" /></td>                       
                 </tr>
                  </c:forEach>
               </table>
             </div>
           </div>
         </section>
+        
+        
+        
+<!--        <section>
+        <div id="secaoProduto">
+          <div id="buscaProduto">
+            <input type="text" id="textoBusca" placeholder="Pesquisar"/>
+            <button id="botaoBusca">Buscar</button>
+            <hr>
+          </div>
+          <div id="filtroProduto">
+            Filtros
+          </div>
+          <div class="listaProduto">
+            Resultados
+            <table>
+                <tr>
+                    <td>Código</td>
+                    <td>Nome</td>
+                    <td>Nome Fármaco</td>
+                    <td>Preço</td>
+                    <td>Categoria</td>
+                    <td>Tipo</td>
+                    <td>Receita</td>
+                    <td>Quantidade</td>
+
+                </tr>
+              <c:forEach items="${produto}" var="produto">
+                <tr>
+                    <td><c:out value="${produto.id}" /></td>
+                    <td><c:out value="${produto.nome}" /></td>
+                    <td><c:out value="${produto.nomeFarmaco}" /></td>
+                    <td><c:out value="${produto.preco}" /></td>
+                    <td><c:out value="${produto.categoria}" /></td>
+                    <td><c:out value="${produto.tipo}" /></td>
+                    <td><c:out value="${produto.receita}" /></td>
+                    <td><c:out value="${produto.quantidade}" /></td>
+                </tr>
+                 </c:forEach>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+tem q mexer nos atributos de produto pra poder funcionar
+
+
+-->
   </body>
 
 </html>

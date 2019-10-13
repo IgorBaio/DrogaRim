@@ -6,41 +6,41 @@
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
 
-    <title>Produto</title>
+    <title>Cadastrar venda - ${operacao}</title>
     </head>
-    <body>
-      <header>
-        <div class="barralogo">
-            <h1>DROGARIM</h1>
-            <span id="usuario">Vendedor</span>
-        </div>
-        <hr>
-        <nav>
-            <table>
-                <tr>
-                    <td>
-                        <a href="index.jsp" class="paginaSelecionada">Venda</a>
-                    </td>
+  <body>
+        <header>
+      <div class="barralogo">
+          <div class="logo"></div>
+            <span class="usuario">Vendedor</span>
+      </div>
+      <nav>
+        <hr id="hr1">
+          <table>
+              <tr>
+                  <td>
+                      <a href="PesquisaVendaController"  class="paginaSelecionada">Venda</a>
+                  </td>
 
-                    <td>
-                        <a href="produto.jsp">Produto</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaProdutoController">Produto</a>
+                  </td>
 
-                    <td>
-                        <a href="estoque.jsp">Estoque</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaEstoqueController">Estoque</a>
+                  </td>
 
-                    <td>
-                        <a href="cliente.jsp">Cliente</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaClienteController">Cliente</a>
+                  </td>
 
-                    <td>
-                        <a href="funcionario.jsp">Funcion√°rio</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaFuncionarioController">Funcion·rio</a>
+                  </td>
 
-                    <td>
-                        <a href="fabricante.jsp">Fabricante</a>
-                    </td>
+                  <td>
+                      <a href="PesquisaFabricanteController">Fabricante</a>
+                  </td>
                 </tr>
             </table>
           </nav>

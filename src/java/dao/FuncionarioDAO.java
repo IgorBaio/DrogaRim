@@ -5,14 +5,15 @@
  */
 package dao;
 
+import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Funcionario;
-import model.Pessoa;
 
 /**
  *
@@ -70,4 +71,23 @@ public class FuncionarioDAO {
                     return funcionario;
     }
     
+     public static void gravar(Funcionario funcionario) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into funcionario(idFuncionario, funcao, login, senha)"
+                    +" values(?,?,?,?)");
+            comando.setInt(1, funcionario.getIdFuncionario());
+            comando.setString(2 , funcionario.getFuncao());
+            comando.setString(3 , funcionario.getLogin());
+            comando.setString(4 , funcionario.getSenha());
+            comando.executeUpdate();
+        } finally{
+            fecharConexao(conexao, comando);
+        }
+            
+
+    }
 }

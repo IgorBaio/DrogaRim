@@ -8,6 +8,8 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,20 +33,24 @@ public class ManterFuncionarioController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
-        if(acao.equals("prepararOpercao")){
-            prepararOperacao(request, response);
+        if(acao.equals("confirmarOperacao")){
+            confirmarOperacao(request, response);
+        } else {
+            if (acao.equals("prepararOperacao")) {
+                prepararOperacao(request, response);
+            }
         }
     }
-    
+   
     public void prepararOperacao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException{
         try{
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
 //            request.setAttribute("funcionarios", Funcionario.obterFuncionarios());
-            RequestDispatcher view = request.getRequestDispatcher("/cadastrarFuncionario.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("cadastrarFuncionario.jsp");
             view.forward(request, response);
         }catch(ServletException e){
             throw e;
@@ -56,7 +62,26 @@ public class ManterFuncionarioController extends HttpServlet {
             throw new ServletException(e);
         }*/
     }
-        
+        public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException{
+            String operacao = request.getParameter("operacao");
+            int idFuncionario = Integer.parseInt(request.getParameter("txtCodFuncionario"));
+            String funcao = request.getParameter("txtFuncaoFuncionario");
+            String login = request.getParameter("txtLoginFuncionario");
+            String senha = request.getParameter("txtSenhaFuncionario");
+            
+            try {               
+                Funcionario funcionario = new Funcionario(idFuncionario, funcao, login, senha);
+                if (operacao.equals("Incluir")){
+                    funcionario.gravar();
+                }
+            
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaFuncionarioController");
+            view.forward(request, response);
+            }
+            catch (IOException e) {
+                throw new ServletException(e);
+            }
+        }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -70,7 +95,13 @@ public class ManterFuncionarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterFuncionarioController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterFuncionarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -84,7 +115,13 @@ public class ManterFuncionarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterFuncionarioController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterFuncionarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -70,12 +70,15 @@ public class ClienteDAO {
                     rs.getString("complemento"),
                     rs.getString("data_nascimento"),
                     rs.getBoolean("sexo"),
-                    null
+                    rs.getString("cep"),
+                    rs.getString("logradouro"),
+                    rs.getString("bairro"),
+                    rs.getString("cidade"),
+                    rs.getString("uf")
+                    
         );
-                    cliente.setChaveEndereco(rs.getInt("Endereco"));
                     return cliente;
         }
-    
     
     public static void  gravar(Cliente cliente) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
@@ -84,8 +87,8 @@ public class ClienteDAO {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement ("insert into cliente (idCliente, nome, "
                     + "cpf, telefone, email, numeroCasa, "
-                    + "complemento, data_nascimento, sexo, enderecos_id)"
-                    + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    + "complemento, data_nascimento, sexo, cep, logradouro, bairro, cidade,uf)"
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
             comando.setInt(1, cliente.getIdCliente());
             comando.setString(2, cliente.getNome());
             comando.setString(3, cliente.getCpf());
@@ -95,13 +98,12 @@ public class ClienteDAO {
             comando.setString(7, cliente.getComplemento());
             comando.setString(8, cliente.getDataNascimento());
             comando.setBoolean(9, cliente.getSexo());
-        if (cliente.getEndereco() == null){
-            comando.setNull(10, Types.INTEGER);
-        }
-        else{
-            comando.setInt(10, cliente.getEndereco().getId());
-        }
-        comando.executeUpdate();
+            comando.setString(10, cliente.getCep());
+            comando.setString(11, cliente.getLogradouro());
+            comando.setString(12, cliente.getBairro());
+            comando.setString(13, cliente.getCidade());
+            comando.setString(14, cliente.getUf());
+            comando.executeUpdate();
         }
         finally {
             fecharConexao(conexao, comando);

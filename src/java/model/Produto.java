@@ -19,18 +19,32 @@ public class Produto {
     
     private int id;
     private String nome;
-    private float preco;
+    private double preco;
     private String lote;
     private Estoque estoque;
     private int chaveEstoque;
 
     
     
-    public Produto(int id, String nome, float preco,String lote ,Estoque estoque) {
+    public Produto(int id, String nome, double preco,/*String lote ,*/Estoque estoque) {
         this.id = id;
         this.nome = nome;
-        this.lote = lote;
+        //this.lote = lote;
         this.estoque = estoque;
+    }
+
+    public Produto(int idProduto, String nome/*, String lote*/) {
+        this.id = idProduto;
+        this.nome = nome;
+       // this.lote = lote;
+    }
+
+    public Produto(int id, String nome, double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+//        this.estoque = estoque;
+        
     }
 
     public Estoque getEstoque() throws ClassNotFoundException, SQLException{
@@ -94,7 +108,7 @@ public class Produto {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 

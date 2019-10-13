@@ -9,20 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastrar funcionÃ¡rio</title>
+    <title>Cadastrar funcionário - ${operacao}</title>
   </head>
   <body>
-    <header>
+        <header>
       <div class="barralogo">
-          <h1>DROGARIM</h1>
-          <span id="usuario">Vendedor</span>
+          <div class="logo"></div>
+            <span class="usuario">Vendedor</span>
       </div>
-      <hr>
       <nav>
+        <hr id="hr1">
           <table>
               <tr>
                   <td>
-                      <a href="index.jsp">Venda</a>
+                      <a href="PesquisaVendaController">Venda</a>
                   </td>
 
                   <td>
@@ -30,15 +30,15 @@
                   </td>
 
                   <td>
-                      <a href="estoque.jsp">Estoque</a>
+                      <a href="PesquisaEstoqueController">Estoque</a>
                   </td>
 
                   <td>
-                      <a href="cliente.jsp">Cliente</a>
+                      <a href="PesquisaClienteController">Cliente</a>
                   </td>
 
                   <td>
-                      <a href="funcionario.jsp" class="paginaSelecionada">FuncionÃ¡rio</a>
+                      <a href="PesquisaFuncionarioController"  class="paginaSelecionada">Funcionário</a>
                   </td>
 
                   <td>
@@ -54,14 +54,14 @@
         <table>
             <tr>
                 <td>
-                    <a href="funcionario.jsp" class="paginaSelecionada">
-                        FuncionÃ¡rios
+                    <a href="PesquisaFuncionarioController" class="paginaSelecionada">
+                        Funcionários
                     </a>
                 </td>
 
                 <td>
-                    <a href="cadastrarFuncionario.jsp">
-                        Cadastrar FuncionÃ¡rio
+                    <a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Incluir">
+                        Cadastrar Funcionário
                     </a>
                 </td>
             </tr>
@@ -69,10 +69,10 @@
 
       </div>
       
-      <form action="ManterFuncionarioController?acao=prepararOperacao&operaca=Incluir"
+     <!-- <form action="ManterFuncionarioController?acao=prepararOperacao&operacao=Incluir"
           method="post">
-          <input type="submit" name="btnIncluir" value="Incluir"
-    </form>
+          <input type="submit" name="btnIncluir" value="Incluir">
+    </form> -->
 
       <section>
         <div id="secaoFuncionario">
@@ -84,13 +84,21 @@
           <div id="filtroFuncionario">
             Filtros
           </div>
-          <div id="listaFuncionario">
+          <div class="listaFuncionario">
             Resultados
             <table>
+                <tr>
+                    <td>Código</td>
+                    <td>Função</td>
+                    <td>Login</td>
+                    <td>Senha</td>    
+                </tr>
               <c:forEach items="${funcionarios}" var="funcionario">
                 <tr>
                     <td><c:out value="${funcionario.idFuncionario}" /></td>
-                    <td><c:out value="${funcionario.login}" /></td>    
+                    <td><c:out value="${funcionario.funcao}" /></td>
+                    <td><c:out value="${funcionario.login}" /></td>
+                    <td><c:out value="${funcionario.senha}" /></td>    
                 </tr>
                  </c:forEach>
             </table>

@@ -5,40 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastrar funcion√°rio</title>
+    <title>Cadastrar funcion·rio - ${operacao}</title>
   </head>
   <body>
     <header>
       <div class="barralogo">
-          <h1>DROGARIM</h1>
-          <span id="usuario">Vendedor</span>
+          <div class="logo"></div>
+            <span class="usuario">Vendedor</span>
       </div>
-      <hr>
       <nav>
+        <hr id="hr1">
           <table>
               <tr>
                   <td>
-                      <a href="index.jsp">Venda</a>
+                      <a href="PesquisaVendaController">Venda</a>
                   </td>
 
                   <td>
-                      <a href="produto.jsp">Produto</a>
+                      <a href="PesquisaProdutoController">Produto</a>
                   </td>
 
                   <td>
-                      <a href="estoque.jsp">Estoque</a>
+                      <a href="PesquisaEstoqueController">Estoque</a>
                   </td>
 
                   <td>
-                      <a href="cliente.jsp">Cliente</a>
+                      <a href="PesquisaClienteController">Cliente</a>
                   </td>
 
                   <td>
-                      <a href="funcionario.jsp" class="paginaSelecionada">Funcion√°rio</a>
+                      <a href="PesquisaFuncionarioController"  class="paginaSelecionada">Funcion·rio</a>
                   </td>
 
                   <td>
-                      <a href="fabricante.jsp">Fabricante</a>
+                      <a href="PesquisaFabricanteController">Fabricante</a>
                   </td>
               </tr>
           </table>
@@ -50,14 +50,14 @@
         <table>
             <tr>
                 <td>
-                    <a href="funcionario.jsp">
-                        Funcion√°rios
+                    <a href="PesquisaFuncionarioController">
+                        Funcion·rios
                     </a>
                 </td>
 
                 <td>
                     <a href="cadastrarFuncionario.jsp" class="paginaSelecionada">
-                        Cadastrar Funcion√°rio
+                        Cadastrar Funcion·rio
                     </a>
                 </td>
             </tr>
@@ -67,211 +67,41 @@
 
       <section>
         <div id="cadastrarFuncionario">
-          <form>
+          <form action="ManterFuncionarioController?acao=confirmarOperacao&operacao=Incluir" method="post" name="frmManterFuncionario">
               <table>
+                  
                   <tr>
                       <td>
                           <select>
-                              <option value="funcao">Fun√ß√£o</option>
+                              <option value="funcao">FunÁ„o</option>
                           </select>
                       </td>
                       <td>
                           <select>
-                              <option value="situacao">Situa√ß√£o</option>
+                              <option value="situacao">SituaÁ„o</option>
                           </select>
                       </td>
                   </tr>
                   <tr>
-                  <td>CÛdigo do cliente</td>
-                  <td><input type="text" name="txtCodFuncionario" value="${cliente.id}" /></td>
+                  <td>CÛdigo do funcion·rio</td>
+                  <td><input type="text" name="txtCodFuncionario" value="${funcionario.idFuncionario}" /></td>
               </tr>
               <tr>
-                  <td>Nome</td>
-                  <td><input type="text" name="txtNomeFuncionario" value="${cliente.nome}" /></td>
+                  <td>Login</td>
+                  <td><input type="text" name="txtLoginFuncionario" value="${funcionario.login}" /></td>
               </tr>
             <tr>
-                  <td>CPF</td>
-                  <td><input type="text" name="txtCodFuncionario" value="${cliente.cpf}" /></td>
+                  <td>Senha</td>
+                  <td><input type="text" name="txtSenhaFuncionario" value="${funcionario.senha}" /></td>
               </tr>
               <tr>
-                  <td>Estado</td>
-                  <td>
-                      <select name="optEstado">
-                          <option value="Minas Gerais" <c:if test="${cliente.endereco.uf}"  selected</c:if>
-                          Minas Gerais
-                          </option>
-                          <option value="Rio de Janeiro" <c:if test="${cliente.endereco.uf}"  selected</c:if>
-                          Rio de Janeiro
-                      </select>
-                  </td>
+                  <td>FunÁ„o</td>
+                  <td><input type="text" name="txtFuncaoFuncionario" value="${funcionario.funcao}" /></td>
               </tr>
-              <tr>
-                  <td>Data de Nascimento</td>
-                  <td><input type="date" name="txtDataNascimentoFuncionario" value="${cliente.dataNascimento}" /></td>
-              </tr>
-              <tr>
-                  <td>Sexo</td>
-                  <td><input type="radio" name="txtSexoFuncionario" value="${cliente.sexo}" />M</td>
-                  <td><input type="radio" name="txtSexoFuncionario" value="${cliente.sexo}" />F</td>
-              </tr>
-              <tr>
-                  <td>E-Mail</td>
-                  <td><input type="text" name="txtEmailFuncionario"  maxlength="50" value="${cliente.email}" /></td>
-              </tr>
-              <tr>
-                  <td>CEP</td>
-                  <td><input type="number" name="txtCEPFuncionario" maxlength="9" value="${cliente.endereco.cep}" /></td>
-              </tr>
-              <tr>
-                  <td>Logradouro</td>
-                  <td><input type="text" name="txtLogradouroFuncionario" value="${cliente.endereco.logradouro}" /></td>
-                  <td>N˙mero</td>
-                  <td><input type="number" name="txtNumeroFuncionario" value="${cliente.endereco.logradouro}" /></td>
-              </tr>
-              <tr>
-                  <td>Cidade</td>
-                  <td><input type="text" name="txtCidadeFuncionario" value="${cliente.endereco.cidade}" /></td>
-              </tr>
-              <tr>
-                  <td>Bairro</td>
-                  <td><input type="text" name="txtBairroFuncionario" value="${cliente.endereco.bairro}" /></td>
-              </tr>
-              <tr>
-                  <td>Complemento</td>
-                  <td><input type="text" name="txtComplementoFuncionario" value="${cliente.endereco.complemento}" /></td>
-              </tr>
-              <tr>
-                  <td>Telefone</td>
-                  <td><input type="number" name="txtTelefoneFuncionario" value="${cliente.telefone}" /></td>
-              </tr>
-          <!--<tr>
-              <td>
-                  <label for="nome">Nome </label>
-              </td>
-              <td>
-                  <input type="text" id="nomeFuncionario">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="cpf">CPF </label>
-              </td>
-              <td>
-                  <input type="text" id="cpfFuncionario">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="dataNascimento">Data de Nascimento</label>
-              </td>
-              <td>
-                  <input type="date" value="data" id="data">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="sexo">Sexo </label>
-              </td>
-              <td>
-                  <select>
-                      <option value="F">Feminino</option>
-                      <option values="M">Masculino</option>
-                  </select>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="email">Email </label>
-              </td>
-              <td>
-                  <input type="text" id="email">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="telefone">Telefone</label>
-              </td>
-              <td>
-                  <input type="text" id="telefone">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="cpf">CPF </label>
-              </td>
-              <td>
-                  <input type="text" id="cfp">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="complemento">Complemento </label>
-              </td>
-              <td>
-                  <input type="text" id="complemento">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="logradouro">Logradouro</label>
-              </td>
-              <td>
-                  <input type="text" id="logradouro">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="numeto">N√∫mero</label>
-              </td>
-              <td>
-                  <input type="number" id="numero">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="bairro">Bairro</label>
-              </td>
-              <td>
-                  <input type="text" id="bairro">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="cidade">Cidade</label>
-              </td>
-              <td>
-                  <input type="text" id="cidade">
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  <label for="uf">UF</label>
-              </td>
-              <td>
-                  <input type="text" id="uf">
-              </td>
-          </tr>
-         -->
-          <tr>
-              <td>
-                  <label for="login">Login</label>
-              </td>
-              <td>
-                  <input type="text" id="login">
-              </td>
-          </tr>
-
-         <tr>
-              <td>
-                  <label for="senha">Senha</label>
-              </td>
-              <td>
-                  <input type="password" id="senha">
-              </td>
-          </tr>
-          </table>
-          <input type="submit" value="confrimar">
-          <input type="submit" value="Limpar">
+             
+             </table>
+              <p><input type="submit" value="Incluir" name="btnIncluir">
+                  <input type="submit" value="Limpar"></p>
           </form>
         </div>
       </section>

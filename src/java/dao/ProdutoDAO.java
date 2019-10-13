@@ -6,6 +6,7 @@
 package dao;
 
 import static dao.DAO.fecharConexao;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,10 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import model.Produto;
 
 /**
@@ -61,13 +66,13 @@ public class ProdutoDAO {
     
     public static Produto instanciarProduto(ResultSet rs)throws SQLException{
         Produto produto = new Produto(
-                rs.getInt("ID"),
+                rs.getInt("idProduto"),
                 rs.getString("NOME"),
-                rs.getFloat("PRECO"),
-                rs.getString("LOTE"),
-                null
+                rs.getFloat("PRECO")
+                //rs.getString("LOTE"),
+               // null
         );
-        produto.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
+        //produto.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
         return produto;
     
     
@@ -78,7 +83,7 @@ public class ProdutoDAO {
         PreparedStatement comando = null;
         try{
             conexao = BD.getConexao();
-            comando = conexao.prepareStatement(
+            /*comando = conexao.prepareStatement(
                     "insert into produtos(idProduto, nome, preco, lote, estoque_id)"
                     +" values(?,?,?,?,?)");
             comando.setInt(1, produto.getId());
@@ -89,11 +94,21 @@ public class ProdutoDAO {
                 comando.setNull(5, Types.INTEGER);
             }else{
                 comando.setInt(5, produto.getEstoque().getId());
-            }
+            }*/
+            comando = conexao.prepareStatement(
+            "insert into produto(idProduto,nome, preco) values(?,?,?)");
+            comando.setInt(1, produto.getId());
+            comando.setString(2 , produto.getNome());
+            comando.setDouble(3, produto.getPreco());
             comando.executeUpdate();
         }finally{
             fecharConexao(conexao, comando);
             
         }
     }
+    
+    
+        
+        
+    
 }

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package model;
-
 import dao.FuncionarioDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,12 +14,12 @@ import java.util.List;
  */
 public class Funcionario {
 
-    private Integer idFuncionario;
+    private int idFuncionario;
     private String funcao;
     private String login;
     private String senha;
 
-    public Funcionario(Integer idFuncionario, String funcao, String login, String senha) {
+    public Funcionario(int idFuncionario, String funcao, String login, String senha) {
         this.idFuncionario = idFuncionario;
         this.funcao = funcao;
         this.login = login;
@@ -35,11 +34,11 @@ public class Funcionario {
         return FuncionarioDAO.obterFuncionarios();
     }
 
-    public Integer getIdFuncionario() {
+    public int getIdFuncionario() {
         return idFuncionario;
     }
 
-    public void setIdFuncionario(Integer idFuncionario) {
+    public void setIdFuncionario(int idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
 
@@ -66,7 +65,9 @@ public class Funcionario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
     
+    public void gravar() throws SQLException, ClassNotFoundException{
+        FuncionarioDAO.gravar(this);
+    }
 
 }

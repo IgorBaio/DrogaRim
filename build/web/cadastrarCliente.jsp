@@ -6,42 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastrar produto - ${operacao}</title>
+    <title>Cadastrar cliente - ${operacao}</title>
 </head>
+  <body>
+        <header>
+      <div class="barralogo">
+          <div class="logo"></div>
+            <span class="usuario">Vendedor</span>
+      </div>
+      <nav>
+        <hr id="hr1">
+          <table>
+              <tr>
+                  <td>
+                      <a href="PesquisaVendaController">Venda</a>
+                  </td>
 
-<body>
-  <header>
-    <div class="barralogo">
-        <h1>DROGARIM</h1>
-        <span id="usuario">Vendedor</span>
-    </div>
-    <hr>
-    <nav>
-        <table>
-            <tr>
-                <td>
-                    <a href="index.jsp">Venda</a>
-                </td>
+                  <td>
+                      <a href="PesquisaProdutoController">Produto</a>
+                  </td>
 
-                <td>
-                    <a href="produto.jsp">Produto</a>
-                </td>
+                  <td>
+                      <a href="PesquisaEstoqueController">Estoque</a>
+                  </td>
 
-                <td>
-                    <a href="estoque.jsp">Estoque</a>
-                </td>
+                  <td>
+                      <a href="PesquisaClienteController"  class="paginaSelecionada">Cliente</a>
+                  </td>
 
-                <td>
-                    <a href="cliente.jsp" class="paginaSelecionada">Cliente</a>
-                </td>
+                  <td>
+                      <a href="PesquisaFuncionarioController">Funcionário</a>
+                  </td>
 
-                <td>
-                    <a href="funcionario.jsp">FuncionÃ¡rio</a>
-                </td>
-
-                <td>
-                    <a href="fabricante.jsp">Fabricante</a>
-                </td>
+                  <td>
+                      <a href="PesquisaFabricanteController">Fabricante</a>
+                  </td>
             </tr>
         </table>
       </nav>
@@ -69,10 +68,10 @@
 
     <section>
       <div id="cadastrarProduto">
-        <form action="ManterClienteController?acao=prepararOperacao&operaca=${operacao}"
+          <form action="ManterClienteController?acao=confirmarOperacao&operacao=Incluir" method="post" name="frmManterCliente">
+        <table>
+            <form action="ManterClienteController?acao=prepararOperacao&operacao=${operacao}"
           method="post" name="frmCadastrarCliente">
-          
-          <table>
               <tr>
                   <td>Código do cliente</td>
                   <td><input type="text" name="txtCodCliente" value="${cliente.id}" /></td>
@@ -83,16 +82,16 @@
               </tr>
             <tr>
                   <td>CPF</td>
-                  <td><input type="text" name="txtCodCliente" value="${cliente.cpf}" /></td>
+                  <td><input type="text" name="txtCpfCliente" value="${cliente.cpf}" /></td>
               </tr>
               <tr>
                   <td>Estado</td>
                   <td>
                       <select name="optEstado">
-                          <option value="Minas Gerais" <c:if test="${cliente.endereco.uf}"  selected</c:if>
+                          <option value="Minas Gerais" <c:if test="${cliente.uf}"  selected</c:if>
                           Minas Gerais
                           </option>
-                          <option value="Rio de Janeiro" <c:if test="${cliente.endereco.uf}"  selected</c:if>
+                          <option value="Rio de Janeiro" <c:if test="${cliente.uf}"  selected</c:if>
                           Rio de Janeiro
                       </select>
                   </td>
@@ -112,25 +111,25 @@
               </tr>
               <tr>
                   <td>CEP</td>
-                  <td><input type="number" name="txtCEPCliente" maxlength="9" value="${cliente.endereco.cep}" /></td>
+                  <td><input type="number" name="txtCEPCliente" maxlength="9" value="${cliente.cep}" /></td>
               </tr>
               <tr>
                   <td>Logradouro</td>
-                  <td><input type="text" name="txtLogradouroCliente" value="${cliente.endereco.logradouro}" /></td>
+                  <td><input type="text" name="txtLogradouroCliente" value="${cliente.logradouro}" /></td>
                   <td>Número</td>
-                  <td><input type="number" name="txtNumeroCliente" value="${cliente.endereco.logradouro}" /></td>
+                  <td><input type="number" name="txtNumeroCliente" value="${cliente.logradouro}" /></td>
               </tr>
               <tr>
                   <td>Cidade</td>
-                  <td><input type="text" name="txtCidadeCliente" value="${cliente.endereco.cidade}" /></td>
+                  <td><input type="text" name="txtCidadeCliente" value="${cliente.cidade}" /></td>
               </tr>
               <tr>
                   <td>Bairro</td>
-                  <td><input type="text" name="txtBairroCliente" value="${cliente.endereco.bairro}" /></td>
+                  <td><input type="text" name="txtBairroCliente" value="${cliente.bairro}" /></td>
               </tr>
               <tr>
                   <td>Complemento</td>
-                  <td><input type="text" name="txtComplementoCliente" value="${cliente.endereco.complemento}" /></td>
+                  <td><input type="text" name="txtComplementoCliente" value="${cliente.complemento}" /></td>
               </tr>
               <tr>
                   <td>Telefone</td>
@@ -241,7 +240,8 @@
               </td>
 -->
             </table>
-          <p><input type="reset" value="Cancelar"><input type="submit" value="Cadastrar"></p>
+          <p><input type="submit" value="Incluir" name="btnIncluir">
+                  <input type="submit" value="Limpar"></p>
         </form>
       </div>
     </body>

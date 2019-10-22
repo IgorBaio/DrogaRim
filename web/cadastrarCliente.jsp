@@ -52,7 +52,7 @@
       <table>
           <tr>
               <td>
-                  <a href="Cliente.jsp">
+                  <a href="PesquisaClienteController">
                       Cliente
                   </a>
               </td>

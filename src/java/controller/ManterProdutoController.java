@@ -35,61 +35,60 @@ public class ManterProdutoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
-        String  acao = request.getParameter("acao");
-        if(acao.equals("confirmarOperacao")){
-           confirmarOperacao(request,response);
-       }else{
-        if(acao.equals("prepararOperacao")){
-            prepararOperacao(request, response);
-        } 
-       }
+        String acao = request.getParameter("acao");
+        if (acao.equals("confirmarOperacao")) {
+            confirmarOperacao(request, response);
+        } else {
+            if (acao.equals("prepararOperacao")) {
+                prepararOperacao(request, response);
+            }
+        }
     }
-    
+
     public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-           // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
+            // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
             RequestDispatcher view = request.getRequestDispatcher("cadastrarProduto.jsp");
             view.forward(request, response);
-        }
-        catch (ServletException e){
+        } catch (ServletException e) {
             throw e;
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             throw new ServletException(e);
         }
         //catch (SQLException e){
-          //  throw new ServletException(e);
+        //  throw new ServletException(e);
         //}
         //catch (ClassNotFoundException e){
-         //   throw new ServletException(e);
+        //   throw new ServletException(e);
         //}
     }
-    
-    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, SQLException, ClassNotFoundException{
+
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, ClassNotFoundException {
         String operacao = request.getParameter("operacao");
         int idProduto = Integer.parseInt(request.getParameter("txtIdProduto"));
         String nome = request.getParameter("txtNomeComercial");
+        String nomeFarmaco = request.getParameter("txtNomeFarmaco");
         double preco = Double.parseDouble(request.getParameter("txtPrecoProduto"));
-        //String lote = request.getParameter("txtLoteProduto");
-        
+        String categoria = request.getParameter("txtCategoria");
+        String tipo = request.getParameter("txtTipo");
+        boolean receita = Boolean.parseBoolean(request.getParameter("txtReceita"));
+        boolean medicamento = Boolean.parseBoolean(request.getParameter("txtMedicamento"));
+        String lote = request.getParameter("txtLote");
         
         try {
-            Produto produto = new Produto(idProduto,nome, preco);
-            
-        if(operacao.equals("Incluir")){
-            produto.gravar();
-        }
-        RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoController");
-        
+            Produto produto = new Produto(idProduto, nome, nomeFarmaco, preco, categoria, tipo, receita, medicamento, lote);
+            if (operacao.equals("Incluir")) {
+                produto.gravar();
+            }
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoController");
             view.forward(request, response);
         } catch (IOException ex) {
             throw new ServletException(ex);
         }
     }
-        
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -140,6 +139,5 @@ public class ManterProdutoController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
 }

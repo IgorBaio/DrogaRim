@@ -16,65 +16,99 @@ import java.util.List;
  */
 public class Produto {
 
-    
-    private int id;
+    private int idProduto;
     private String nome;
+    private String nomeFarmaco;
     private double preco;
-    private String lote;
+    private String categoria;
+    private String tipo;
+    private boolean receita;
     private Estoque estoque;
     private int chaveEstoque;
+    private boolean medicamento;
+    private String lote;
 
-    
-    
-    public Produto(int id, String nome, double preco,/*String lote ,*/Estoque estoque) {
-        this.id = id;
+    public Produto(int idProduto, String nome, String nomeFarmaco, double preco, String categoria
+            , String tipo, boolean receita, boolean medicamento, String lote) {
+        this.idProduto = idProduto;
         this.nome = nome;
-        //this.lote = lote;
-        this.estoque = estoque;
-    }
-
-    public Produto(int idProduto, String nome/*, String lote*/) {
-        this.id = idProduto;
-        this.nome = nome;
-       // this.lote = lote;
-    }
-
-    public Produto(int id, String nome, double preco) {
-        this.id = id;
-        this.nome = nome;
+        this.nomeFarmaco = nomeFarmaco;
         this.preco = preco;
-//        this.estoque = estoque;
-        
+        this.categoria = categoria;
+        this.tipo = tipo;
+        this.receita = receita;
+        this.medicamento = medicamento;
+        this.lote = lote;
     }
 
-    public Estoque getEstoque() throws ClassNotFoundException, SQLException{
-        if((this.chaveEstoque != 0) && (this.estoque == null)){
+   
+
+    public String getNomeFarmaco() {
+        return nomeFarmaco;
+    }
+
+    public void setNomeFarmaco(String nomeFarmaco) {
+        this.nomeFarmaco = nomeFarmaco;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public boolean isReceita() {
+        return receita;
+    }
+
+    public void setReceita(boolean receita) {
+        this.receita = receita;
+    }
+
+    public boolean isMedicamento() {
+        return medicamento;
+    }
+
+    public void setMedicamento(boolean medicamento) {
+        this.medicamento = medicamento;
+    }
+
+    public Estoque getEstoque() throws ClassNotFoundException, SQLException {
+        if ((this.chaveEstoque != 0) && (this.estoque == null)) {
             this.estoque = Produto.obterEstoque(this.chaveEstoque);
         }
         return estoque;
     }
-    
-     public static Estoque obterEstoque(int id) throws ClassNotFoundException, SQLException{
-        return EstoqueDAO.obterEstoque(id);
-    };
-    
-    
-    public static List<Estoque> obterEstoques() throws ClassNotFoundException, SQLException{
+
+    public static Estoque obterEstoque(int idProduto) throws ClassNotFoundException, SQLException {
+        return EstoqueDAO.obterEstoque(idProduto);
+    }
+
+    public static List<Estoque> obterEstoques() throws ClassNotFoundException, SQLException {
         return EstoqueDAO.obterEstoques();
-    };
-    
-    public static Produto obterProduto(int id) throws ClassNotFoundException, SQLException{
-        return ProdutoDAO.obterProduto(id);
-    };
-    
-    
-    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
+    }
+
+    public static Produto obterProduto(int idProduto) throws ClassNotFoundException, SQLException {
+        return ProdutoDAO.obterProduto(idProduto);
+    }
+
+    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException {
         return ProdutoDAO.obterProdutos();
-    };
+    }
+
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
     }
-
 
     public int getChaveEstoque() {
         return chaveEstoque;
@@ -84,16 +118,12 @@ public class Produto {
         this.chaveEstoque = chaveEstoque;
     }
 
-    
-
-   
-
-    public int getId() {
-        return id;
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
     public String getNome() {
@@ -119,8 +149,8 @@ public class Produto {
     public void setLote(String lote) {
         this.lote = lote;
     }
-    
-    public void gravar() throws SQLException, ClassNotFoundException{
+
+    public void gravar() throws SQLException, ClassNotFoundException {
         ProdutoDAO.gravar(this);
     }
 }

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastrar funcionário - ${operacao}</title>
+    <title>Lista de funcionários</title>
   </head>
   <body>
         <header>

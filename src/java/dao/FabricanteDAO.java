@@ -19,7 +19,7 @@ import model.Fabricante;
  * @author mathe
  */
 public class FabricanteDAO {
-    public static Fabricante obterFabricante(int id) throws ClassNotFoundException, SQLException{
+    public static Fabricante obterFabricante(int idFabricante) throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
         Fabricante fabricante = null;
@@ -27,7 +27,7 @@ public class FabricanteDAO {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery(
-            "select * from fabricante where idFabricante = "+id
+            "select * from fabricante where idFabricante = "+idFabricante
             );
         rs.first();
         fabricante = instanciarFabricante(rs);
@@ -40,7 +40,7 @@ public class FabricanteDAO {
     public static List<Fabricante> obterFabricantes() throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
-        List<Fabricante> fabricantes = new ArrayList<Fabricante>();
+        List<Fabricante> fabricantes = new ArrayList();
         Fabricante fabricante = null;
         try{
             conexao = BD.getConexao();
@@ -64,14 +64,14 @@ public class FabricanteDAO {
         return fabricante;
     }
     
-    public void  gravar(Fabricante fabricante) throws SQLException, ClassNotFoundException {
+    public static void gravar(Fabricante fabricante) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
         try{
             conexao = BD.getConexao();
-            comando = conexao.prepareStatement ("insert into fabricantes (idFabricante, nome) values (?, ?)");
-            comando.setInt(1, fabricante.getId());
-            comando.setString(2,fabricante.getNome());
+            comando = conexao.prepareStatement ("insert into fabricante(idFabricante, nome) values (?, ?)");
+            comando.setInt(1, fabricante.getIdFabricante());
+            comando.setString(2, fabricante.getNome());
             comando.executeUpdate();
         }
         finally {

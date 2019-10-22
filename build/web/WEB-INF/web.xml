@@ -52,6 +52,10 @@
         <servlet-name>ManterEstoqueController</servlet-name>
         <servlet-class>controller.ManterEstoqueController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterFabricanteController</servlet-name>
+        <servlet-class>controller.ManterFabricanteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaProdutoController</servlet-name>
         <url-pattern>/PesquisaProdutoController</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>ManterEstoqueController</servlet-name>
         <url-pattern>/ManterEstoqueController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterFabricanteController</servlet-name>
+        <url-pattern>/ManterFabricanteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

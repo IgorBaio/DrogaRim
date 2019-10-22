@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -74,92 +75,37 @@
                   <input type="radio" name="produto" id='produto' value="Medicamento" />Medicamentos
               </tr>
               <tr>
+                  <td>Produto</td>
+                <!--  <c:forEach items="${produtos}" var="produto">
+                <tr>
+                    <td><c:out value="${produto.idProduto}" /></td>
+                    <td><c:out value="${produto.nome}" /></td>  
+                    <td><c:out value="${produto.nomeFarmaco}" /></td>
+                    <td><c:out value="${produto.preco}" /></td>  
+                    <td><c:out value="${produto.categoria}" /></td>  
+                    <td><c:out value="${produto.tipo}" /></td>  
+                    <td><c:out value="${produto.receita}" /></td>                                  
+                    <td><c:out value="${produto.medicamento}" /></td>  
+                    <td><c:out value="${produto.lote}" /></td>    
+                </tr>
+                 </c:forEach>-->
                   <td>
-                      <label for="nomeComercial">Nome Comercial:</label>
-                  </td>
-                  <td>
-                      <input type="text" name="nomeComercial" id="nomeComercial" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="principioAtivo">Nome Genérico/Princípio Ativo</label>
-                  </td>
-                  <td>
-                      <input type="text" name="principioAtivo" id="principioAtivo" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="fabricante">Fabricante:</label>
-                  </td>
-                  <td>
-                      <input type="text" name="fabricante" id="fabricante" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="tipoMedicamento">Tipo de Medicamento:</label>
-                  </td>
-                  <td>
-                      <input type="text" name="tipoMedicamento" id="tipoMedicamento" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="quantidade">Quantidade:</label>
-                  </td>
-                  <td>
-                      <input type="text" name="quantidade" id="quantidade" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="formulacao">Formulação</label>
-                  </td>
-                  <td>
-                      <input type="text" name="formulacao" id="formulacao" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="registroMinisterioSaude">Registro Ministério da Saúde:</label>
-                  </td>
-                  <td>
-                      <input type="text" name="registroMinisterioSaude" id="registroMinisterioSaude" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="categoria">Categoria:</label>
-                  </td>
-                  <td>
-                      <input type="text" name="categoria" id="categoria" />
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="receita">Receita:</label>
-                  </td>
-                  <td>
-                      <select name="receita" id="receita">
-                          <option value="Nenhuma" selected>Nenhuma
-                          <option value="Retida">Retida
-                          <option value="Azul">Azul
+                      <select name="optProd">
+                          <!--<option value="0" <c:if test="${produto.nome == null}">selected</c:if></option> -->
+                        <c:forEach items="${produtos}" var="produto">
+                          <option value="${produto.nome}" <c:if test="${produto.nome == produto.nome}">
+                                  selected</c:if> >${produto.nome}</option>
+                        </c:forEach>
+                         <!-- <option value="Minas Gerais" <c:if test="${cliente.uf}">  selected</c:if>
+                          Minas Gerais</option>  -->
                       </select>
                   </td>
-              </tr>
-              <tr>
-                  <td>
-                      <label for="observacao">Observação:</label>
-                  </td>
-                  <td>
-                      <input type="text" name="observacao" id="observacao" />
-                  </td>
+                     
               </tr>
           </table>
           <p>
-              <input type="submit" value="Confirmar"><input type="reset" value="Retornar">
+              <p><input type="submit" value="Incluir" name="btnIncluir">
+                        <input type="submit" value="Limpar"></p>
           </p>
       </form>
     </section>

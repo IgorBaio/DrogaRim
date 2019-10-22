@@ -9,7 +9,7 @@ package model;
  *
  * @author Igori
  */
-public class Medicamento extends Produto {
+public class Medicamento  {
     private String categoria;
     private String tipo;
     private boolean receita;
@@ -30,9 +30,7 @@ public class Medicamento extends Produto {
     //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     //}
 
-    public Medicamento(int id, String nome, float preco, Estoque estoque) {
-        super(id, nome, preco, estoque);
-    }
+    
 
 
     

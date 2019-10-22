@@ -84,13 +84,42 @@
         <div id="filtroCliente">
           Filtros
         </div>
-        <div id="listaCliente">
+        <div class="listaCliente">
           Resultados
           <table>
+            <tr>
+                <td>Código</td>
+                <td>Nome</td>
+                <td>CPF</td>
+                <td>Telefone</td>
+                <td>E-mail</td>
+                <td>Nº Casa</td>
+                <td>Complemento</td>
+                <td>DT_Nasc</td>
+                <td>Sexo</td>
+                <td>CEP</td>
+                <td>Logradouro</td>
+                <td>Bairro</td>
+                <td>Cidade</td>
+                <td>UF</td>
+                
+            </tr>
              <c:forEach items="${clientes}" var="cliente">
                 <tr>
                     <td><c:out value="${cliente.idCliente}" /></td>
-                    <td><c:out value="${cliente.nome}" /></td>    
+                    <td><c:out value="${cliente.nome}" /></td>
+                    <td><c:out value="${cliente.cpf}" /></td>
+                    <td><c:out value="${cliente.telefone}" /></td>
+                    <td><c:out value="${cliente.email}" /></td>
+                    <td><c:out value="${cliente.numeroCasa}" /></td>
+                    <td><c:out value="${cliente.complemento}" /></td>
+                    <td><c:out value="${cliente.dataNascimento}" /></td>
+                    <td><c:out value="${cliente.sexo}" /></td>
+                    <td><c:out value="${cliente.cep}" /></td>
+                    <td><c:out value="${cliente.logradouro}" /></td>
+                    <td><c:out value="${cliente.bairro}" /></td>
+                    <td><c:out value="${cliente.cidade}" /></td>
+                    <td><c:out value="${cliente.uf}" /></td>
                 </tr>
                  </c:forEach>
           </table>

@@ -34,6 +34,10 @@ public class Estoque {
         return EstoqueDAO.obterEstoques();
     }
 
+    public Estoque(int idEstoque) {
+        this.id = idEstoque;
+    }
+
     public int getId() {
         return id;
     }

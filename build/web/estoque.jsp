@@ -78,7 +78,7 @@
             <div id="filtroEstoque">
               Filtros
             </div>
-            <div id="listaEstoque">
+            <div class="listaEstoque">
               Resultados
               <table>
                 <tr>

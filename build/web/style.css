@@ -112,7 +112,27 @@ a.paginaSelecionada{
     width: 150px;
     
 }
-.listaProduto table tr td th {
+.listaProduto table tr td {
+
+    width: 150px;
+    
+}
+.listaCliente table tr td {
+
+    width: 150px;
+    
+}
+.listaFabricante table tr td {
+
+    width: 150px;
+    
+}
+ .listaVenda table tr td {
+
+    width: 150px;
+    
+}
+.listaEstoque table tr td {
 
     width: 150px;
     

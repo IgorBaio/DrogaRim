@@ -14,11 +14,11 @@ import java.util.List;
  * @author mathe
  */
 public class Fabricante {
-    private int id;
+    private int idFabricante;
     private String nome;
 
-    public Fabricante(int id, String nome) {
-        this.id = id;
+    public Fabricante(int idFabricante, String nome) {
+        this.idFabricante = idFabricante;
         this.nome = nome;
     }
     
@@ -30,12 +30,12 @@ public class Fabricante {
         return FabricanteDAO.obterFabricantes();
     }
 
-    public int getId() {
-        return id;
+    public int getIdFabricante() {
+        return idFabricante;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdFabricante(int idFabricante) {
+        this.idFabricante = idFabricante;
     }
 
     public String getNome() {
@@ -46,8 +46,8 @@ public class Fabricante {
         this.nome = nome;
     }
     
- /*   public void gravar() throws SQLException, ClassNotFoundException{
+    public void gravar() throws SQLException, ClassNotFoundException{
         FabricanteDAO.gravar(this);
     }
-*/
+
 }

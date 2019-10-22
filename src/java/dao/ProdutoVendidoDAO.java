@@ -83,7 +83,7 @@ public class ProdutoVendidoDAO {
             if(produtoVendido.getProduto()== null){
                 comando.setNull(2, Types.INTEGER);
             }else{
-                comando.setInt(2, produtoVendido.getProduto().getId());
+                comando.setInt(2, produtoVendido.getProduto().getIdProduto());
             }
             if(produtoVendido.getVenda()== null){
                 comando.setNull(3, Types.INTEGER);

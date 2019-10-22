@@ -79,7 +79,7 @@
             <div id="filtroVenda">
               Filtros
             </div>
-            <div id="listaVenda">
+            <div class="listaVenda">
               Resultados
               <table>
                 <tr>

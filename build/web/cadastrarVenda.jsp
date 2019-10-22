@@ -57,7 +57,7 @@
                   </td>
 
                   <td>
-                      <a href="cadastrarVenda.jsp"  class="paginaSelecionada">
+                      <a href="ManterVendaController?acao=prepararOperacao&operacao=Incluir"  class="paginaSelecionada">
                           Nova venda
                       </a>
                   </td>

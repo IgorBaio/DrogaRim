@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
@@ -10,13 +15,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Funcionario;
+import model.Fabricante;
 
 /**
  *
  * @author Igori
  */
-public class ManterFuncionarioController extends HttpServlet {
+public class ManterFabricanteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -26,9 +31,10 @@ public class ManterFuncionarioController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("confirmarOperacao")) {
             confirmarOperacao(request, response);
@@ -43,39 +49,33 @@ public class ManterFuncionarioController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-//            request.setAttribute("funcionarios", Funcionario.obterFuncionarios());
-            RequestDispatcher view = request.getRequestDispatcher("cadastrarFuncionario.jsp");
+            // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
+            RequestDispatcher view = request.getRequestDispatcher("cadastrarFabricante.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
             throw e;
         } catch (IOException e) {
             throw new ServletException(e);
-        }/*  }catch(SQLException e){
-            throw new ServletException(e);
-        }catch(ClassNotFoundException e){
-            throw new ServletException(e);
-        }*/
-    }
+        }
 
-    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException {
+    }
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, ClassNotFoundException {
         String operacao = request.getParameter("operacao");
-        int idFuncionario = Integer.parseInt(request.getParameter("txtCodFuncionario"));
-        String funcao = request.getParameter("txtFuncaoFuncionario");
-        String login = request.getParameter("txtLoginFuncionario");
-        String senha = request.getParameter("txtSenhaFuncionario");
+        int idFabricante = Integer.parseInt(request.getParameter("txtCodFabricante"));
+        String nome = request.getParameter("txtNomeFabricante");
 
         try {
-            Funcionario funcionario = new Funcionario(idFuncionario, funcao, login, senha);
+            Fabricante fabricante = new Fabricante(idFabricante, nome);
             if (operacao.equals("Incluir")) {
-                funcionario.gravar();
+                fabricante.gravar();
             }
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaFuncionarioController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaFabricanteController");
             view.forward(request, response);
-        } catch (IOException e) {
-            throw new ServletException(e);
+        } catch (IOException ex) {
+            throw new ServletException(ex);
         }
-    }
 
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -91,9 +91,9 @@ public class ManterFuncionarioController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterFuncionarioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterFabricanteController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManterFuncionarioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterFabricanteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -111,9 +111,9 @@ public class ManterFuncionarioController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterFuncionarioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterFabricanteController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManterFuncionarioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterFabricanteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -126,5 +126,6 @@ public class ManterFuncionarioController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 
 }

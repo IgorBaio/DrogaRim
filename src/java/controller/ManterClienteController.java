@@ -35,7 +35,7 @@ public class ManterClienteController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
-        if(acao.equals("confirmarOperacao")){
+        if (acao.equals("confirmarOperacao")) {
             confirmarOperacao(request, response);
         } else {
             if (acao.equals("prepararOperacao")) {
@@ -43,24 +43,27 @@ public class ManterClienteController extends HttpServlet {
             }
         }
     }
-    
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
+            if (!operacao.equals("Incluir")) {
+                int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+                Cliente cliente = Cliente.obterCliente(idCliente);
+                request.setAttribute("cliente", cliente);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/cadastrarCliente.jsp");
             view.forward(request, response);
-        }
-        catch (ServletException e){
+        } catch (ServletException e) {
             throw e;
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             throw new ServletException(e);
         }
     }
-    
+
     public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, SQLException, ClassNotFoundException{
+            throws ServletException, SQLException, ClassNotFoundException {
         String operacao = request.getParameter("operacao");
         int idCliente = Integer.parseInt(request.getParameter("txtCodCliente"));
         String nome = request.getParameter("txtNomeCliente");
@@ -69,7 +72,7 @@ public class ManterClienteController extends HttpServlet {
         String email = request.getParameter("txtEmailCliente");
         String numeroCasa = request.getParameter("txtNumeroCliente");
         String complemento = request.getParameter("txtComplementoCliente");
-        boolean sexo = Boolean.parseBoolean(request.getParameter("txtSexoCliente")); 
+        boolean sexo = Boolean.parseBoolean(request.getParameter("txtSexoCliente"));
         String dataNascimento = request.getParameter("txtDataNascimentoCliente");
         String cep = request.getParameter("txtCEPCliente");
         String logradouro = request.getParameter("txtLogradouroCliente");
@@ -79,16 +82,19 @@ public class ManterClienteController extends HttpServlet {
 
         try {
             Cliente cliente = new Cliente(idCliente, nome, cpf, telefone, email, numeroCasa, complemento, dataNascimento, sexo, cep, logradouro, bairro, cidade, uf);
-            if(operacao.equals("Incluir")){
-            cliente.gravar();
-        }
-        RequestDispatcher view = request.getRequestDispatcher("PesquisaClienteController");
+            if (operacao.equals("Incluir")) {
+                cliente.gravar();
+            }else{
+                if(operacao.equals("Excluir")){
+                    cliente.excluir();
+                }
+            }
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaClienteController");
             view.forward(request, response);
         } catch (IOException ex) {
             throw new ServletException(ex);
         }
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -143,4 +149,3 @@ public class ManterClienteController extends HttpServlet {
     }// </editor-fold>
 
 }
-

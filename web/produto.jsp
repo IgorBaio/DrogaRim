@@ -96,6 +96,7 @@
                             <td>Receita</td>
                             <td>Medicamento</td>
                             <td>Lote</td>
+                            <td colspan="2">Ação</td>
 
                         </tr>
                         <c:forEach items="${produtos}" var="produto">
@@ -108,7 +109,9 @@
                                 <td><c:out value="${produto.tipo}" /></td>  
                                 <td><c:out value="${produto.receita}" /></td>                                  
                                 <td><c:out value="${produto.medicamento}" /></td>  
-                                <td><c:out value="${produto.lote}" /></td>                       
+                                <td><c:out value="${produto.lote}" /></td> 
+                                <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}" />">Excluir</a></td>
+
                             </tr>
                         </c:forEach>
                     </table>
@@ -144,7 +147,7 @@
                         </tr>
         <c:forEach items="${produto}" var="produto">
           <tr>
-              <td><c:out value="${produto.id}" /></td>
+              <td><c:out value="${produto.idProduto}" /></td>
               <td><c:out value="${produto.nome}" /></td>
               <td><c:out value="${produto.nomeFarmaco}" /></td>
               <td><c:out value="${produto.preco}" /></td>

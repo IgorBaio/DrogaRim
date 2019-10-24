@@ -49,5 +49,8 @@ public class Fabricante {
     public void gravar() throws SQLException, ClassNotFoundException{
         FabricanteDAO.gravar(this);
     }
+        public void excluir() throws SQLException, ClassNotFoundException{
+        FabricanteDAO.excluir(this);
+    }
 
 }

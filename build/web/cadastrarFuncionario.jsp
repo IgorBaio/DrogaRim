@@ -54,9 +54,8 @@
                             Funcionários
                         </a>
                     </td>
-
                     <td>
-                        <a href="cadastrarFuncionario.jsp" class="paginaSelecionada">
+                        <a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Incluir" class="paginaSelecionada">
                             Cadastrar Funcionário
                         </a>
                     </td>
@@ -67,10 +66,10 @@
 
         <section>
             <div id="cadastrarFuncionario">
-                <form action="ManterFuncionarioController?acao=confirmarOperacao&operacao=Incluir" method="post" name="frmManterFuncionario">
+                <form action="ManterFuncionarioController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterFuncionario">
                     <table>
 
-                       <!-- <tr>
+                        <!--<tr>
                             <td>
                                 <select>
                                     <option value="funcao">Função</option>
@@ -98,10 +97,10 @@
                             <td>Função</td>
                             <td><input type="text" name="txtFuncaoFuncionario" value="${funcionario.funcao}" /></td>
                         </tr>
-
                     </table>
                     <p><input type="submit" value="Incluir" name="btnIncluir">
-                        <input type="submit" value="Limpar"></p>
+                        <input type="submit" value="Limpar">
+                        <input type="submit" value="Excluir"></p>
                 </form>
             </div>
         </section>

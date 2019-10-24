@@ -84,12 +84,14 @@
                         <tr>
                             <td>Código</td>
                             <td>Nome</td>
+                            <td>Ação</td>
                         </tr>
 
                         <c:forEach items="${fabricantes}" var="fabricante">
                             <tr>
                                 <td><c:out value="${fabricante.idFabricante}" /></td>
-                                <td><c:out value="${fabricante.nome}" /></td>    
+                                <td><c:out value="${fabricante.nome}" /></td>
+                                <td><a href="ManterFabricanteController?acao=prepararOperacao&operacao=Excluir&idFabricante=<c:out value="${fabricante.idFabricante}" />">Excluir</a></td>
                             </tr>
                         </c:forEach>
                     </table>

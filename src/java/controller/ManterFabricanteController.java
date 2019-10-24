@@ -45,11 +45,15 @@ public class ManterFabricanteController extends HttpServlet {
         }
     }
 
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
+            if (!operacao.equals("Incluir")) {
+                int idFabricante = Integer.parseInt(request.getParameter("idFabricante"));
+                Fabricante fabricante = Fabricante.obterFabricante(idFabricante);
+                request.setAttribute("fabricante", fabricante);
+            }
             RequestDispatcher view = request.getRequestDispatcher("cadastrarFabricante.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
@@ -59,6 +63,7 @@ public class ManterFabricanteController extends HttpServlet {
         }
 
     }
+
     public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, ClassNotFoundException {
         String operacao = request.getParameter("operacao");
         int idFabricante = Integer.parseInt(request.getParameter("txtCodFabricante"));
@@ -68,6 +73,10 @@ public class ManterFabricanteController extends HttpServlet {
             Fabricante fabricante = new Fabricante(idFabricante, nome);
             if (operacao.equals("Incluir")) {
                 fabricante.gravar();
+            } else {
+                if (operacao.equals("Excluir")) {
+                    fabricante.excluir();
+                }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFabricanteController");
             view.forward(request, response);
@@ -76,6 +85,7 @@ public class ManterFabricanteController extends HttpServlet {
         }
 
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -126,6 +136,5 @@ public class ManterFabricanteController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
 }

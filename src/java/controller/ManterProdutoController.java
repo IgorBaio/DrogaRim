@@ -45,11 +45,16 @@ public class ManterProdutoController extends HttpServlet {
         }
     }
 
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
+            if (!operacao.equals("Incluir")) {
+                int idProduto = Integer.parseInt(request.getParameter("idProduto"));
+                Produto produto = Produto.obterProduto(idProduto);
+                request.setAttribute("produto", produto);
+            }
             RequestDispatcher view = request.getRequestDispatcher("cadastrarProduto.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
@@ -81,6 +86,10 @@ public class ManterProdutoController extends HttpServlet {
             Produto produto = new Produto(idProduto, nome, nomeFarmaco, preco, categoria, tipo, receita, medicamento, lote);
             if (operacao.equals("Incluir")) {
                 produto.gravar();
+            }else{
+                if(operacao.equals("Excluir")){
+                    produto.excluir();
+                }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoController");
             view.forward(request, response);

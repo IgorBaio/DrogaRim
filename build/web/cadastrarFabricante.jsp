@@ -55,7 +55,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="cadastrarFabricante.jsp" class="paginaSelecionada">
+                        <a href="ManterFabricanteController?acao=prepararOperacao&operacao=Incluir" class="paginaSelecionada">
                             Cadastrar Fabricante
                         </a>
                     </td>
@@ -65,20 +65,20 @@
 
         <section>
             <div id="cadastrarFabricante">
-                <form action="ManterFabricanteController?acao=confirmarOperacao&operacao=Incluir" method="post" name="frmManterFabricante">
+                <form action="ManterFabricanteController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterFabricante">
                     <table>
                         <tr>
                             <td>Código do fabricante</td>
-                            <td><input type="text" name="txtCodFabricante" value="${fabricante.idFabricante}" /></td>
+                            <td><input type="text" name="txtCodFabricante" id="idFabricante" value="${fabricante.idFabricante}"/></td>
                         </tr>
                         <tr>
                             <td>Nome</td>
                             <td><input type="text" name="txtNomeFabricante" value="${fabricante.nome}" /></td>
                         </tr>
-
                     </table>
                     <p><input type="submit" value="Incluir" name="btnIncluir">
-                        <input type="submit" value="Limpar"></p>
+                        <input type="submit" value="Limpar">
+                        <input type="submit" value="Excluir"></p>
                 </form>
             </div>
         </section>

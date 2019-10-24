@@ -102,7 +102,7 @@
                 <td>Bairro</td>
                 <td>Cidade</td>
                 <td>UF</td>
-                
+                <td colspan=2>Ação</td>
             </tr>
              <c:forEach items="${clientes}" var="cliente">
                 <tr>
@@ -120,6 +120,7 @@
                     <td><c:out value="${cliente.bairro}" /></td>
                     <td><c:out value="${cliente.cidade}" /></td>
                     <td><c:out value="${cliente.uf}" /></td>
+                    <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Excluir&idCliente=<c:out value="${cliente.idCliente}" />">Excluir</a></td>
                 </tr>
                  </c:forEach>
           </table>

@@ -116,5 +116,19 @@ public class ProdutoDAO {
 
         }
     }
+    
+     public static void excluir (Produto produto) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from produto where idProduto = " + produto.getIdProduto();
+            comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 
 }

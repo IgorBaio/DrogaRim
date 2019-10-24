@@ -79,4 +79,21 @@ public class FabricanteDAO {
         }
     }
     
+    public static void excluir(Fabricante fabricante) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from fabricante where idFabricante = " + fabricante.getIdFabricante();
+            comando.execute(stringSQL);
+        }
+        finally {
+            fecharConexao(conexao, comando);
+           
+        }
+    }
+    
 }

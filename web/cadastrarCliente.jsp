@@ -68,13 +68,12 @@
 
     <section>
       <div id="cadastrarProduto">
-          <form action="ManterClienteController?acao=confirmarOperacao&operacao=Incluir" method="post" name="frmManterCliente">
+          <form action="ManterClienteController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCliente">
         <table>
-            <form action="ManterClienteController?acao=prepararOperacao&operacao=${operacao}"
-          method="post" name="frmCadastrarCliente">
+            
               <tr>
                   <td>Código do cliente</td>
-                  <td><input type="text" name="txtCodCliente" value="${cliente.id}" /></td>
+                  <td><input type="text" name="txtCodCliente" value="${cliente.idCliente}" /></td>
               </tr>
               <tr>
                   <td>Nome</td>
@@ -241,7 +240,9 @@
 -->
             </table>
           <p><input type="submit" value="Incluir" name="btnIncluir">
-                  <input type="submit" value="Limpar"></p>
+                  <input type="submit" value="Limpar">
+                  <input type="submit" value="Excluir" name="btnExcluir">
+          </p>
         </form>
       </div>
     </body>

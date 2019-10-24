@@ -44,12 +44,17 @@ public class ManterEstoqueController extends HttpServlet {
         }
     }
     
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
            // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
-            RequestDispatcher view = request.getRequestDispatcher("/cadastrarEstoque.jsp");
+           if (!operacao.equals("Incluir")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                Estoque estoque = Estoque.obterEstoque(id);
+                request.setAttribute("estoque", estoque);
+            } 
+           RequestDispatcher view = request.getRequestDispatcher("/cadastrarEstoque.jsp");
             view.forward(request, response);
         }
         catch (ServletException e){
@@ -68,8 +73,12 @@ public void confirmarOperacao(HttpServletRequest request, HttpServletResponse re
             Estoque estoque = new Estoque(idEstoque);
             if(operacao.equals("Incluir")){
             estoque.gravar();
-        }
-        RequestDispatcher view = request.getRequestDispatcher("PesquisaClienteController");
+        }else{
+                if(operacao.equals("Excluir")){
+                    estoque.excluir();
+                }
+            }
+        RequestDispatcher view = request.getRequestDispatcher("PesquisaEstoqueController");
             view.forward(request, response);
         } catch (IOException ex) {
             throw new ServletException(ex);

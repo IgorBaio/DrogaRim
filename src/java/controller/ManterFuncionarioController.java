@@ -39,22 +39,22 @@ public class ManterFuncionarioController extends HttpServlet {
         }
     }
 
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-//            request.setAttribute("funcionarios", Funcionario.obterFuncionarios());
+            if (!operacao.equals("Incluir")) {
+                int idFuncionario = Integer.parseInt(request.getParameter("idFuncionario"));
+                Funcionario funcionario = Funcionario.obterFuncionario(idFuncionario);
+                request.setAttribute("funcionario", funcionario);
+            }
             RequestDispatcher view = request.getRequestDispatcher("cadastrarFuncionario.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
             throw e;
         } catch (IOException e) {
             throw new ServletException(e);
-        }/*  }catch(SQLException e){
-            throw new ServletException(e);
-        }catch(ClassNotFoundException e){
-            throw new ServletException(e);
-        }*/
+        }
     }
 
     public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException {
@@ -68,6 +68,10 @@ public class ManterFuncionarioController extends HttpServlet {
             Funcionario funcionario = new Funcionario(idFuncionario, funcao, login, senha);
             if (operacao.equals("Incluir")) {
                 funcionario.gravar();
+            } else {
+                if (operacao.equals("Excluir")) {
+                    funcionario.excluir();
+                }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFuncionarioController");
             view.forward(request, response);

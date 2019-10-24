@@ -60,12 +60,12 @@
         </div>
         <section>
             <div id="cadastrarProduto">
-                <form action="ManterProdutoController?acao=confirmarOperacao&operacao=Incluir" method="post" name="frmManterCliente">
+                <form action="ManterProdutoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterProduto">
                     <table>
-                      <!--  <tr>
-                        <input type="radio" name="medicamento" id='produto' value="ProdutoSimples" />Produtos Simples
-                        <input type="radio" name="medicamento" id='produto' value="Medicamento" />Medicamentos
-                        </tr> -->
+                        <!--  <tr>
+                          <input type="radio" name="medicamento" id='produto' value="ProdutoSimples" />Produtos Simples
+                          <input type="radio" name="medicamento" id='produto' value="Medicamento" />Medicamentos
+                          </tr> -->
                         <tr>
                             <td><label for="idProduto">Código</label></td>
                             <td> <input type="text" name="txtIdProduto" id="idProduto" value="${produto.idProduto}"/></td>
@@ -94,7 +94,7 @@
                             <td><label for="receita">Receita</label></td>
                             <td><input type="text" name="txtReceita" id="receita" value="${produto.receita}"/></td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td><label for="receita">Medicamento</label></td>
                             <td><input type="text" name="txtMedicamento" id="medicamento" value="${produto.medicamento}"/></td>
                         </tr>
@@ -127,7 +127,9 @@
 
                     </table>
                     <p><input type="submit" value="Incluir" name="btnIncluir">
-                          <input type="submit" value="Limpar"></p>
+                        <input type="submit" value="Limpar">
+                        <input type="submit" value="Excluir" name="btnExcluir">
+                    </p>
                 </form>
             </div>
         </section>

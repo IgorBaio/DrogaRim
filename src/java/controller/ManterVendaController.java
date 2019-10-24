@@ -7,11 +7,15 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Venda;
 
 /**
  *
@@ -27,31 +31,60 @@ public class ManterVendaController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String  acao = request.getParameter("acao");
-        if(acao.equals("prepararOperacao")){
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+        String acao = request.getParameter("acao");
+        if (acao.equals("prepararOperacao")) {
             prepararOperacao(request, response);
         }
     }
-    
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-           // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
+            request.setAttribute("venda", Venda.obterVendas());
+            if (!operacao.equals("Inlcuir")) {
+                int idVenda = Integer.parseInt(request.getParameter("idVenda"));
+                Venda venda = Venda.obterVenda(idVenda);
+                request.setAttribute("venda", venda);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/cadastrarVenda.jsp");
             view.forward(request, response);
-        }
-        catch (ServletException e){
+        } catch (ServletException e) {
             throw e;
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             throw new ServletException(e);
         }
 
     }
+    
+    /*public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException {
+        String operacao = request.getParameter("operacao");
+        int idVenda = Integer.parseInt(request.getParameter("txtCodVenda"));
+        String funcao = request.getParameter("txtFuncaoVenda");
+        String login = request.getParameter("txtLoginVenda");
+        String senha = request.getParameter("txtSenhaVenda");
+
+        try {
+            Venda venda = new Venda(idVenda, funcao, login, senha);
+            if (operacao.equals("Incluir")) {
+                venda.gravar();
+            } else {
+                if (operacao.equals("Excluir")) {
+                    venda.excluir();
+                }
+            }
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");
+            view.forward(request, response);
+        } catch (IOException e) {
+            throw new ServletException(e);
+        }
+    }*/
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -64,7 +97,13 @@ public class ManterVendaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -78,7 +117,13 @@ public class ManterVendaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

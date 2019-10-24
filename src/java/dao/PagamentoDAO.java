@@ -71,11 +71,26 @@ public class PagamentoDAO {
         PreparedStatement comando = null;
         try{
             conexao = BD.getConexao();
-            comando = conexao.prepareStatement ("insert into fabricantes (idPagamento, tipo) values (?, ?)");
+            comando = conexao.prepareStatement ("insert into pagamentos (idPagamento, tipo) values (?, ?)");
             comando.setInt(1, pagamento.getId());
             comando.setString(2,pagamento.getTipo());
            // comando.setDouble(5, pagamento.getPreco()); >>>>>>>>>>> necessário criar preço no banco de dados? <<<<<<<<<<<<
             comando.executeUpdate();
+        }
+        finally {
+            fecharConexao(conexao, comando);
+        }
+    }
+    public static void excluir(Pagamento pagamento) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from pagamento where idPagamento = " + pagamento.getId();
+            comando.execute(stringSQL);
         }
         finally {
             fecharConexao(conexao, comando);

@@ -20,74 +20,91 @@ import model.Funcionario;
  * @author Igori
  */
 public class FuncionarioDAO {
-    public static Funcionario obterFuncionario(int id) throws ClassNotFoundException, SQLException{
+
+    public static Funcionario obterFuncionario(int id) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Funcionario funcionario = null;
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery(
-            "select * from funcionario where idFuncionario = "+id
+                    "select * from funcionario where idFuncionario = " + id
             );
-        rs.first();
-        funcionario = instanciarFuncionario(rs);
-        }finally{
+            rs.first();
+            funcionario = instanciarFuncionario(rs);
+        } finally {
             DAO.fecharConexao(conexao, comando);
         }
         return funcionario;
-    };
+    }
+
+    ;
     
     
-    public static List<Funcionario> obterFuncionarios() throws ClassNotFoundException, SQLException{
+    public static List<Funcionario> obterFuncionarios() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Funcionario> funcionarios = new ArrayList<Funcionario>();
         Funcionario funcionario = null;
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from funcionario");
-            while(rs.next()){
+            while (rs.next()) {
                 funcionario = instanciarFuncionario(rs);
                 funcionarios.add(funcionario);
             }
-        }  finally{
-                   DAO.fecharConexao(conexao, comando); 
-                    }
+        } finally {
+            DAO.fecharConexao(conexao, comando);
+        }
         return funcionarios;
     }
-    
-     
+
     public static Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
-        
+
         Funcionario funcionario = new Funcionario(
-                    rs.getInt("idFuncionario"),
-                    rs.getString("funcao"),
-                    rs.getString("login"),
-                    rs.getString("senha")
+                rs.getInt("idFuncionario"),
+                rs.getString("funcao"),
+                rs.getString("login"),
+                rs.getString("senha")
         );
-                    
-                    return funcionario;
+
+        return funcionario;
     }
-    
-     public static void gravar(Funcionario funcionario) throws SQLException, ClassNotFoundException{
+
+    public static void gravar(Funcionario funcionario) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         PreparedStatement comando = null;
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
                     "insert into funcionario(idFuncionario, funcao, login, senha)"
-                    +" values(?,?,?,?)");
+                    + " values(?,?,?,?)");
             comando.setInt(1, funcionario.getIdFuncionario());
-            comando.setString(2 , funcionario.getFuncao());
-            comando.setString(3 , funcionario.getLogin());
-            comando.setString(4 , funcionario.getSenha());
+            comando.setString(2, funcionario.getFuncao());
+            comando.setString(3, funcionario.getLogin());
+            comando.setString(4, funcionario.getSenha());
             comando.executeUpdate();
-        } finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
-            
-
+    }
+    
+    public static void excluir(Funcionario funcionario) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from funcionario where idFuncionario = " + funcionario.getIdFuncionario();
+            comando.execute(stringSQL);
+        }
+        finally {
+            fecharConexao(conexao, comando);
+           
+        }
     }
 }

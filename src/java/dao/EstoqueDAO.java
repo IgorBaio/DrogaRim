@@ -83,6 +83,20 @@ public class EstoqueDAO {
         }
         
     }
+    
+     public static void excluir (Estoque estoque) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from estoque where id = " + estoque.getId();
+            comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 
     private static void fecharConxecao(Connection conexao, PreparedStatement comando) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

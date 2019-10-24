@@ -191,7 +191,9 @@ public class Cliente {
         ClienteDAO.gravar(this);
     }
     
-    
+    public void excluir() throws SQLException, ClassNotFoundException{
+        ClienteDAO.excluir(this);
+    }
     
     
 }

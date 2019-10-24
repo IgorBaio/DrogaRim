@@ -65,4 +65,7 @@ public class Estoque {
         EstoqueDAO.gravar(this);
     }
     
+    public void excluir() throws SQLException, ClassNotFoundException{
+        EstoqueDAO.excluir(this);
+    }
 }

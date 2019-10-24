@@ -129,4 +129,8 @@ public class Venda {
         VendaDAO.gravar(this);
     }
     
+    public void excluir() throws SQLException, ClassNotFoundException{
+        VendaDAO.excluir(this);
+    }
+    
 }

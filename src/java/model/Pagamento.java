@@ -14,10 +14,11 @@ import java.util.List;
  * @author Igori
  */
 public class Pagamento {
+
     private int id;
     private String tipo;
 
-    public Pagamento(int id,String tipo) {
+    public Pagamento(int id, String tipo) {
         this.id = id;
         this.tipo = tipo;
     }
@@ -29,17 +30,14 @@ public class Pagamento {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
 
-    public static Pagamento obterPagamento(int id) throws ClassNotFoundException, SQLException{
+    public static Pagamento obterPagamento(int id) throws ClassNotFoundException, SQLException {
         return PagamentoDAO.obterPagamento(id);
-    };
+    }
     
-    
-    public static List<Pagamento> obterPagamentos() throws ClassNotFoundException, SQLException{
+    public static List<Pagamento> obterPagamentos() throws ClassNotFoundException, SQLException {
         return PagamentoDAO.obterPagamentos();
-    };
+    }
 
     public String getTipo() {
         return tipo;
@@ -48,8 +46,12 @@ public class Pagamento {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    //public void gravar() throws SQLException, ClassNotFoundException{
-    //    PagamentoDAO.gravar(this);
+
+   // public void gravar() throws SQLException, ClassNotFoundException {
+     //   PagamentoDAO.gravar(this);
     //}
 
+    public void excluir() throws SQLException, ClassNotFoundException {
+        PagamentoDAO.excluir(this);
+    }
 }

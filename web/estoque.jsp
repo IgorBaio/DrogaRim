@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,7 +39,7 @@
                   </td>
 
                   <td>
-                      <a href="PesquisaFuncionarioController">Funcion�rio</a>
+                      <a href="PesquisaFuncionarioController">Funcionário</a>
                   </td>
 
                   <td>
@@ -81,10 +85,25 @@
             <div class="listaEstoque">
               Resultados
               <table>
-                <tr>
-                  <td>
-                  </td>
-                </tr>
+                 <tr>
+                            <td>Código</td>
+                            <td>Nome</td>
+                            <td>Nome Fármaco</td>
+                            <td>Categoria</td>
+                            <td colspan="2">Ação</td>
+
+                        </tr>
+                        <c:forEach items="${produtos}" var="produto">
+                            <tr>
+                                <td><c:out value="${produto.idProduto}" /></td>
+                                <td><c:out value="${produto.nome}" /></td>  
+                                <td><c:out value="${produto.nomeFarmaco}" /></td>
+                                <td><c:out value="${produto.categoria}" /></td>  
+                                
+                                <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}" />">Excluir</a></td>
+
+                            </tr>
+                        </c:forEach>
               </table>
             </div>
           </div>

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Estoque;
+import model.Produto;
 
 /**
  *
@@ -48,13 +49,14 @@ public class ManterEstoqueController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
+            request.setAttribute("produtos", Produto.obterProdutos());
            // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
            if (!operacao.equals("Incluir")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Estoque estoque = Estoque.obterEstoque(id);
                 request.setAttribute("estoque", estoque);
             } 
-           RequestDispatcher view = request.getRequestDispatcher("/cadastrarEstoque.jsp");
+           RequestDispatcher view = request.getRequestDispatcher("cadastrarEstoque.jsp");
             view.forward(request, response);
         }
         catch (ServletException e){

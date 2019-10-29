@@ -68,38 +68,51 @@
 
   <section>
     <div id="cadastrarEstoque">
-      <form>
+    <form action="ManterEstoqueController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterEstoque">
+
           <table>
-              <tr>
+              <!--<tr>
                   <input type="radio" name="produto" id='produto' value="ProdutoSimples" />Produtos Simples
                   <input type="radio" name="produto" id='produto' value="Medicamento" />Medicamentos
-              </tr>
+              </tr>-->
               <tr>
-                  <td>Produto</td>
-                <!--  <c:forEach items="${produtos}" var="produto">
-                <tr>
-                    <td><c:out value="${produto.idProduto}" /></td>
-                    <td><c:out value="${produto.nome}" /></td>  
-                    <td><c:out value="${produto.nomeFarmaco}" /></td>
-                    <td><c:out value="${produto.preco}" /></td>  
-                    <td><c:out value="${produto.categoria}" /></td>  
-                    <td><c:out value="${produto.tipo}" /></td>  
-                    <td><c:out value="${produto.receita}" /></td>                                  
-                    <td><c:out value="${produto.medicamento}" /></td>  
-                    <td><c:out value="${produto.lote}" /></td>    
-                </tr>
-                 </c:forEach>-->
-                  <td>
-                      <select name="optProd">
-                          <!--<option value="0" <c:if test="${produto.nome == null}">selected</c:if></option> -->
+                  <td>Produto Sem forEach</td>
+                  
+                
+                    
+                    <td>
+                        <select name="optProd" href="ManterProdutoController">
+                  <!--  <c:forEach items="${produtos}" var="produto"> -->   
+                    
+                      <option><c:out value="${produto.idProduto}" /></option>
+                    <c:out value="${produto.nome}" />
+                    <c:out value="${produto.nomeFarmaco}" />
+                    <c:out value="${produto.preco}" />
+                    <c:out value="${produto.categoria}" />
+                    <c:out value="${produto.tipo}" />  
+                    <c:out value="${produto.receita}" />                                  
+                    <c:out value="${produto.medicamento}" />  
+                    <c:out value="${produto.lote}" />
+                    
+                    <!-- </c:forEach> -->
+                            </select>
+                    </td>   
+               
+              </tr>
+                 <tr>
+                  <td>Produto Com forEach</td>
+                <!-- --> <td>
+                      <select name="optProd" href="ManterEstoqueController">
+                          <!-- <option value="0" <c:if test="${produto.nome == null}">selected</c:if></option> -->
+                          <option value="" selected>teste</option>
                         <c:forEach items="${produtos}" var="produto">
-                          <option value="${produto.nome}" <c:if test="${produto.nome == produto.nome}">
-                                  selected</c:if> >${produto.nome}</option>
+                          <option value="${produto.nome}">${produto.nome}</option>
                         </c:forEach>
                          <!-- <option value="Minas Gerais" <c:if test="${cliente.uf}">  selected</c:if>
-                          Minas Gerais</option>  -->
-                      </select>
-                  </td>
+                          Minas Gerais</option>   
+                      </select> 
+-->
+                         </td>
                      
               </tr>
           </table>

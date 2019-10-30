@@ -96,4 +96,25 @@ public class FabricanteDAO {
         }
     }
     
+    
+    public static void alterar(Fabricante fabricante) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update cliente set "
+                    +"nome = '" + fabricante.getNome() +"' ";
+                    
+            stringSQL = stringSQL + "where idFabricante= "+fabricante.getIdFabricante();
+            comando.execute(stringSQL);
+            
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+        
+    }
+    
 }

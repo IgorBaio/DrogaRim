@@ -90,7 +90,7 @@
             <tr>
                 <td>Código</td>
                 <td>Nome</td>
-                <td>CPF</td>
+          <!--      <td>CPF</td>
                 <td>Telefone</td>
                 <td>E-mail</td>
                 <td>Nº Casa</td>
@@ -101,14 +101,16 @@
                 <td>Logradouro</td>
                 <td>Bairro</td>
                 <td>Cidade</td>
-                <td>UF</td>
+                <td>UF</td>-->
                 <td colspan=2>Ação</td>
+                
+
             </tr>
              <c:forEach items="${clientes}" var="cliente">
                 <tr>
                     <td><c:out value="${cliente.idCliente}" /></td>
                     <td><c:out value="${cliente.nome}" /></td>
-                    <td><c:out value="${cliente.cpf}" /></td>
+            <!--        <td><c:out value="${cliente.cpf}" /></td>
                     <td><c:out value="${cliente.telefone}" /></td>
                     <td><c:out value="${cliente.email}" /></td>
                     <td><c:out value="${cliente.numeroCasa}" /></td>
@@ -120,8 +122,11 @@
                     <td><c:out value="${cliente.bairro}" /></td>
                     <td><c:out value="${cliente.cidade}" /></td>
                     <td><c:out value="${cliente.uf}" /></td>
-                    <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Excluir&idCliente=<c:out value="${cliente.idCliente}" />">Excluir</a></td>
-                </tr>
+              -->     
+                <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Excluir&idCliente=<c:out value="${cliente.idCliente}"/>">Excluir</a></td>
+                <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Alterar&idCliente=<c:out value="${cliente.idCliente}"/>">Alterar</a></td>
+
+                 </tr>
                  </c:forEach>
           </table>
         </div>

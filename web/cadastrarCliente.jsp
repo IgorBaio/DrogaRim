@@ -242,6 +242,7 @@
           <p><input type="submit" value="Incluir" name="btnIncluir">
                   <input type="submit" value="Limpar">
                   <input type="submit" value="Excluir" name="btnExcluir">
+                  <input type="submit" value="Alterar" name="btnAlterar">
           </p>
         </form>
       </div>

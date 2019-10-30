@@ -73,9 +73,13 @@ public class ManterFabricanteController extends HttpServlet {
             Fabricante fabricante = new Fabricante(idFabricante, nome);
             if (operacao.equals("Incluir")) {
                 fabricante.gravar();
-            } else {
-                if (operacao.equals("Excluir")) {
+            }else{
+                if(operacao.equals("Alterar")){
+                   fabricante.alterar();
+                }else{
+                    if(operacao.equals("Excluir")){
                     fabricante.excluir();
+                    }
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFabricanteController");

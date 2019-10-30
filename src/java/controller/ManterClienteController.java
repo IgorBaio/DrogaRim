@@ -85,8 +85,12 @@ public class ManterClienteController extends HttpServlet {
             if (operacao.equals("Incluir")) {
                 cliente.gravar();
             }else{
-                if(operacao.equals("Excluir")){
+                if(operacao.equals("Alterar")){
+                   cliente.alterar();
+                }else{
+                    if(operacao.equals("Excluir")){
                     cliente.excluir();
+                    }
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaClienteController");

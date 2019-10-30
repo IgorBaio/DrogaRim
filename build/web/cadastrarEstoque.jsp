@@ -69,7 +69,7 @@
   <section>
     <div id="cadastrarEstoque">
     <form action="ManterEstoqueController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterEstoque">
-
+    
           <table>
               <!--<tr>
                   <input type="radio" name="produto" id='produto' value="ProdutoSimples" />Produtos Simples
@@ -118,7 +118,8 @@
           </table>
           <p>
               <p><input type="submit" value="Incluir" name="btnIncluir">
-                        <input type="submit" value="Limpar"></p>
+                  <input type="submit" value="Limpar">
+                  <input type="submit" value="Excluir" name="btnExcluir"></p>
           </p>
       </form>
     </section>

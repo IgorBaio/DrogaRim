@@ -78,7 +78,8 @@
                     </table>
                     <p><input type="submit" value="Incluir" name="btnIncluir">
                         <input type="submit" value="Limpar">
-                        <input type="submit" value="Excluir"></p>
+                        <input type="submit" value="Excluir">
+                    <input type="submit" value="Alterar" name="btnAlterar"></p>
                 </form>
             </div>
         </section>

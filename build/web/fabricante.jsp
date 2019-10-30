@@ -92,6 +92,7 @@
                                 <td><c:out value="${fabricante.idFabricante}" /></td>
                                 <td><c:out value="${fabricante.nome}" /></td>
                                 <td><a href="ManterFabricanteController?acao=prepararOperacao&operacao=Excluir&idFabricante=<c:out value="${fabricante.idFabricante}" />">Excluir</a></td>
+                                <td><a href="ManterFabricanteController?acao=prepararOperacao&operacao=Alterar&idFabricante=<c:out value="${fabricante.idFabricante}" />">Alterar</a></td>
                             </tr>
                         </c:forEach>
                     </table>

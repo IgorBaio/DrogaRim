@@ -52,5 +52,9 @@ public class Fabricante {
         public void excluir() throws SQLException, ClassNotFoundException{
         FabricanteDAO.excluir(this);
     }
-
+         public void alterar() throws SQLException, ClassNotFoundException{
+        FabricanteDAO.alterar(this);
+    }
+        
+        
 }

@@ -107,4 +107,25 @@ public class FuncionarioDAO {
            
         }
     }
+    
+    public static void alterar(Funcionario funcionario) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update funcionario set "
+                    +"funcao = '" + funcionario.getFuncao() +"' ,"
+                    +"login = '" + funcionario.getLogin()+"' ,"
+                    +"senha = '"+funcionario.getSenha()+"' "; 
+            stringSQL = stringSQL + "where idFuncionario = '" + funcionario.getIdFuncionario()+"'";
+            comando.execute(stringSQL);
+            
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+        
+    }
 }

@@ -158,4 +158,7 @@ public class Produto {
         ProdutoDAO.excluir(this);
     }
     
+    public void alterar() throws SQLException, ClassNotFoundException{
+        ProdutoDAO.alterar(this);
+    }
 }

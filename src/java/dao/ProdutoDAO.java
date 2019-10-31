@@ -131,4 +131,30 @@ public class ProdutoDAO {
         }
     }
 
+    public static void alterar(Produto produto) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update produto set "
+                    +"nome = '"+produto.getNome()+"' ,"
+                    +"nome_farmaco = '"+produto.getNomeFarmaco()+"' ,"
+                    +"preco = "+produto.getPreco()+" ,"
+                    +"categoria = '"+produto.getCategoria()+"' ,"
+                    +"tipo = '"+produto.getTipo()+"' ,"
+                    +"receita = "+produto.isReceita()+" ,"
+                    +"medicamento = "+produto.isMedicamento()+" ,"
+                    +"lote = '"+produto.getLote()+"' ";
+            stringSQL = stringSQL+" where idProduto = '"+produto.getIdProduto()+"'";
+            comando.execute(stringSQL);
+            
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+        
+    }
+     
 }

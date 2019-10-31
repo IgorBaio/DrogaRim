@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +34,7 @@
                             <a href="PesquisaClienteController">Cliente</a>
                         </td>
                         <td>
-                            <a href="PesquisaFuncionarioController">Funcion·rio</a>
+                            <a href="PesquisaFuncionarioController">Funcion√°rio</a>
                         </td>
                         <td>
                             <a href="PesquisaFabricanteController">Fabricante</a>
@@ -56,8 +60,8 @@
                     </td>
                 </tr>
             </table>
-
         </div>
+        
         <section>
             <div id="cadastrarProduto">
                 <form action="ManterProdutoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterProduto">
@@ -67,40 +71,40 @@
                           <input type="radio" name="medicamento" id='produto' value="Medicamento" />Medicamentos
                           </tr> -->
                         <tr>
-                            <td><label for="idProduto">CÛdigo</label></td>
-                            <td> <input type="text" name="txtIdProduto" id="idProduto" value="${produto.idProduto}"/></td>
+                            <td><label for="idProduto">C√≥digo</label></td>
+                            <td> <input type="text" name="txtIdProduto" id="idProduto" value="${produto.idProduto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>/></td>
                         </tr>
                         <tr>
                             <td><label for="nomeComercial">Nome Comercial</label></td>
-                            <td><input type="text" name="txtNomeComercial" id="nomeComercial" value="${produto.nome}"/></td>
+                            <td><input type="text" name="txtNomeComercial" id="nomeComercial" value="${produto.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
                         <tr>
-                            <td><label for="nomeFarmaco">Nome F·rmaco</label></td>
-                            <td><input type="text" name="txtNomeFarmaco" id="nomeFarmaco" value="${produto.nomeFarmaco}"/></td>
+                            <td><label for="nomeFarmaco">Nome F√°rmaco</label></td>
+                            <td><input type="text" name="txtNomeFarmaco" id="nomeFarmaco" value="${produto.nomeFarmaco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
                         <tr>
-                            <td><label for="precoProduto">PreÁo</label></td>
-                            <td><input type="text" name="txtPrecoProduto" id="precoProduto" value="${produto.preco}"/></td>
+                            <td><label for="precoProduto">Pre√ßo</label></td>
+                            <td><input type="text" name="txtPrecoProduto" id="precoProduto" value="${produto.preco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
                         <tr>
                             <td><label for="categoria">Categoria</label></td>
-                            <td><input type="text" name="txtCategoria" id="categoria" value="${produto.categoria}"/></td>
+                            <td><input type="text" name="txtCategoria" id="categoria" value="${produto.categoria}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
                         <tr>
                             <td><label for="tipo">Tipo</label></td>
-                            <td><input type="text" name="txtTipo" id="tipo" value="${produto.tipo}"/></td>
+                            <td><input type="text" name="txtTipo" id="tipo" value="${produto.tipo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
                         <tr>
                             <td><label for="receita">Receita</label></td>
-                            <td><input type="text" name="txtReceita" id="receita" value="${produto.receita}"/></td>
+                            <td><input type="text" name="txtReceita" id="receita" value="${produto.receita}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
                         <tr>
                             <td><label for="receita">Medicamento</label></td>
-                            <td><input type="text" name="txtMedicamento" id="medicamento" value="${produto.medicamento}"/></td>
+                            <td><input type="text" name="txtMedicamento" id="medicamento" value="${produto.medicamento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
                         <tr>
                             <td><label for="lote">Lote</label></td>
-                            <td><input type="text" name="txtLote" id="lote" value="${produto.lote}"/></td>
+                            <td><input type="text" name="txtLote" id="lote" value="${produto.lote}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
 
                         <!--          
@@ -118,7 +122,7 @@
                           </tr>
                           <tr>
                               <td>
-                                  <label for="observacao">ObservaÁ„o:</label>
+                                  <label for="observacao">Observa√ß√£o:</label>
                               </td>
                               <td>
                                   <input type="text" name="observacao" id="observacao" />
@@ -129,6 +133,7 @@
                     <p><input type="submit" value="Incluir" name="btnIncluir">
                         <input type="submit" value="Limpar">
                         <input type="submit" value="Excluir" name="btnExcluir">
+                        <input type="submit" value="Alterar" name="btnAlterar">
                     </p>
                 </form>
             </div>

@@ -68,12 +68,7 @@
             </table>
 
         </div>
-
-        <!-- <form action="ManterFuncionarioController?acao=prepararOperacao&operacao=Incluir"
-             method="post">
-             <input type="submit" name="btnIncluir" value="Incluir">
-       </form> -->
-
+        
         <section>
             <div id="secaoFuncionario">
                 <div id="buscaFuncionario">
@@ -101,6 +96,7 @@
                                 <td><c:out value="${funcionario.login}" /></td>
                                 <td><c:out value="${funcionario.senha}" /></td>    
                                 <td><a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Excluir&idFuncionario=<c:out value="${funcionario.idFuncionario}" />">Excluir</a></td>
+                                <td><a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Alterar&idFuncionario=<c:out value="${funcionario.idFuncionario}"/>">Alterar</a></td>
                             </tr>
                         </c:forEach>
                     </table>

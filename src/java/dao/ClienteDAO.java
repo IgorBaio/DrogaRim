@@ -139,13 +139,13 @@ public class ClienteDAO {
                     +"numeroCasa = '"+cliente.getNumeroCasa()+"' ,"
                     +"complemento = '"+cliente.getComplemento()+"' ,"
                     +"data_nascimento = '"+cliente.getDataNascimento()+"' ,"
-                    +"sexo = '"+cliente.getSexo()+"' ,"
+                    +"sexo = "+cliente.getSexo()+" ,"
                     +"cep = '"+cliente.getCep()+"' ,"
                     +"logradouro = '"+cliente.getLogradouro()+"' ,"
                     +"bairro = '"+cliente.getBairro()+"' ,"
                     +"cidade = '"+cliente.getCidade()+"' ,"
                     +"uf = '"+cliente.getUf()+"' ";
-            stringSQL = stringSQL + "where idCliente = "+cliente.getIdCliente();
+            stringSQL = stringSQL + "where idCliente = '"+cliente.getIdCliente()+"'";
             comando.execute(stringSQL);
             
         }finally{

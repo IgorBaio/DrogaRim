@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +39,7 @@
                   </td>
 
                   <td>
-                      <a href="PesquisaFuncionarioController">Funcion�rio</a>
+                      <a href="PesquisaFuncionarioController">Funcionário</a>
                   </td>
 
                   <td>
@@ -72,172 +76,69 @@
         <table>
             
               <tr>
-                  <td>C�digo do cliente</td>
-                  <td><input type="text" name="txtCodCliente" value="${cliente.idCliente}" /></td>
+                  <td>Código do cliente</td>
+                  <td><input type="text" name="txtCodCliente" value="${cliente.idCliente}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if> /></td>
               </tr>
               <tr>
                   <td>Nome</td>
-                  <td><input type="text" name="txtNomeCliente" value="${cliente.nome}" /></td>
+                  <td><input type="text" name="txtNomeCliente" value="${cliente.nome}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
             <tr>
                   <td>CPF</td>
-                  <td><input type="text" name="txtCpfCliente" value="${cliente.cpf}" /></td>
+                  <td><input type="text" name="txtCpfCliente" value="${cliente.cpf}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
               <tr>
                   <td>Estado</td>
                   <td>
-                      <select name="optEstado">
-                          <option value="Minas Gerais" <c:if test="${cliente.uf}"  selected</c:if>
+                      <select name="optEstado" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                       <option value="Minas Gerais" <c:if test="${cliente.uf}">  selected</c:if>>
                           Minas Gerais
                           </option>
-                          <option value="Rio de Janeiro" <c:if test="${cliente.uf}"  selected</c:if>
+                          <option value="Rio de Janeiro" <c:if test="${cliente.uf}">  selected</c:if>>
                           Rio de Janeiro
+                            </option>
                       </select>
                   </td>
               </tr>
               <tr>
                   <td>Data de Nascimento</td>
-                  <td><input type="date" name="txtDataNascimentoCliente" value="${cliente.dataNascimento}" /></td>
+                  <td><input type="date" name="txtDataNascimentoCliente" value="${cliente.dataNascimento}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
               <tr>
                   <td>Sexo</td>
-                  <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}" />M</td>
-                  <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}" />F</td>
+                  <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>M</td>
+                  <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>F</td>
               </tr>
               <tr>
                   <td>E-Mail</td>
-                  <td><input type="text" name="txtEmailCliente"  maxlength="50" value="${cliente.email}" /></td>
+                  <td><input type="text" name="txtEmailCliente"  maxlength="50" value="${cliente.email}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
               <tr>
                   <td>CEP</td>
-                  <td><input type="number" name="txtCEPCliente" maxlength="9" value="${cliente.cep}" /></td>
+                  <td><input type="number" name="txtCEPCliente" maxlength="9" value="${cliente.cep}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
               <tr>
                   <td>Logradouro</td>
-                  <td><input type="text" name="txtLogradouroCliente" value="${cliente.logradouro}" /></td>
-                  <td>N�mero</td>
-                  <td><input type="number" name="txtNumeroCliente" value="${cliente.logradouro}" /></td>
+                  <td><input type="text" name="txtLogradouroCliente" value="${cliente.logradouro}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
+                  <td>Número</td>
+                  <td><input type="number" name="txtNumeroCliente" value="${cliente.logradouro}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
               <tr>
                   <td>Cidade</td>
-                  <td><input type="text" name="txtCidadeCliente" value="${cliente.cidade}" /></td>
+                  <td><input type="text" name="txtCidadeCliente" value="${cliente.cidade}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
               <tr>
                   <td>Bairro</td>
-                  <td><input type="text" name="txtBairroCliente" value="${cliente.bairro}" /></td>
+                  <td><input type="text" name="txtBairroCliente" value="${cliente.bairro}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
               <tr>
                   <td>Complemento</td>
-                  <td><input type="text" name="txtComplementoCliente" value="${cliente.complemento}" /></td>
+                  <td><input type="text" name="txtComplementoCliente" value="${cliente.complemento}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
               <tr>
                   <td>Telefone</td>
-                  <td><input type="number" name="txtTelefoneCliente" value="${cliente.telefone}" /></td>
+                  <td><input type="number" name="txtTelefoneCliente" value="${cliente.telefone}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
               </tr>
-         <!--     <tr>
-              <td>
-                <label for="iNome">Nome Completo</label>
-              </td>
-              <td>
-                <input type="text" name="tNome" id="iNome" align="right" size=""/>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label for="iCPF">CPF</label>
-              </td>
-              <td>
-                <input type="number" name="tCPF" id="iCPF" maxlength="9"/>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for='iDataNascimento'>Data Nascimento</label>
-              </td>
-              <td>
-                <input type='date' id='iDataNascimento' name='tDataNascimento'>
-              </td>
-              <td>
-                <label for='iSexo'>Sexo</label>
-              </td>
-              <td>
-                <input type="radio" name="tSexo" id='iSexo' value="Masculino"/>M
-                <input type="radio" name="tSexo" id='iSexo' value="Feminimo"/>F
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="iEmail">E-mail</label>
-              </td>
-              <td>
-                <input type="email" name="tEmail" id="iEmail" maxlength="50"/>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="iCEP">CEP</label>
-              </td>
-              <td>
-                <input type="number" name="tCEP" id="iCEP" max="9" maxlength="9"/>
-              </td>
-              <td>
-                <label for="iEstado">Estado</label>
-              </td>
-              <td>
-                <select name="iEstado">
-                <option value="Minas Gerais" selected>MG
-                <option value="Goiás" >GO
-                <option value="Rio de Janeiro">RJ
-                <option value="São Paulo">SP
-                <option value="Maranhão">MA
-                <option value="Espírito Santo">ES
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="iLogradouro">Logradouro</label>
-              </td>
-              <td>
-                <input type="text" name="tlogradouro" id="ilogradouro" maxlength="50"/>
-              </td>
-              <td>
-                <label for="inumero">Nº</label>
-              </td>
-              <td>
-                <input type="number" name="tnumero" id="inumero" max="4"/>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="iLogradouro">Bairro</label>
-              </td>
-              <td>
-                <input type="text" name="tlogradouro" id="ilogradouro" maxlength="50"/></td>
-            </tr>
-            <tr>
-              <td>
-                <label for="iLogradouro">Cidade</label>
-              </td>
-              <td>
-                <input type="text" name="tlogradouro" id="ilogradouro" maxlength="50"/></td>
-            </tr>
-            <tr>
-              <td>
-                <label for="iLogradouro">Complemento</label>
-              </td>
-              <td>
-                <input type="text" name="tlogradouro" id="ilogradouro" maxlength="50"/></td>
-            </tr>
-            <tr>
-              <td>
-                <label for="iTelefone">Telefone</label>
-              </td>
-              <td>
-                <input type="number" id="iTelefone" name="tTelefone" max="20"/>
-              </td>
--->
             </table>
           <p><input type="submit" value="Incluir" name="btnIncluir">
                   <input type="submit" value="Limpar">

@@ -105,10 +105,10 @@ public class FabricanteDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            stringSQL = "update cliente set "
+            stringSQL = "update fabricante set "
                     +"nome = '" + fabricante.getNome() +"' ";
                     
-            stringSQL = stringSQL + "where idFabricante= "+fabricante.getIdFabricante();
+            stringSQL = stringSQL + "where idFabricante= '"+fabricante.getIdFabricante()+"'";
             comando.execute(stringSQL);
             
         }finally{

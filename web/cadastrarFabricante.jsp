@@ -1,9 +1,11 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta content="text/html">
         <link rel="stylesheet" href="style.css">
         <title>Cadastrar fabricante - ${operacao}</title>
     </head>
@@ -34,7 +36,7 @@
                         </td>
 
                         <td>
-                            <a href="PesquisaFuncionarioController">Funcion·rio</a>
+                            <a href="PesquisaFuncionarioController">Funcion√°rio</a>
                         </td>
 
                         <td>
@@ -55,7 +57,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="ManterFabricanteController?acao=prepararOperacao&operacao=Incluir" class="paginaSelecionada">
+                        <a href="ManterFabricanteController?acao=prepararOperacao&operacao=${operacao}" class="paginaSelecionada">
                             Cadastrar Fabricante
                         </a>
                     </td>
@@ -68,12 +70,12 @@
                 <form action="ManterFabricanteController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterFabricante">
                     <table>
                         <tr>
-                            <td>CÛdigo do fabricante</td>
-                            <td><input type="text" name="txtCodFabricante" id="idFabricante" value="${fabricante.idFabricante}"/></td>
+                            <td>C√≥digo do fabricante</td>
+                            <td><input type="text" name="txtCodFabricante" id="idFabricante" value="${fabricante.idFabricante}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td>Nome</td>
-                            <td><input type="text" name="txtNomeFabricante" value="${fabricante.nome}" /></td>
+                            <td><input type="text" name="txtNomeFabricante" value="${fabricante.nome}" <c:if test="${operacao =='Excluir'}"> readonly</c:if>></td>
                         </tr>
                     </table>
                     <p><input type="submit" value="Incluir" name="btnIncluir">

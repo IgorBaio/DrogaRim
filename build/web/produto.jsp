@@ -70,9 +70,6 @@
             </table>
         </div>
 
-        <!--<form action="ManterProdutoController?acao=prepararOperacao&operacao=Incluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>-->
         <section>
             <div id="secaoProduto">
                 <div id="buscaProduto">
@@ -111,61 +108,12 @@
                                 <td><c:out value="${produto.medicamento}" /></td>  
                                 <td><c:out value="${produto.lote}" /></td> 
                                 <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}" />">Excluir</a></td>
-
+                                <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Alterar&idProduto=<c:out value="${produto.idProduto}"/>">Alterar</a></td>
                             </tr>
                         </c:forEach>
                     </table>
                 </div>
-            </div>
         </section>
-
-
-
-        <!--        <section>
-                <div id="secaoProduto">
-                  <div id="buscaProduto">
-                    <input type="text" id="textoBusca" placeholder="Pesquisar"/>
-                    <button id="botaoBusca">Buscar</button>
-                    <hr>
-                  </div>
-                  <div id="filtroProduto">
-                    Filtros
-                  </div>
-                  <div class="listaProduto">
-                    Resultados
-                    <table>
-                        <tr>
-                            <td>Código</td>
-                            <td>Nome</td>
-                            <td>Nome Fármaco</td>
-                            <td>Preço</td>
-                            <td>Categoria</td>
-                            <td>Tipo</td>
-                            <td>Receita</td>
-                            <td>Quantidade</td>
-        
-                        </tr>
-        <c:forEach items="${produto}" var="produto">
-          <tr>
-              <td><c:out value="${produto.idProduto}" /></td>
-              <td><c:out value="${produto.nome}" /></td>
-              <td><c:out value="${produto.nomeFarmaco}" /></td>
-              <td><c:out value="${produto.preco}" /></td>
-              <td><c:out value="${produto.categoria}" /></td>
-              <td><c:out value="${produto.tipo}" /></td>
-              <td><c:out value="${produto.receita}" /></td>
-              <td><c:out value="${produto.quantidade}" /></td>
-          </tr>
-        </c:forEach>
-   </table>
- </div>
-</div>
-</section>
-
-tem q mexer nos atributos de produto pra poder funcionar
-
-
-        -->
     </body>
 
 </html>

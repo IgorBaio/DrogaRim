@@ -69,7 +69,12 @@ public class Funcionario {
     public void gravar() throws SQLException, ClassNotFoundException{
         FuncionarioDAO.gravar(this);
     }
+    
     public void excluir() throws SQLException, ClassNotFoundException{
         FuncionarioDAO.excluir(this);
+    }
+    
+    public void alterar() throws SQLException, ClassNotFoundException{
+        FuncionarioDAO.alterar(this);
     }
 }

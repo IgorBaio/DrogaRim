@@ -68,11 +68,18 @@ public class ManterFuncionarioController extends HttpServlet {
             Funcionario funcionario = new Funcionario(idFuncionario, funcao, login, senha);
             if (operacao.equals("Incluir")) {
                 funcionario.gravar();
-            } else {
-                if (operacao.equals("Excluir")) {
+            } 
+            else {
+                if (operacao.equals("Alterar")) {
+                    funcionario.alterar();
+                }
+                else{
+                    if(operacao.equals("Excluir")){
                     funcionario.excluir();
+                    }
                 }
             }
+        
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFuncionarioController");
             view.forward(request, response);
         } catch (IOException e) {

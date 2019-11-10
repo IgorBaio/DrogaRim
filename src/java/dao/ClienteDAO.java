@@ -145,7 +145,7 @@ public class ClienteDAO {
                     +"bairro = '"+cliente.getBairro()+"' ,"
                     +"cidade = '"+cliente.getCidade()+"' ,"
                     +"uf = '"+cliente.getUf()+"' ";
-            stringSQL = stringSQL + "where idCliente = '"+cliente.getIdCliente()+"'";
+            stringSQL = stringSQL + "where idCliente = "+cliente.getIdCliente()+" ";
             comando.execute(stringSQL);
             
         }finally{
@@ -156,4 +156,3 @@ public class ClienteDAO {
     
     
 }
-

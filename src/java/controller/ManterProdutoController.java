@@ -49,7 +49,6 @@ public class ManterProdutoController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
             if (!operacao.equals("Incluir")) {
                 int idProduto = Integer.parseInt(request.getParameter("idProduto"));
                 Produto produto = Produto.obterProduto(idProduto);
@@ -62,12 +61,6 @@ public class ManterProdutoController extends HttpServlet {
         } catch (IOException e) {
             throw new ServletException(e);
         }
-        //catch (SQLException e){
-        //  throw new ServletException(e);
-        //}
-        //catch (ClassNotFoundException e){
-        //   throw new ServletException(e);
-        //}
     }
 
     public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, ClassNotFoundException {
@@ -81,9 +74,10 @@ public class ManterProdutoController extends HttpServlet {
         boolean receita = Boolean.parseBoolean(request.getParameter("txtReceita"));
         boolean medicamento = Boolean.parseBoolean(request.getParameter("txtMedicamento"));
         String lote = request.getParameter("txtLote");
+        int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
         
         try {
-            Produto produto = new Produto(idProduto, nome, nomeFarmaco, preco, categoria, tipo, receita, medicamento, lote);
+            Produto produto = new Produto(idProduto, nome, nomeFarmaco, preco, categoria, tipo, receita, medicamento, lote, quantidade);
             if (operacao.equals("Incluir")) {
                 produto.gravar();
             }else{

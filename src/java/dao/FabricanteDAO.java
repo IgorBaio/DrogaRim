@@ -108,7 +108,7 @@ public class FabricanteDAO {
             stringSQL = "update fabricante set "
                     +"nome = '" + fabricante.getNome() +"' ";
                     
-            stringSQL = stringSQL + "where idFabricante= '"+fabricante.getIdFabricante()+"'";
+            stringSQL = stringSQL + "where idFabricante= '"+fabricante.getIdFabricante() +"' ";
             comando.execute(stringSQL);
             
         }finally{

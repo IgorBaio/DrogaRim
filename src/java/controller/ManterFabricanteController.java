@@ -74,11 +74,11 @@ public class ManterFabricanteController extends HttpServlet {
             if (operacao.equals("Incluir")) {
                 fabricante.gravar();
             }else{
-                if(operacao.equals("Alterar")){
-                   fabricante.alterar();
+                if(operacao.equals("Excluir")){
+                   fabricante.excluir();
                 }else{
-                    if(operacao.equals("Excluir")){
-                    fabricante.excluir();
+                    if(operacao.equals("Alterar")){
+                    fabricante.alterar();
                     }
                 }
             }

@@ -120,7 +120,7 @@ public class FuncionarioDAO {
                     +"funcao = '" + funcionario.getFuncao() +"' ,"
                     +"login = '" + funcionario.getLogin()+"' ,"
                     +"senha = '"+funcionario.getSenha()+"' "; 
-            stringSQL = stringSQL + "where idFuncionario = '" + funcionario.getIdFuncionario()+"'";
+            stringSQL = stringSQL + "where idFuncionario = '" + funcionario.getIdFuncionario()+"' ";
             comando.execute(stringSQL);
             
         }finally{

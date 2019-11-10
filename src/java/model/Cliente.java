@@ -65,13 +65,11 @@ public class Cliente {
     
     public static List<Cliente> obterClientes() throws ClassNotFoundException, SQLException{
         return ClienteDAO.obterClientes();
-    };
+    }
 
     public static Cliente obterCliente(int idCliente) throws ClassNotFoundException, SQLException{
         return ClienteDAO.obterCliente(idCliente);
     }
-
-    
 
     public int getIdCliente() {
         return idCliente;
@@ -183,9 +181,7 @@ public class Cliente {
 
     public void setUf(String uf) {
         this.uf = uf;
-    }
-
-    
+    }    
 
     public void gravar() throws SQLException, ClassNotFoundException{
         ClienteDAO.gravar(this);

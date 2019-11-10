@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Produto;
 import model.Venda;
 
 /**
@@ -37,8 +37,12 @@ public class ManterVendaController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
-        if (acao.equals("prepararOperacao")) {
-            prepararOperacao(request, response);
+        if (acao.equals("confirmarOperacao")) {
+            confirmarOperacao(request, response);
+        } else {
+            if (acao.equals("prepararOperacao")) {
+                prepararOperacao(request, response);
+            }
         }
     }
 
@@ -46,13 +50,13 @@ public class ManterVendaController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("venda", Venda.obterVendas());
-            if (!operacao.equals("Inlcuir")) {
+            request.setAttribute("produtos", Produto.obterProdutos());
+            if (!operacao.equals("Incluir")) {
                 int idVenda = Integer.parseInt(request.getParameter("idVenda"));
                 Venda venda = Venda.obterVenda(idVenda);
                 request.setAttribute("venda", venda);
             }
-            RequestDispatcher view = request.getRequestDispatcher("/cadastrarVenda.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("cadastrarVenda.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
             throw e;
@@ -62,20 +66,28 @@ public class ManterVendaController extends HttpServlet {
 
     }
     
-    /*public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException {
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException {
         String operacao = request.getParameter("operacao");
-        int idVenda = Integer.parseInt(request.getParameter("txtCodVenda"));
-        String funcao = request.getParameter("txtFuncaoVenda");
-        String login = request.getParameter("txtLoginVenda");
-        String senha = request.getParameter("txtSenhaVenda");
+        int idVenda = Integer.parseInt(request.getParameter("txtIdVenda"));
+        String dataVenda = request.getParameter("txtDataVenda");
+       double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
+        int idProduto = Integer.parseInt(request.getParameter("txtIdProduto"));
 
         try {
-            Venda venda = new Venda(idVenda, funcao, login, senha);
-            if (operacao.equals("Incluir")) {
+            Produto produto = null;
+            if(idProduto != 0){
+                produto = Produto.obterProduto(idProduto);
+            }
+            Venda venda = new Venda(idVenda, dataVenda, precoTotal, produto);
+             if (operacao.equals("Incluir")) {
                 venda.gravar();
             } else {
-                if (operacao.equals("Excluir")) {
+                if (operacao.equals("Alterar")) {
+                    venda.alterar();
+               }else{
+                    if(operacao.equals("Excluir")){
                     venda.excluir();
+                    }
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");
@@ -83,7 +95,7 @@ public class ManterVendaController extends HttpServlet {
         } catch (IOException e) {
             throw new ServletException(e);
         }
-    }*/
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

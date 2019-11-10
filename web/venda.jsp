@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta content="text/html">
         <link rel="stylesheet" href="style.css">
-        <title>Lista de funcionários</title>
+
+        <title>Venda</title>
     </head>
     <body>
         <header>
@@ -22,7 +22,7 @@
                 <table>
                     <tr>
                         <td>
-                            <a href="PesquisaVendaController">Venda</a>
+                            <a href="PesquisaVendaController" class="paginaSelecionada">Venda</a>
                         </td>
 
                         <td>
@@ -34,7 +34,7 @@
                         </td>
 
                         <td>
-                            <a href="PesquisaFuncionarioController"  class="paginaSelecionada">Funcionário</a>
+                            <a href="PesquisaFuncionarioController">Funcionário</a>
                         </td>
 
                         <td>
@@ -50,49 +50,51 @@
             <table>
                 <tr>
                     <td>
-                        <a href="PesquisaFuncionarioController" class="paginaSelecionada">
-                            Funcionários
+                        <a href="PesquisaVendaController" class="paginaSelecionada">
+                            Vendas
                         </a>
                     </td>
 
                     <td>
-                        <a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Incluir">
-                            Cadastrar Funcionário
+                        <a href="ManterVendaController?acao=prepararOperacao&operacao=Incluir">
+                            Nova venda
                         </a>
                     </td>
                 </tr>
             </table>
-
         </div>
-        
+
         <section>
-            <div id="secaoFuncionario">
-                <div id="buscaFuncionario">
+            <div id="secaoVenda">
+                <div id="buscaVenda">
                     <input type="text" id="textoBusca" placeholder="Pesquisar"/>
                     <button id="botaoBusca">Buscar</button>
                     <hr>
                 </div>
-                <div id="filtroFuncionario">
+                <div id="filtroVenda">
                     Filtros
                 </div>
-                <div class="listaFuncionario">
+                <div class="listaVenda">
                     Resultados
                     <table>
                         <tr>
                             <td>Código</td>
-                            <td>Função</td>
-                            <td>Login</td>
-                            <td>Senha</td>
-                            <td>Ação</td>                   
+                            <td>Data</td>
+                            <td>Preço</td>
+                            <td>Produto</td>
+                            <td>Nome</td>
+                            <td colspan=2>Ação</td>
                         </tr>
-                        <c:forEach items="${funcionarios}" var="funcionario">
+                        <c:forEach items="${vendas}" var="venda">
                             <tr>
-                                <td><c:out value="${funcionario.idFuncionario}" /></td>
-                                <td><c:out value="${funcionario.funcao}" /></td>
-                                <td><c:out value="${funcionario.login}" /></td>
-                                <td><c:out value="${funcionario.senha}" /></td>    
-                                <td><a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Excluir&idFuncionario=<c:out value="${funcionario.idFuncionario}" />">Excluir</a></td>
-                                <td><a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Alterar&idFuncionario=<c:out value="${funcionario.idFuncionario}"/>">Alterar</a></td>
+                                <td><c:out value="${venda.idVenda}" /></td>
+                                <td><c:out value="${venda.dataVenda}" /></td>
+                                <td><c:out value="${venda.precoTotal}" /></td>
+                                <td><c:out value="${venda.idProduto}" /></td>
+                                <td><c:out value="${venda.getProduto().getNome()}" /></td>
+                                <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">Alterar</a></td>
+                                <!--<td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">Excluir</a></td>-->
+                                <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}" />">Excluir</a></td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -100,4 +102,3 @@
             </div>
         </section>
     </body>
-</html>

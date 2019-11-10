@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Medicamento.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/ProdutoVendido.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Cliente.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Funcionario.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterProdutoController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarVenda.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarFuncionario.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/venda.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/cadastrarProduto.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/PesquisaVendaController.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/controller/ManterVendaController.java</file>
             <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Venda.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Pagamento.java</file>
-            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/model/Produto.java</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/web/produto.jsp</file>
+            <file>file:/C:/Users/Igori/Documents/Projects/LP2/DrogaRIM/src/java/dao/VendaDAO.java</file>
         </group>
     </open-files>
 </project-private>

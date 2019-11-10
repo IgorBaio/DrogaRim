@@ -27,9 +27,10 @@ public class Produto {
     private int chaveEstoque;
     private boolean medicamento;
     private String lote;
+    private int quantidade;
 
-    public Produto(int idProduto, String nome, String nomeFarmaco, double preco, String categoria
-            , String tipo, boolean receita, boolean medicamento, String lote) {
+    public Produto(int idProduto, String nome, String nomeFarmaco, double preco, String categoria,
+             String tipo, boolean receita, boolean medicamento, String lote, int quantidade) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.nomeFarmaco = nomeFarmaco;
@@ -39,9 +40,16 @@ public class Produto {
         this.receita = receita;
         this.medicamento = medicamento;
         this.lote = lote;
+        this.quantidade = quantidade;
     }
 
-   
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 
     public String getNomeFarmaco() {
         return nomeFarmaco;
@@ -153,12 +161,12 @@ public class Produto {
     public void gravar() throws SQLException, ClassNotFoundException {
         ProdutoDAO.gravar(this);
     }
-    
-    public void excluir() throws SQLException, ClassNotFoundException{
+
+    public void excluir() throws SQLException, ClassNotFoundException {
         ProdutoDAO.excluir(this);
     }
-    
-    public void alterar() throws SQLException, ClassNotFoundException{
+
+    public void alterar() throws SQLException, ClassNotFoundException {
         ProdutoDAO.alterar(this);
     }
 }

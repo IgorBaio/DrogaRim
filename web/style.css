@@ -117,11 +117,11 @@ a.paginaSelecionada{
     width: 150px;
     
 }
-/*.listaCliente table tr td {
+.listaCliente table tr td {
 
-    //width: 150px;
+    width: 150px;
     
-}*/
+}
 .listaFabricante table tr td {
 
     width: 150px;
@@ -137,3 +137,4 @@ a.paginaSelecionada{
     width: 150px;
     
 }
+

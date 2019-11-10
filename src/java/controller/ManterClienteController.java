@@ -31,6 +31,8 @@ public class ManterClienteController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
@@ -53,7 +55,7 @@ public class ManterClienteController extends HttpServlet {
                 Cliente cliente = Cliente.obterCliente(idCliente);
                 request.setAttribute("cliente", cliente);
             }
-            RequestDispatcher view = request.getRequestDispatcher("/cadastrarCliente.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("cadastrarCliente.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
             throw e;
@@ -62,8 +64,7 @@ public class ManterClienteController extends HttpServlet {
         }
     }
 
-    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, SQLException, ClassNotFoundException {
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, ClassNotFoundException {
         String operacao = request.getParameter("operacao");
         int idCliente = Integer.parseInt(request.getParameter("txtCodCliente"));
         String nome = request.getParameter("txtNomeCliente");

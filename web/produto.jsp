@@ -32,10 +32,6 @@
                         </td>
 
                         <td>
-                            <a href="PesquisaEstoqueController">Estoque</a>
-                        </td>
-
-                        <td>
                             <a href="PesquisaClienteController">Cliente</a>
                         </td>
 
@@ -93,6 +89,7 @@
                             <td>Receita</td>
                             <td>Medicamento</td>
                             <td>Lote</td>
+                            <td>Quantidade</td>
                             <td colspan="2">Ação</td>
 
                         </tr>
@@ -106,7 +103,8 @@
                                 <td><c:out value="${produto.tipo}" /></td>  
                                 <td><c:out value="${produto.receita}" /></td>                                  
                                 <td><c:out value="${produto.medicamento}" /></td>  
-                                <td><c:out value="${produto.lote}" /></td> 
+                                <td><c:out value="${produto.lote}" /></td>
+                                <td><c:out value="${produto.quantidade}" /></td> 
                                 <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}" />">Excluir</a></td>
                                 <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Alterar&idProduto=<c:out value="${produto.idProduto}"/>">Alterar</a></td>
                             </tr>
@@ -115,5 +113,4 @@
                 </div>
         </section>
     </body>
-
 </html>

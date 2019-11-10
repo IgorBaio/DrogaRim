@@ -30,10 +30,6 @@
                         </td>
 
                         <td>
-                            <a href="PesquisaEstoqueController">Estoque</a>
-                        </td>
-
-                        <td>
                             <a href="PesquisaClienteController">Cliente</a>
                         </td>
 

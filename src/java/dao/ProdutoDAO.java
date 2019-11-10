@@ -74,7 +74,8 @@ public class ProdutoDAO {
                 rs.getString("tipo"),
                 rs.getBoolean("receita"),
                 rs.getBoolean("medicamento"),
-                rs.getString("lote")
+                rs.getString("lote"),
+                rs.getInt("quantidade")
                 // null
         );
         //produto.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
@@ -100,7 +101,7 @@ public class ProdutoDAO {
                 comando.setInt(5, produto.getEstoque().getId());
             }*/
             comando = conexao.prepareStatement(
-                    "insert into produto(idProduto, nome, nome_farmaco, preco, categoria, tipo, receita, medicamento, lote) values(?,?,?,?,?,?,?,?,?)");
+                    "insert into produto(idProduto, nome, nome_farmaco, preco, categoria, tipo, receita, medicamento, lote, quantidade) values(?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, produto.getIdProduto());
             comando.setString(2, produto.getNome());
             comando.setString(3, produto.getNomeFarmaco());
@@ -109,7 +110,9 @@ public class ProdutoDAO {
             comando.setString(6, produto.getTipo());
             comando.setBoolean(7, produto.isReceita());
             comando.setBoolean(8, produto.isMedicamento());
-            comando.setString(9, produto.getLote());
+            comando.setString(9, produto.getLote());            
+            comando.setInt(10, produto.getQuantidade());
+            
             comando.executeUpdate();
         } finally {
             fecharConexao(conexao, comando);
@@ -147,8 +150,9 @@ public class ProdutoDAO {
                     +"tipo = '"+produto.getTipo()+"' ,"
                     +"receita = "+produto.isReceita()+" ,"
                     +"medicamento = "+produto.isMedicamento()+" ,"
-                    +"lote = '"+produto.getLote()+"' ";
-            stringSQL = stringSQL+" where idProduto = '"+produto.getIdProduto()+"'";
+                    +"lote = '"+produto.getLote()+"' ,"
+                    +"quantidade = "+produto.getQuantidade()+" ";
+            stringSQL = stringSQL+"where idProduto = "+produto.getIdProduto()+" ";
             comando.execute(stringSQL);
             
         }finally{

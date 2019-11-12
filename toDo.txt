@@ -1,0 +1,5 @@
+fazer uma nova classe de compra
+
+
+em VENDA:
+colocar um label do preco do produto ao lado do preço

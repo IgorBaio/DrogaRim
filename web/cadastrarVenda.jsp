@@ -13,9 +13,9 @@
         <title>Cadastrar venda - ${operacao}</title>
     </head>
     <body>
-         <header>
+        <header>
             <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
-                <span class="usuario">Vendedor</span>
+            <span class="usuario">Vendedor</span>
             <nav>
                 <hr>
                 <table>
@@ -74,31 +74,34 @@
                             <td><label> Data da venda: </label></td>
                             <td><input type="text" name="txtDataVenda" value="${venda.dataVenda}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
-                        <tr>
-                            <td><label> Preço: </label></td>
-                            <td><input type="text" name="txtPrecoTotal" value="${venda.precoTotal}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                                <td><label>Produto:</label></td>
-                                <td><select name="txtIdProduto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                                    <option value="0" <c:if test="${venda.produto.idProduto == null}">selected</c:if>></option>
-                                    <c:forEach items="${produtos}" var="produto">
-                                        <option value="${produto.idProduto}" <c:if test="${venda.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome}</option>
-                                        
-                                    </c:forEach>
-                                </select>
-                            </td>
-                            
-                            
-                        </tr>
-                 </table>
-                    <p><input type="submit" value="Incluir" name="btnIncluir">
-                        <input type="submit" value="Limpar">
-                        <input type="submit" value="Excluir" name="btnExcluir">
-                        <input type="submit" value="Alterar" name="btnAlterar">
-                    </p>
-                </form>
-            </div>
-        </section>
-    </body>
+
+                        <td><label>Produto:</label></td>
+                        <td><select name="txtIdProduto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <option value="0" <c:if test="${venda.produto.idProduto == null}">selected</c:if>></option>
+                            <c:forEach items="${produtos}" var="produto">
+                                <option value="${produto.idProduto}" <c:if test="${venda.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome} - ${produto.preco}</option>
+                                
+                            </c:forEach>
+                               <td><c:out value="${produto.preco}" ></c:out></td>
+                            </select>
+                    </td> 
+                    <tr>
+                        <td><label> Preço: </label></td>
+                        <td><input type="text" name="txtPrecoTotal" value="${venda.precoTotal}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    
+                    </tr>
+                    <tr>
+
+
+                    </tr>
+                </table>
+                <p><input type="submit" value="Incluir" name="btnIncluir">
+                    <input type="submit" value="Limpar">
+                    <input type="submit" value="Excluir" name="btnExcluir">
+                    <input type="submit" value="Alterar" name="btnAlterar">
+                </p>
+            </form>
+        </div>
+    </section>
+</body>
 </html>

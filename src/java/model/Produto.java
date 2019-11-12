@@ -28,9 +28,11 @@ public class Produto {
     private boolean medicamento;
     private String lote;
     private int quantidade;
+    private Fabricante fabricante;
+    private int idFabricante;
 
     public Produto(int idProduto, String nome, String nomeFarmaco, double preco, String categoria,
-             String tipo, boolean receita, boolean medicamento, String lote, int quantidade) {
+             String tipo, boolean receita, boolean medicamento, String lote, int quantidade, Fabricante fabricante) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.nomeFarmaco = nomeFarmaco;
@@ -41,6 +43,26 @@ public class Produto {
         this.medicamento = medicamento;
         this.lote = lote;
         this.quantidade = quantidade;
+        this.fabricante = fabricante;
+    }
+
+    public Fabricante getFabricante() throws ClassNotFoundException, SQLException {
+         if ((this.idFabricante != 0) && (this.fabricante == null)) {
+            this.fabricante = Fabricante.obterFabricante(this.idFabricante);
+        }
+        return this.fabricante;
+    }
+
+    public void setFabricante(Fabricante fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    public int getIdFabricante() {
+        return idFabricante;
+    }
+
+    public void setIdFabricante(int idFabricante) {
+        this.idFabricante = idFabricante;
     }
 
     public int getQuantidade() {

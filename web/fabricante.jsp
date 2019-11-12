@@ -13,13 +13,11 @@
         <title>Lista de fabricantes</title>
     </head>
     <body>
-        <header>
-            <div class="barralogo">
-                <div class="logo"></div>
+         <header>
+            <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
                 <span class="usuario">Vendedor</span>
-            </div>
             <nav>
-                <hr id="hr1">
+                <hr>
                 <table>
                     <tr>
                         <td>
@@ -28,10 +26,6 @@
 
                         <td>
                             <a href="PesquisaProdutoController">Produto</a>
-                        </td>
-
-                        <td>
-                            <a href="PesquisaEstoqueController">Estoque</a>
                         </td>
 
                         <td>
@@ -48,7 +42,7 @@
                     </tr>
                 </table>
             </nav>
-            <hr>
+            <hr id="hr2">
         </header>
 
         <div class="subnav">

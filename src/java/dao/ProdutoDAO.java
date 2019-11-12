@@ -27,16 +27,14 @@ import model.Produto;
  */
 public class ProdutoDAO {
 
-    public static Produto obterProduto(int id) throws ClassNotFoundException, SQLException {
+    public static Produto obterProduto(int idProduto) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         Produto produto = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery(
-                    "select * from produto where idProduto = " + id
-            );
+            ResultSet rs = comando.executeQuery("select * from produto where idProduto = " + idProduto);
             rs.first();
             produto = instanciarProduto(rs);
         } finally {
@@ -44,11 +42,11 @@ public class ProdutoDAO {
         }
         return produto;
     }
-     
+
     public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
         Produto produto = null;
         try {
             conexao = BD.getConexao();
@@ -75,9 +73,10 @@ public class ProdutoDAO {
                 rs.getBoolean("receita"),
                 rs.getBoolean("medicamento"),
                 rs.getString("lote"),
-                rs.getInt("quantidade")
-                // null
-        );
+                rs.getInt("quantidade"),
+                 null);
+            produto.setIdFabricante(rs.getInt("idFabricante"));
+
         //produto.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
         return produto;
 
@@ -101,7 +100,7 @@ public class ProdutoDAO {
                 comando.setInt(5, produto.getEstoque().getId());
             }*/
             comando = conexao.prepareStatement(
-                    "insert into produto(idProduto, nome, nome_farmaco, preco, categoria, tipo, receita, medicamento, lote, quantidade) values(?,?,?,?,?,?,?,?,?,?)");
+                    "insert into produto(idProduto, nome, nome_farmaco, preco, categoria, tipo, receita, medicamento, lote, quantidade, idFabricante) values(?,?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, produto.getIdProduto());
             comando.setString(2, produto.getNome());
             comando.setString(3, produto.getNomeFarmaco());
@@ -110,55 +109,62 @@ public class ProdutoDAO {
             comando.setString(6, produto.getTipo());
             comando.setBoolean(7, produto.isReceita());
             comando.setBoolean(8, produto.isMedicamento());
-            comando.setString(9, produto.getLote());            
+            comando.setString(9, produto.getLote());
             comando.setInt(10, produto.getQuantidade());
-            
+            if (produto.getFabricante() == null) {
+                comando.setNull(11, Types.INTEGER);
+            } else {
+                comando.setInt(11, produto.getFabricante().getIdFabricante());
+
+            }
             comando.executeUpdate();
         } finally {
             fecharConexao(conexao, comando);
 
         }
     }
-    
-     public static void excluir (Produto produto) throws SQLException, ClassNotFoundException{
+
+    public static void excluir(Produto produto) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "delete from produto where idProduto = " + produto.getIdProduto();
             comando.execute(stringSQL);
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
     }
 
-    public static void alterar(Produto produto) throws SQLException, ClassNotFoundException{
+    public static void alterar(Produto produto) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "update produto set "
-                    +"nome = '"+produto.getNome()+"' ,"
-                    +"nome_farmaco = '"+produto.getNomeFarmaco()+"' ,"
-                    +"preco = "+produto.getPreco()+" ,"
-                    +"categoria = '"+produto.getCategoria()+"' ,"
-                    +"tipo = '"+produto.getTipo()+"' ,"
-                    +"receita = "+produto.isReceita()+" ,"
-                    +"medicamento = "+produto.isMedicamento()+" ,"
-                    +"lote = '"+produto.getLote()+"' ,"
-                    +"quantidade = "+produto.getQuantidade()+" ";
-            stringSQL = stringSQL+"where idProduto = "+produto.getIdProduto()+" ";
+                    + "nome = '" + produto.getNome() + "' ,"
+                    + "nome_farmaco = '" + produto.getNomeFarmaco() + "' ,"
+                    + "preco = " + produto.getPreco() + " ,"
+                    + "categoria = '" + produto.getCategoria() + "' ,"
+                    + "tipo = '" + produto.getTipo() + "' ,"
+                    + "receita = " + produto.isReceita() + " ,"
+                    + "medicamento = " + produto.isMedicamento() + " ,"
+                    + "lote = '" + produto.getLote() + "' ,"
+                    + "quantidade = " + produto.getQuantidade() + " , "
+                    + "idFabricante = " + produto.getIdFabricante() + " ";
+
+            stringSQL = stringSQL + "where idProduto = " + produto.getIdProduto() + " ";
             comando.execute(stringSQL);
-            
-        }finally{
+
+        } finally {
             fecharConexao(conexao, comando);
         }
-        
+
     }
-     
+
 }

@@ -14,13 +14,11 @@
     </head>
 
     <body>
-        <header>
-            <div class="barralogo">
-                <div class="logo"></div>
+         <header>
+            <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
                 <span class="usuario">Vendedor</span>
-            </div>
             <nav>
-                <hr id="hr1">
+                <hr>
                 <table>
                     <tr>
                         <td>
@@ -45,7 +43,7 @@
                     </tr>
                 </table>
             </nav>
-            <hr>
+            <hr id="hr2">
         </header>
 
         <div class="subnav">
@@ -90,6 +88,8 @@
                             <td>Medicamento</td>
                             <td>Lote</td>
                             <td>Quantidade</td>
+                            <td>Fabricante</td>
+
                             <td colspan="2">Ação</td>
 
                         </tr>
@@ -105,6 +105,8 @@
                                 <td><c:out value="${produto.medicamento}" /></td>  
                                 <td><c:out value="${produto.lote}" /></td>
                                 <td><c:out value="${produto.quantidade}" /></td> 
+                                <td><c:out value="${produto.fabricante.nome}" /></td>
+
                                 <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}" />">Excluir</a></td>
                                 <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Alterar&idProduto=<c:out value="${produto.idProduto}"/>">Alterar</a></td>
                             </tr>

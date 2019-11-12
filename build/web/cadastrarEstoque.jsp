@@ -14,12 +14,10 @@
     </head>
   <body>
         <header>
-      <div class="barralogo">
-          <div class="logo"></div>
-            <span class="usuario">Vendedor</span>
-      </div>
+            <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
+                <span class="usuario">Vendedor</span>
       <nav>
-        <hr id="hr1">
+        <hr>
           <table>
               <tr>
                   <td>
@@ -48,7 +46,7 @@
                 </tr>
             </table>
           </nav>
-          <hr>
+          <hr id="hr2">
         </header>
 
         <div class="subnav">

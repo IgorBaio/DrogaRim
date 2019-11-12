@@ -70,7 +70,7 @@ public class ManterVendaController extends HttpServlet {
         String operacao = request.getParameter("operacao");
         int idVenda = Integer.parseInt(request.getParameter("txtIdVenda"));
         String dataVenda = request.getParameter("txtDataVenda");
-       double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
+        double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
         int idProduto = Integer.parseInt(request.getParameter("txtIdProduto"));
 
         try {
@@ -111,9 +111,7 @@ public class ManterVendaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -131,9 +129,7 @@ public class ManterVendaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

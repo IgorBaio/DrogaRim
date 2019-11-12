@@ -13,13 +13,11 @@
         <title>Cadastrar venda - ${operacao}</title>
     </head>
     <body>
-        <header>
-            <div class="barralogo">
-                <div class="logo"></div>
+         <header>
+            <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
                 <span class="usuario">Vendedor</span>
-            </div>
             <nav>
-                <hr id="hr1">
+                <hr>
                 <table>
                     <tr>
                         <td>
@@ -44,7 +42,7 @@
                     </tr>
                 </table>
             </nav>
-            <hr>
+            <hr id="hr2">
         </header>
 
         <div class="subnav">
@@ -81,15 +79,18 @@
                             <td><input type="text" name="txtPrecoTotal" value="${venda.precoTotal}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
-                            <td><label>Produto:</label>
-                                <select name="txtIdProduto" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
-                                <option value="0" <c:if test="${venda.produto.idProduto == null}">selected</c:if>></option>
-                                <c:forEach items="${produtos}" var="produto">
-                                    <option value="${produto.idProduto}" <c:if test="${venda.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome}</option>
-                                </c:forEach>
-                            </select>
-                        </td>
-                    </tr>
+                                <td><label>Produto:</label></td>
+                                <td><select name="txtIdProduto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                                    <option value="0" <c:if test="${venda.produto.idProduto == null}">selected</c:if>></option>
+                                    <c:forEach items="${produtos}" var="produto">
+                                        <option value="${produto.idProduto}" <c:if test="${venda.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome}</option>
+                                        
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            
+                            
+                        </tr>
                  </table>
                     <p><input type="submit" value="Incluir" name="btnIncluir">
                         <input type="submit" value="Limpar">

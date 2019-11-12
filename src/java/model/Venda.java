@@ -76,7 +76,7 @@ public class Venda {
     }
 
     public void setPrecoTotal(double precoTotal) {
-        this.precoTotal = precoTotal;
+        this.precoTotal += precoTotal;
     }
 
     public String getDataVenda() {

@@ -49,6 +49,7 @@ public class ManterProdutoController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
+             request.setAttribute("fabricantes", Fabricante.obterFabricantes());
             if (!operacao.equals("Incluir")) {
                 int idProduto = Integer.parseInt(request.getParameter("idProduto"));
                 Produto produto = Produto.obterProduto(idProduto);
@@ -75,9 +76,14 @@ public class ManterProdutoController extends HttpServlet {
         boolean medicamento = Boolean.parseBoolean(request.getParameter("txtMedicamento"));
         String lote = request.getParameter("txtLote");
         int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
+        int idFabricante = Integer.parseInt(request.getParameter("txtIdFabricante"));
         
         try {
-            Produto produto = new Produto(idProduto, nome, nomeFarmaco, preco, categoria, tipo, receita, medicamento, lote, quantidade);
+            Fabricante fabricante = null;
+            if(idFabricante != 0){
+                fabricante = Fabricante.obterFabricante(idFabricante);
+            }
+            Produto produto = new Produto(idProduto, nome, nomeFarmaco, preco, categoria, tipo, receita, medicamento, lote, quantidade, fabricante);
             if (operacao.equals("Incluir")) {
                 produto.gravar();
             }else{

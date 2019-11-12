@@ -12,13 +12,11 @@
         <title>Cadastrar produto - ${operacao}</title>
     </head>
     <body>
-        <header>
-            <div class="barralogo">
-                <div class="logo"></div>
+         <header>
+            <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
                 <span class="usuario">Vendedor</span>
-            </div>
             <nav>
-                <hr id="hr1">
+                <hr>
                 <table>
                     <tr>
                         <td>
@@ -27,7 +25,7 @@
                         <td>
                             <a href="PesquisaProdutoController"  class="paginaSelecionada">Produto</a>
                         </td>
-                        
+
                         <td>
                             <a href="PesquisaClienteController">Cliente</a>
                         </td>
@@ -40,7 +38,7 @@
                     </tr>
                 </table>
             </nav>
-            <hr>
+            <hr id="hr2">
         </header>
 
         <div class="subnav">
@@ -103,6 +101,16 @@
                             <tr>
                                 <td>Quantidade</td>
                                 <td><input type="number" name="txtQuantidade" <c:if test="${operacao != 'Alterar'}">value="0" readonly</c:if>/></td>
+                            </tr>
+                            <tr>
+                                <td><label>Fabricante:</label></td>
+                                <td><select name="txtIdFabricante" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                                    <option value="0" <c:if test="${produto.fabricante.idFabricante == null}">selected</c:if>></option>
+                                    <c:forEach items="${fabricantes}" var="fabricante">
+                                        <option value="${fabricante.idFabricante}" <c:if test="${produto.fabricante.idFabricante == fabricante.idFabricante}">selected</c:if>>${fabricante.nome}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
                         </tr>
                     </table>
                     <p><input type="submit" value="Incluir" name="btnIncluir">

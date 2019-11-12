@@ -12,13 +12,11 @@
         <title>Venda</title>
     </head>
     <body>
-        <header>
-            <div class="barralogo">
-                <div class="logo"></div>
+         <header>
+            <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
                 <span class="usuario">Vendedor</span>
-            </div>
             <nav>
-                <hr id="hr1">
+                <hr>
                 <table>
                     <tr>
                         <td>
@@ -43,7 +41,7 @@
                     </tr>
                 </table>
             </nav>
-            <hr>
+            <hr id="hr2">
         </header>
 
         <div class="subnav">
@@ -91,10 +89,10 @@
                                 <td><c:out value="${venda.dataVenda}" /></td>
                                 <td><c:out value="${venda.precoTotal}" /></td>
                                 <td><c:out value="${venda.idProduto}" /></td>
-                                <td><c:out value="${venda.getProduto().getNome()}" /></td>
+                               <td><c:out value="${venda.produto.nome}" /></td>
                                 <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">Alterar</a></td>
-                                <!--<td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">Excluir</a></td>-->
-                                <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}" />">Excluir</a></td>
+                                <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">Excluir</a></td>
+                                
                             </tr>
                         </c:forEach>
                     </table>

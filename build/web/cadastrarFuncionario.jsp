@@ -12,9 +12,9 @@
         <title>Cadastrar funcionário - ${operacao}</title>
     </head>
     <body>
-         <header>
+        <header>
             <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
-                <span class="usuario">Vendedor</span>
+            <span class="usuario">Vendedor</span>
             <nav>
                 <hr>
                 <table>
@@ -64,7 +64,7 @@
 
         <section>
             <div id="cadastrarFuncionario">
-                <form action="ManterFuncionarioController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterFuncionario">
+                <form action="ManterFuncionarioController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterFuncionario" onsubmit="return validarFormulario(this)">
                     <table>
 
                         <!--<tr>
@@ -81,26 +81,80 @@
                         </tr>-->
                         <tr>
                             <td>Código do funcionário</td>
-                            <td><input type="text" name="txtCodFuncionario" value="${funcionario.idFuncionario}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>/></td>
-                        </tr>
-                        <tr>
-                            <td>Login</td>
-                            <td><input type="text" name="txtLoginFuncionario" value="${funcionario.login}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
-                        </tr>
-                        <tr>
-                            <td>Senha</td>
-                            <td><input type="text" name="txtSenhaFuncionario" value="${funcionario.senha}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
-                        </tr>
-                        <tr>
-                            <td>Função</td>
-                            <td><input type="text" name="txtFuncaoFuncionario" value="${funcionario.funcao}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
-                        </tr>
-                    </table>
-                    <p><input type="submit" value="Incluir" name="btnIncluir">
-                            <input type="submit" value="Limpar">
-                            <input type="submit" value="Excluir" name="btnExcluir">
-                            <input type="submit" value="Alterar" name="btnAlterar"></p>
+                            <td><input type="number" name="txtCodFuncionario" value="${funcionario.idFuncionario}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>/></td>
+                            </tr>
+                            <tr>
+                                <td>Login</td>
+                                <td><input type="text" name="txtLoginFuncionario" value="${funcionario.login}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
+                            </tr>
+                            <tr>
+                                <td>Senha</td>
+                                <td><input type="text" name="txtSenhaFuncionario" value="${funcionario.senha}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
+                            </tr>
+                            <tr>
+                                <td>Função</td>
+                                <td><input type="text" name="txtFuncaoFuncionario" value="${funcionario.funcao}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
+                            </tr>
+                        </table>
+                        <p><input type="submit" value="${operacao}" name="btnConfirmar"></p>
                 </form>
+                <SCRIPT language="JavaScript">
+
+
+                    function campoNumerico(valor)
+                    {
+                        var caracteresValidos = "0123456789";
+                        var ehNumero = true;
+                        var umCaracter;
+                        for (i = 0; i < valor.length && ehNumero == true; i++)
+                        {
+                            umCaracter = valor.charAt(i);
+                            if (caracteresValidos.indexOf(umCaracter) == -1)
+                            {
+                                ehNumero = false;
+                            }
+                        }
+                        return ehNumero;
+                    }
+
+                    function validarFormulario(form) {
+                        var mensagem;
+                        mensagem = "";
+                        if (form.txtCodFuncionario.value == "") {
+                            mensagem = mensagem + "Informe o Código do Funcionário\n";
+                        }
+                        if (form.txtLoginFuncionario.value == "") {
+                            mensagem = mensagem + "Informe o Nome do Funcionário\n";
+                        }
+                        if (form.txtSenhaFuncionario.value == "") {
+                            mensagem = mensagem + "Informe a Senha do Funcionário\n";
+                        }
+                        if (form.txtFuncaoFuncionario.value == "") {
+                            mensagem = mensagem + "Informe a Função do Funcionário\n";
+                        }
+                        if (!campoNumerico(form.txtCodFuncionario.value)){
+                            mensagem = mensagem + "Código do Funcionário deve ser numérico\n";
+                        }   
+                        if (!campoNumerico(form.txtLoginFuncionario.value)){
+                            mensagem = mensagem + "Login do Funcionário deve ser numérico\n";
+                        }   
+                        if (!campoNumerico(form.txtSenhaFuncionario.value)){
+                            mensagem = mensagem + "Senha do Funcionário deve ser numérico\n";
+                        }   
+                        if (!campoNumerico(form.txtFuncaoFuncionario.value)){
+                            mensagem = mensagem + "Função do Funcionário deve ser numérico\n";
+                        }   
+                        
+                        if (mensagem == "") {
+                            return true;
+                        } else {
+                            alert(mensagem);
+                            return false;
+                        }
+                    }
+
+                </SCRIPT>   
+                
             </div>
         </section>
     </body>

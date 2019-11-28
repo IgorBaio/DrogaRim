@@ -9,8 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta content="text/html">
         <link rel="stylesheet" href="style.css">
-
-        <title>Cadastrar venda - ${operacao}</title>
+        <title>Cadastrar produto - ${operacao} - ${produto.idProduto}</title>
     </head>
     <body>
         <header>
@@ -21,21 +20,18 @@
                 <table>
                     <tr>
                         <td>
-                            <a href="PesquisaVendaController"  class="paginaSelecionada">Venda</a>
+                            <a href="PesquisaVendaController">Venda</a>
                         </td>
-
                         <td>
-                            <a href="PesquisaProdutoController">Produto</a>
+                            <a href="PesquisaProdutoController"  class="paginaSelecionada">Produto</a>
                         </td>
 
                         <td>
                             <a href="PesquisaClienteController">Cliente</a>
                         </td>
-
                         <td>
                             <a href="PesquisaFuncionarioController">Funcionário</a>
                         </td>
-
                         <td>
                             <a href="PesquisaFabricanteController">Fabricante</a>
                         </td>
@@ -49,14 +45,26 @@
             <table>
                 <tr>
                     <td>
-                        <a href="PesquisaVendaController">
-                            Vendas
+                        <a href="PesquisaProdutoController">
+                            Produtos
                         </a>
                     </td>
 
                     <td>
-                        <a href="ManterVendaController?acao=prepararOperacao&operacao=Incluir"  class="paginaSelecionada">
-                            Nova venda
+                        <a href="ManterProdutoController?acao=prepararOperacao&operacao=Incluir">
+                            Cadastrar Produto
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="PesquisaCategoriaController">
+                            Categorias
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="ManterCategoriaController?acao=prepararOperacao&operacao=Incluir" class="paginaSelecionada">
+                            Cadastrar Categoria
                         </a>
                     </td>
                 </tr>
@@ -64,25 +72,24 @@
         </div>
 
         <section>
-            <form action="ManterVendaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterVenda" onsubmit="return validarFormulario(this)">
-                <table>
-                    <tr>
-                        <td><label> Id:</label></td>
-                        <td><input type="number" name="txtIdVenda" value="${venda.idVenda}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>    
-                            <td><label> Data da venda: </label></td>
-                            <td><input type="date" name="txtDataVenda" value="${venda.dataVenda}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+            <div id="cadastrarCategoria">
+                <form action="ManterCategoriaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCategoria" onsubmit="return validarFormulario(this)">
+                    <table>
+                        <tr>
+                            <td>Código categoria</td>
+                            <td><input type="number" name="txtCodCategoria" id="idCategoria" value="${categoria.idCategoria}" /></td>
                         </tr>
                         <tr>
-                            <td><label> Preço: </label></td>
-                            <td><input type="number" step="0.01" name="txtPrecoTotal" value="${venda.precoTotal}" <c:if test="${operacao != 'Alterar'}"> readonly</c:if>></td>
+                            <td>Nome</td>
+                            <td><input type="text" name="txtNomeCategoria" value="${categoria.nome}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                         </tr>
-
                     </table>
-                    <p><input type="submit" value="${operacao}" name="btnConfirmar"></p>
-            </form>
-            <SCRIPT language="JavaScript">
+                    <p><input type="submit" value="Incluir" name="btnIncluir">
+                        <input type="submit" value="Limpar">
+                        <input type="submit" value="Excluir">
+                        <input type="submit" value="Alterar" name="btnAlterar"></p>
+                </form>
+                <SCRIPT language="JavaScript">
 
 
                     function campoNumerico(valor)
@@ -104,17 +111,17 @@
                     function validarFormulario(form) {
                         var mensagem;
                         mensagem = "";
-                        if (form.txtidVenda.value == "") {
-                            mensagem = mensagem + "Informe o Código da Venda\n";
+                        if (form.txtCodCategoria.value == "") {
+                            mensagem = mensagem + "Informe o Código da Categoria\n";
                         }
-                        if (form.txtDataVenda.value == "") {
-                            mensagem = mensagem + "Informe a Data da Venda\n";
+                        if (form.txtNomeCategoria.value == "") {
+                            mensagem = mensagem + "Informe o Nome da Categoria\n";
                         }
-                        if (!campoNumerico(form.txtidVenda.value)){
-                            mensagem = mensagem + "Código da Venda deve ser numérico\n";
+                         if (!campoNumerico(form.txtCodCategoria.value)){
+                            mensagem = mensagem + "Código da Categoria deve ser numérico\n";
                         }   
-                        if (!campoNumerico(form.txtDataVenda.value)){
-                            mensagem = mensagem + "Data da Venda deve ser numérico\n";
+                        if (!campoNumerico(form.txtNomeCategoria.value)){
+                            mensagem = mensagem + "Nome da Categoria deve ser numérico\n";
                         }   
                         if (mensagem == "") {
                             return true;
@@ -125,8 +132,9 @@
                     }
 
                 </SCRIPT>   
-            
-        </div>
-    </section>
-</body>
+
+
+            </div>
+        </section>
+    </body>
 </html>

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Fabricante;
 import model.Produto;
+import model.Categoria;
 
 /**
  *
@@ -32,6 +33,8 @@ public class ManterProdutoController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
@@ -49,7 +52,8 @@ public class ManterProdutoController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-             request.setAttribute("fabricantes", Fabricante.obterFabricantes());
+            request.setAttribute("categorias", Categoria.obterCategorias());
+            request.setAttribute("fabricantes", Fabricante.obterFabricantes());
             if (!operacao.equals("Incluir")) {
                 int idProduto = Integer.parseInt(request.getParameter("idProduto"));
                 Produto produto = Produto.obterProduto(idProduto);
@@ -70,28 +74,33 @@ public class ManterProdutoController extends HttpServlet {
         String nome = request.getParameter("txtNomeComercial");
         String nomeFarmaco = request.getParameter("txtNomeFarmaco");
         double preco = Double.parseDouble(request.getParameter("txtPrecoProduto"));
-        String categoria = request.getParameter("txtCategoria");
         String tipo = request.getParameter("txtTipo");
         boolean receita = Boolean.parseBoolean(request.getParameter("txtReceita"));
         boolean medicamento = Boolean.parseBoolean(request.getParameter("txtMedicamento"));
         String lote = request.getParameter("txtLote");
         int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
         int idFabricante = Integer.parseInt(request.getParameter("txtIdFabricante"));
-        
+        int idCategoria = Integer.parseInt(request.getParameter("txtIdCategoria"));
+
         try {
             Fabricante fabricante = null;
-            if(idFabricante != 0){
+            if (idFabricante != 0) {
                 fabricante = Fabricante.obterFabricante(idFabricante);
             }
-            Produto produto = new Produto(idProduto, nome, nomeFarmaco, preco, categoria, tipo, receita, medicamento, lote, quantidade, fabricante);
+
+            Categoria categoria = null;
+            if (idCategoria != 0) {
+                categoria = Categoria.obterCategoria(idCategoria);
+            }
+            Produto produto = new Produto(idProduto, nome, nomeFarmaco, preco, tipo, receita, medicamento, lote, quantidade, fabricante, categoria);
             if (operacao.equals("Incluir")) {
                 produto.gravar();
-            }else{
-                if(operacao.equals("Alterar")){
-                   produto.alterar();
-                }else{
-                    if(operacao.equals("Excluir")){
-                    produto.excluir();
+            } else {
+                if (operacao.equals("Alterar")) {
+                    produto.alterar();
+                } else {
+                    if (operacao.equals("Excluir")) {
+                        produto.excluir();
                     }
                 }
             }

@@ -64,43 +64,68 @@
         </div>
 
         <section>
-            <form action="ManterVendaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterVenda">
+            <form action="ManterVendaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterVenda" onsubmit="return validarFormulario(this)">
                 <table>
                     <tr>
                         <td><label> Id:</label></td>
-                        <td><input type="text" name="txtIdVenda" value="${venda.idVenda}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <td><input type="number" name="txtIdVenda" value="${venda.idVenda}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>    
                             <td><label> Data da venda: </label></td>
-                            <td><input type="text" name="txtDataVenda" value="${venda.dataVenda}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td><input type="date" name="txtDataVenda" value="${venda.dataVenda}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td><label> Preço: </label></td>
+                            <td><input type="number" step="0.01" name="txtPrecoTotal" value="${venda.precoTotal}" <c:if test="${operacao != 'Alterar'}"> readonly</c:if>></td>
                         </tr>
 
-                        <td><label>Produto:</label></td>
-                        <td><select name="txtIdProduto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                            <option value="0" <c:if test="${venda.produto.idProduto == null}">selected</c:if>></option>
-                            <c:forEach items="${produtos}" var="produto">
-                                <option value="${produto.idProduto}" <c:if test="${venda.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome} - ${produto.preco}</option>
-                                
-                            </c:forEach>
-                               <td><c:out value="${produto.preco}" ></c:out></td>
-                            </select>
-                    </td> 
-                    <tr>
-                        <td><label> Preço: </label></td>
-                        <td><input type="text" name="txtPrecoTotal" value="${venda.precoTotal}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    
-                    </tr>
-                    <tr>
-
-
-                    </tr>
-                </table>
-                <p><input type="submit" value="Incluir" name="btnIncluir">
-                    <input type="submit" value="Limpar">
-                    <input type="submit" value="Excluir" name="btnExcluir">
-                    <input type="submit" value="Alterar" name="btnAlterar">
-                </p>
+                    </table>
+                    <p><input type="submit" value="${operacao}" name="btnConfirmar"></p>
             </form>
+            <SCRIPT language="JavaScript">
+
+
+                    function campoNumerico(valor)
+                    {
+                        var caracteresValidos = "0123456789";
+                        var ehNumero = true;
+                        var umCaracter;
+                        for (i = 0; i < valor.length && ehNumero == true; i++)
+                        {
+                            umCaracter = valor.charAt(i);
+                            if (caracteresValidos.indexOf(umCaracter) == -1)
+                            {
+                                ehNumero = false;
+                            }
+                        }
+                        return ehNumero;
+                    }
+
+                    function validarFormulario(form) {
+                        var mensagem;
+                        mensagem = "";
+                        if (form.txtidVenda.value == "") {
+                            mensagem = mensagem + "Informe o Código da Venda\n";
+                        }
+                        if (form.txtDataVenda.value == "") {
+                            mensagem = mensagem + "Informe a Data da Venda\n";
+                        }
+                        if (!campoNumerico(form.txtidVenda.value)){
+                            mensagem = mensagem + "Código da Venda deve ser numérico\n";
+                        }   
+                        if (!campoNumerico(form.txtDataVenda.value)){
+                            mensagem = mensagem + "Data da Venda deve ser numérico\n";
+                        }   
+                        if (mensagem == "") {
+                            return true;
+                        } else {
+                            alert(mensagem);
+                            return false;
+                        }
+                    }
+
+                </SCRIPT>   
+            
         </div>
     </section>
 </body>

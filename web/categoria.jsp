@@ -50,7 +50,7 @@
             <table>
                 <tr>
                     <td>
-                        <a href="PesquisaProdutoController" class="paginaSelecionada">
+                        <a href="PesquisaProdutoController">
                             Produtos
                         </a>
                     </td>
@@ -62,7 +62,7 @@
                     </td>
                     
                     <td>
-                        <a href="PesquisaCategoriaController">
+                        <a href="PesquisaCategoriaController" class="paginaSelecionada">
                             Categorias
                         </a>
                     </td>
@@ -77,54 +77,35 @@
         </div>
 
         <section>
-            <div id="secaoProduto">
-                <div id="buscaProduto">
+            <div id="secaoCategoria">
+                <div id="buscaCategoria">
                     <input type="text" id="textoBusca" placeholder="Pesquisar"/>
                     <button id="botaoBusca">Buscar</button>
                     <hr>
                 </div>
-                <div id="filtroProduto">
+                <div id="filtroCategoria">
                     Filtros
                 </div>
-                <div class="listaProduto">
+                <div class="listaCategoria">
                     Resultados
                     <table>
                         <tr>
                             <td>Código</td>
                             <td>Nome</td>
-                            <td>Nome Fármaco</td>
-                            <td>Preço</td>
-                            <td>Categoria</td>
-                            <td>Tipo</td>
-                            <td>Receita</td>
-                            <td>Medicamento</td>
-                            <td>Lote</td>
-                            <td>Quantidade</td>
-                            <td>Fabricante</td>
-
-                            <td colspan="2">Ação</td>
-
+                            <td>Ação</td>
                         </tr>
-                        <c:forEach items="${produtos}" var="produto">
-                            <tr>
-                                <td><c:out value="${produto.idProduto}" /></td>
-                                <td><c:out value="${produto.nome}" /></td>  
-                                <td><c:out value="${produto.nomeFarmaco}" /></td>
-                                <td><c:out value="${produto.preco}" /></td>  
-                                <td><c:out value="${produto.categoria.nome}" /></td>  
-                                <td><c:out value="${produto.tipo}" /></td>  
-                                <td><c:out value="${produto.receita}" /></td>                                  
-                                <td><c:out value="${produto.medicamento}" /></td>  
-                                <td><c:out value="${produto.lote}" /></td>
-                                <td><c:out value="${produto.quantidade}" /></td> 
-                                <td><c:out value="${produto.fabricante.nome}" /></td>
 
-                                <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}" />">Excluir</a></td>
-                                <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Alterar&idProduto=<c:out value="${produto.idProduto}"/>">Alterar</a></td>
+                        <c:forEach items="${categorias}" var="categoria">
+                            <tr>
+                                <td><c:out value="${categoria.idCategoria}" /></td>
+                                <td><c:out value="${categoria.nome}" /></td>
+                                <td><a href="ManterCategoriaController?acao=prepararOperacao&operacao=Excluir&idCategoria=<c:out value="${categoria.idCategoria}" />">Excluir</a></td>
+                                <td><a href="ManterCategoriaController?acao=prepararOperacao&operacao=Alterar&idCategoria=<c:out value="${categoria.idCategoria}" />">Alterar</a></td>
                             </tr>
                         </c:forEach>
                     </table>
                 </div>
+            </div>
         </section>
     </body>
 </html>

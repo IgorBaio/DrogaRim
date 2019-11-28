@@ -78,9 +78,8 @@
                         <tr>
                             <td>Código</td>
                             <td>Data</td>
-                            <td>Preço</td>
-                            <td>Produto</td>
-                            <td>Nome</td>
+                            <td>$ total</td>
+                            <td>Produtos</td>
                             <td colspan=2>Ação</td>
                         </tr>
                         <c:forEach items="${vendas}" var="venda">
@@ -88,8 +87,7 @@
                                 <td><c:out value="${venda.idVenda}" /></td>
                                 <td><c:out value="${venda.dataVenda}" /></td>
                                 <td><c:out value="${venda.precoTotal}" /></td>
-                                <td><c:out value="${venda.idProduto}" /></td>
-                               <td><c:out value="${venda.produto.nome}" /></td>
+                                <td><a href="PesquisaProdutoVendidoController?acao=prepararOperacao&operacao=obterProdutosVendidos?&idVenda=<c:out value="${venda.idVenda}"/>">Produtos</a></td>
                                 <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">Alterar</a></td>
                                 <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">Excluir</a></td>
                                 

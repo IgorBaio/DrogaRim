@@ -15,8 +15,8 @@
     <body>
         <header>
             <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
-                <span class="usuario">Vendedor</span>
-                       <nav>
+            <span class="usuario">Vendedor</span>
+            <nav>
                 <hr id="hr1">
                 <table>
                     <tr>
@@ -66,7 +66,7 @@
 
         <section>
             <div id="cadastrarProduto">
-                <form action="ManterClienteController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCliente">
+                <form action="ManterClienteController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCliente" onsubmit="return validarFormulario(this)">
                     <table>
 
                         <tr>
@@ -101,7 +101,7 @@
                             <tr>
                                 <td>Sexo</td>
                                 <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>M</td>
-                                <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>F</td>
+                            <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>F</td>
                             </tr>
                             <tr>
                                 <td>E-Mail</td>
@@ -132,14 +132,96 @@
                             <tr>
                                 <td>Telefone</td>
                                 <td><input type="number" name="txtTelefoneCliente" value="${cliente.telefone}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
-                        </tr>
-                    </table>
-                    <p><input type="submit" value="Incluir" name="btnIncluir">
-                        <input type="submit" value="Limpar">
-                        <input type="submit" value="Excluir" name="btnExcluir">
-                        <input type="submit" value="Alterar" name="btnAlterar">
-                    </p>
+                            </tr>
+                        </table>
+                        <p><input type="submit" value="${operacao}" name="btnConfirmar"></p>
                 </form>
+                <SCRIPT language="JavaScript">
+
+
+                    function campoNumerico(valor)
+                    {
+                        var caracteresValidos = "0123456789";
+                        var ehNumero = true;
+                        var umCaracter;
+                        for (i = 0; i < valor.length && ehNumero == true; i++)
+                        {
+                            umCaracter = valor.charAt(i);
+                            if (caracteresValidos.indexOf(umCaracter) == -1)
+                            {
+                                ehNumero = false;
+                            }
+                        }
+                        return ehNumero;
+                    }
+
+                    function validarFormulario(form) {
+                        var mensagem;
+                        mensagem = "";
+                        if (form.txtCodCliente.value == "") {
+                            mensagem = mensagem + "Informe o Código do Cliente\n";
+                        }
+                        if (form.txtNomeCliente.value == "") {
+                            mensagem = mensagem + "Informe o Nome do Cliente\n";
+                        }
+                        if (form.txtCpfCliente.value == "") {
+                            mensagem = mensagem + "Informe o CPF\n";
+                        }
+                        if (form.txtCEPCliente.value == "") {
+                            mensagem = mensagem + "Informe o CEP\n";
+                        }
+                        if (form.optEstado.value == "") {
+                            mensagem = mensagem + "Selecione o estado\n";
+                        }
+                        if (form.txtDataNascimentoCliente.value == "") {
+                            mensagem = mensagem + "Data de nascimento deve ser preenchida\n";
+                        }
+                        if (form.txtSexoCliente.value == "") {
+                            mensagem = mensagem + "Selecione o gênero\n";
+                        }
+                        if (form.txtEmailCliente.value == "") {
+                            mensagem = mensagem + "Informe o e-mail\n";
+                        }
+                        if (form.txtCidadeCliente.value == "") {
+                            mensagem = mensagem + "Informe a cidade do cliente\n";
+                        }
+                        if (form.txtBairroCliente.value == "") {
+                            mensagem = mensagem + "Informe o bairro do cliente\n";
+                        }
+                        if (form.txtLogradouroCliente.value == "") {
+                            mensagem = mensagem + "Preencha o logradouro\n";
+                        }
+                        if (form.txtNumeroCliente.value == "") {
+                            mensagem = mensagem + "Informe o número do endereço\n";
+                        }
+                        if (form.txtComplementoCliente.value == "") {
+                            mensagem = mensagem + "Informe um complemento\n";
+                        }
+                        if (form.txtTelefoneCliente.value == "") {
+                            mensagem = mensagem + "Informe um contato telefônico\n";
+                        }
+                        if (!campoNumerico(form.txtCEPCliente.value)) {
+                            mensagem = mensagem + "CEP deve ser numérico\n";
+                        }
+                        if (!campoNumerico(form.txtTelefoneCliente.value)) {
+                            mensagem = mensagem + "Telefone deve ser numérico\n";
+                        }
+                        if (!campoNumerico(form.txtNumeroCliente.value)) {
+                            mensagem = mensagem + "Número do endereço deve ser numérico\n";
+                        }
+                        if (!campoNumerico(form.txtCpfCliente.value)) {
+                            mensagem = mensagem + "CPF deve ser numérico\n";
+                        }
+                        if (mensagem == "") {
+                            return true;
+                        } else {
+                            alert(mensagem);
+                            return false;
+                        }
+                    }
+
+                </SCRIPT>
+
             </div>
         </section>
     </body>

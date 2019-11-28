@@ -60,6 +60,18 @@
                             Cadastrar Produto
                         </a>
                     </td>
+                    
+                    <td>
+                        <a href="PesquisaCategoriaController">
+                            Categorias
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="ManterCategoriaController?acao=prepararOperacao&operacao=Incluir">
+                            Cadastrar Categoria
+                        </a>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -99,7 +111,7 @@
                                 <td><c:out value="${produto.nome}" /></td>  
                                 <td><c:out value="${produto.nomeFarmaco}" /></td>
                                 <td><c:out value="${produto.preco}" /></td>  
-                                <td><c:out value="${produto.categoria}" /></td>  
+                                <td><c:out value="${produto.categoria.nome}" /></td>  
                                 <td><c:out value="${produto.tipo}" /></td>  
                                 <td><c:out value="${produto.receita}" /></td>                                  
                                 <td><c:out value="${produto.medicamento}" /></td>  

@@ -68,14 +68,15 @@ public class ProdutoDAO {
                 rs.getString("nome"),
                 rs.getString("nome_farmaco"),
                 rs.getFloat("preco"),
-                rs.getString("categoria"),
                 rs.getString("tipo"),
                 rs.getBoolean("receita"),
                 rs.getBoolean("medicamento"),
                 rs.getString("lote"),
                 rs.getInt("quantidade"),
-                 null);
-            produto.setIdFabricante(rs.getInt("idFabricante"));
+                null,
+                null);
+        produto.setIdFabricante(rs.getInt("idFabricante"));
+        produto.setIdCategoria(rs.getInt("idCategoria"));
 
         //produto.setChaveEstoque(rs.getInt("ESTOQUE_ID"));
         return produto;
@@ -87,35 +88,26 @@ public class ProdutoDAO {
         PreparedStatement comando = null;
         try {
             conexao = BD.getConexao();
-            /*comando = conexao.prepareStatement(
-                    "insert into produtos(idProduto, nome, preco, lote, estoque_id)"
-                    +" values(?,?,?,?,?)");
-            comando.setInt(1, produto.getId());
-            comando.setString(2 , produto.getNome());
-            comando.setDouble(3 , produto.getPreco());
-            comando.setString(4 , produto.getLote());
-            if(produto.getEstoque() == null){
-                comando.setNull(5, Types.INTEGER);
-            }else{
-                comando.setInt(5, produto.getEstoque().getId());
-            }*/
             comando = conexao.prepareStatement(
-                    "insert into produto(idProduto, nome, nome_farmaco, preco, categoria, tipo, receita, medicamento, lote, quantidade, idFabricante) values(?,?,?,?,?,?,?,?,?,?,?)");
+                    "insert into produto(idProduto, nome, nome_farmaco, preco, tipo, receita, medicamento, lote, quantidade, idFabricante, idCategoria) values(?,?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, produto.getIdProduto());
             comando.setString(2, produto.getNome());
             comando.setString(3, produto.getNomeFarmaco());
             comando.setDouble(4, produto.getPreco());
-            comando.setString(5, produto.getCategoria());
-            comando.setString(6, produto.getTipo());
-            comando.setBoolean(7, produto.isReceita());
-            comando.setBoolean(8, produto.isMedicamento());
-            comando.setString(9, produto.getLote());
-            comando.setInt(10, produto.getQuantidade());
+            comando.setString(5, produto.getTipo());
+            comando.setBoolean(6, produto.isReceita());
+            comando.setBoolean(7, produto.isMedicamento());
+            comando.setString(8, produto.getLote());
+            comando.setInt(9, produto.getQuantidade());
             if (produto.getFabricante() == null) {
+                comando.setNull(10, Types.INTEGER);
+            } else {
+                comando.setInt(10, produto.getFabricante().getIdFabricante());
+            }
+            if (produto.getCategoria() == null) {
                 comando.setNull(11, Types.INTEGER);
             } else {
-                comando.setInt(11, produto.getFabricante().getIdFabricante());
-
+                comando.setInt(11, produto.getCategoria().getIdCategoria());
             }
             comando.executeUpdate();
         } finally {
@@ -150,12 +142,12 @@ public class ProdutoDAO {
                     + "nome = '" + produto.getNome() + "' ,"
                     + "nome_farmaco = '" + produto.getNomeFarmaco() + "' ,"
                     + "preco = " + produto.getPreco() + " ,"
-                    + "categoria = '" + produto.getCategoria() + "' ,"
                     + "tipo = '" + produto.getTipo() + "' ,"
                     + "receita = " + produto.isReceita() + " ,"
                     + "medicamento = " + produto.isMedicamento() + " ,"
                     + "lote = '" + produto.getLote() + "' ,"
                     + "quantidade = " + produto.getQuantidade() + " , "
+                    + "idCategoria = " + produto.getIdCategoria() + " , "
                     + "idFabricante = " + produto.getIdFabricante() + " ";
 
             stringSQL = stringSQL + "where idProduto = " + produto.getIdProduto() + " ";

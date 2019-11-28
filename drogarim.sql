@@ -3,14 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31-Out-2019 às 14:40
+-- Tempo de geração: 26-Nov-2019 às 12:47
 -- Versão do servidor: 10.3.16-MariaDB
 -- versão do PHP: 7.3.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+create database drogarim;
+use drogarim;
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,8 +17,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `dim`
+-- Banco de dados: `drogarim`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `idCategoria` smallint(6) DEFAULT NULL,
+  `nome` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`idCategoria`, `nome`) VALUES
+(123, 'Categoria 1');
 
 -- --------------------------------------------------------
 
@@ -50,12 +66,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idCliente`, `nome`, `cpf`, `telefone`, `email`, `numeroCasa`, `complemento`, `data_nascimento`, `sexo`, `cep`, `logradouro`, `bairro`, `cidade`, `uf`) VALUES
-(0, 'teste1', '', '', '', '', '', '', 0, '', '', '', '', 'Minas Gerais'),
-(1, 'Jao', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(102, 'acas', '111.222.333-44', '1111111', 'abcd@efgh.com', '12345', 'Onde', '2019-10-29', 0, '1234455', 'Judas', 'Perdeu', 'onde', 'Minas Gerais'),
-(1023, 'acas11', '111.222.333-44', '1111111', 'abcd@efgh.com', '', 'Onde', '2019-10-29', 0, '1245352', 'Judas', 'Perdeu', '124daadda', 'Minas Gerais'),
-(2223, 'Xablóvski', '111.222.333-44', '', 'abcd@efgh.com', '', 'Onde', '2106-10-03', 0, '102365447', 'Judas', 'Perdeu', '', 'Minas Gerais'),
-(10101, 'oiaeu', '', '1111111', 'abcd@efgh.com', '', '', '', 0, '', '', '', '', 'Minas Gerais');
+(1213, 'joao', '09509509595', '3232202200', 'joao@gmail.com', '10', 'casa', '1995-08-21', 0, '36010000', 'rua joao', 'centfro', 'juiz de fora', 'Minas Gerais');
 
 -- --------------------------------------------------------
 
@@ -66,9 +77,16 @@ INSERT INTO `cliente` (`idCliente`, `nome`, `cpf`, `telefone`, `email`, `numeroC
 CREATE TABLE `estoque` (
   `idEstoque` smallint(6) NOT NULL,
   `quant_min` int(11) DEFAULT NULL,
-  `quant_max` int(11) DEFAULT NULL,
-  `idProduto` smallint(6) NOT NULL
+  `quant_max` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `estoque`
+--
+
+INSERT INTO `estoque` (`idEstoque`, `quant_min`, `quant_max`) VALUES
+(123, 5, 12),
+(1112, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -86,10 +104,7 @@ CREATE TABLE `fabricante` (
 --
 
 INSERT INTO `fabricante` (`idFabricante`, `nome`) VALUES
-(1, 'aaa'),
-(123, 'eu12'),
-(1234, 'eu'),
-(23455, 'kkkkk');
+(1233, 'Fabricante x');
 
 -- --------------------------------------------------------
 
@@ -109,17 +124,10 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`idFuncionario`, `login`, `senha`, `funcao`) VALUES
-(0, 'o', '8', 'll'),
-(1, 'Igor', NULL, NULL),
-(2, 'Rafael', NULL, NULL),
-(8, 'Igor', NULL, NULL),
-(11, 'ab', NULL, NULL),
-(24, 'Leo', NULL, NULL),
-(32, 'aacs', '32', 'a'),
+(24, 'Leona', '', ''),
 (123, 'aaa', NULL, NULL),
-(1010, 'xablau1', '32', 'a'),
 (1111, 'xablau', '', ''),
-(5554, 'alor', '', '');
+(5554, 'alors', '', '');
 
 -- --------------------------------------------------------
 
@@ -143,24 +151,21 @@ CREATE TABLE `produto` (
   `nome` varchar(45) DEFAULT NULL,
   `nome_farmaco` varchar(45) DEFAULT NULL,
   `preco` double DEFAULT NULL,
-  `categoria` varchar(45) DEFAULT NULL,
   `tipo` varchar(45) DEFAULT NULL,
   `receita` tinyint(1) DEFAULT NULL,
   `medicamento` tinyint(1) DEFAULT NULL,
-  `lote` varchar(10) DEFAULT NULL
+  `lote` varchar(10) DEFAULT NULL,
+  `quantidade` int(11) DEFAULT 0,
+  `idFabricante` int(11) DEFAULT NULL,
+  `idCategoria` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`idProduto`, `nome`, `nome_farmaco`, `preco`, `categoria`, `tipo`, `receita`, `medicamento`, `lote`) VALUES
-(1, 'Ibuprofeno', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'Decongex', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Lisador', NULL, 20, NULL, NULL, NULL, NULL, NULL),
-(112, 'Nome Comercial', 'Nome Farmaco', 1023, 'a', 'v', 0, 0, '091234'),
-(10101, 'buuzin12', 'Nome Farmaco', 20, 'a', 'v', 0, 0, '091234'),
-(10102, 'acaj', 'Nome Farmaco', 20, 'a', 'v', 0, 0, '091234');
+INSERT INTO `produto` (`idProduto`, `nome`, `nome_farmaco`, `preco`, `tipo`, `receita`, `medicamento`, `lote`, `quantidade`, `idFabricante`, `idCategoria`) VALUES
+(142, 'Parabenos', 'Isopropil', 223, 'Comprimido', 1, 1, '2019-11-14', 0, 1233, 123);
 
 -- --------------------------------------------------------
 
@@ -175,6 +180,17 @@ CREATE TABLE `produto_vendido` (
   `idProduto` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `produto_vendido`
+--
+
+INSERT INTO `produto_vendido` (`idProdutoVendido`, `preco`, `idVenda`, `idProduto`) VALUES
+(124, 124, 1, 3),
+(144, 243, 221, 2233),
+(258, 852, 31, 1235),
+(1143, 234, 1, 2234),
+(1211, 852, 31, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -187,10 +203,24 @@ CREATE TABLE `venda` (
   `data_venda` varchar(45) DEFAULT NULL,
   `valor_recebido` double DEFAULT NULL,
   `troco` double DEFAULT NULL,
-  `idFuncionario` smallint(6) NOT NULL,
-  `idCliente` smallint(6) NOT NULL,
-  `idPagamento` smallint(6) NOT NULL
+  `idFuncionario` smallint(6) DEFAULT NULL,
+  `idCliente` smallint(6) DEFAULT NULL,
+  `idPagamento` smallint(6) DEFAULT NULL,
+  `idProduto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `venda`
+--
+
+INSERT INTO `venda` (`idVenda`, `preco_total`, `data_venda`, `valor_recebido`, `troco`, `idFuncionario`, `idCliente`, `idPagamento`, `idProduto`) VALUES
+(1, 246, '2019-11-13', NULL, NULL, NULL, NULL, NULL, 3),
+(3, 41, '2019-11-14', NULL, NULL, NULL, NULL, NULL, NULL),
+(31, 123, '2019-11-21', NULL, NULL, NULL, NULL, NULL, 1235),
+(221, 125, '2019-11-08', NULL, NULL, NULL, NULL, NULL, NULL),
+(225, 123, '2019-11-07', NULL, NULL, NULL, NULL, NULL, NULL),
+(1233, 0, '2019-11-05', NULL, NULL, NULL, NULL, NULL, NULL),
+(2333, 123, '2019-10-31', NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Índices para tabelas despejadas

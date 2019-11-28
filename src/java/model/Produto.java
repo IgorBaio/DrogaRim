@@ -5,7 +5,6 @@
  */
 package model;
 
-import dao.EstoqueDAO;
 import dao.ProdutoDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -20,19 +19,18 @@ public class Produto {
     private String nome;
     private String nomeFarmaco;
     private double preco;
-    private String categoria;
     private String tipo;
     private boolean receita;
-    private Estoque estoque;
-    private int chaveEstoque;
     private boolean medicamento;
     private String lote;
     private int quantidade;
     private Fabricante fabricante;
     private int idFabricante;
+    private Categoria categoria;
+    private int idCategoria;
 
-    public Produto(int idProduto, String nome, String nomeFarmaco, double preco, String categoria,
-             String tipo, boolean receita, boolean medicamento, String lote, int quantidade, Fabricante fabricante) {
+    public Produto(int idProduto, String nome, String nomeFarmaco, double preco,
+            String tipo, boolean receita, boolean medicamento, String lote, int quantidade, Fabricante fabricante, Categoria categoria) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.nomeFarmaco = nomeFarmaco;
@@ -47,7 +45,7 @@ public class Produto {
     }
 
     public Fabricante getFabricante() throws ClassNotFoundException, SQLException {
-         if ((this.idFabricante != 0) && (this.fabricante == null)) {
+        if ((this.idFabricante != 0) && (this.fabricante == null)) {
             this.fabricante = Fabricante.obterFabricante(this.idFabricante);
         }
         return this.fabricante;
@@ -64,6 +62,25 @@ public class Produto {
     public void setIdFabricante(int idFabricante) {
         this.idFabricante = idFabricante;
     }
+    
+     public Categoria getCategoria() throws ClassNotFoundException, SQLException {
+        if ((this.idCategoria != 0) && (this.categoria == null)) {
+            this.categoria = Categoria.obterCategoria(this.idCategoria);
+        }
+        return this.categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
 
     public int getQuantidade() {
         return quantidade;
@@ -79,14 +96,6 @@ public class Produto {
 
     public void setNomeFarmaco(String nomeFarmaco) {
         this.nomeFarmaco = nomeFarmaco;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
     }
 
     public String getTipo() {
@@ -113,39 +122,12 @@ public class Produto {
         this.medicamento = medicamento;
     }
 
-    public Estoque getEstoque() throws ClassNotFoundException, SQLException {
-        if ((this.chaveEstoque != 0) && (this.estoque == null)) {
-            this.estoque = Produto.obterEstoque(this.chaveEstoque);
-        }
-        return estoque;
-    }
-
-    public static Estoque obterEstoque(int idProduto) throws ClassNotFoundException, SQLException {
-        return EstoqueDAO.obterEstoque(idProduto);
-    }
-
-    public static List<Estoque> obterEstoques() throws ClassNotFoundException, SQLException {
-        return EstoqueDAO.obterEstoques();
-    }
-
     public static Produto obterProduto(int idProduto) throws ClassNotFoundException, SQLException {
         return ProdutoDAO.obterProduto(idProduto);
     }
 
     public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException {
         return ProdutoDAO.obterProdutos();
-    }
-
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
-    }
-
-    public int getChaveEstoque() {
-        return chaveEstoque;
-    }
-
-    public void setChaveEstoque(int chaveEstoque) {
-        this.chaveEstoque = chaveEstoque;
     }
 
     public int getIdProduto() {

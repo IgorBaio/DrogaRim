@@ -45,16 +45,28 @@
         <servlet-class>controller.ManterVendaController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaEstoqueController</servlet-name>
-        <servlet-class>controller.PesquisaEstoqueController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ManterEstoqueController</servlet-name>
-        <servlet-class>controller.ManterEstoqueController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ManterFabricanteController</servlet-name>
         <servlet-class>controller.ManterFabricanteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterProdutoVendidoController</servlet-name>
+        <servlet-class>controller.ManterProdutoVendidoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaProdutoVendidoController</servlet-name>
+        <servlet-class>controller.PesquisaProdutoVendidoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterCategoriaController</servlet-name>
+        <servlet-class>controller.ManterCategoriaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaCategoriaController</servlet-name>
+        <servlet-class>controller.PesquisaCategoriaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TratamentoExcecao</servlet-name>
+        <servlet-class>exception.TratamentoExcecao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaProdutoController</servlet-name>
@@ -101,16 +113,28 @@
         <url-pattern>/ManterVendaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaEstoqueController</servlet-name>
-        <url-pattern>/PesquisaEstoqueController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ManterEstoqueController</servlet-name>
-        <url-pattern>/ManterEstoqueController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ManterFabricanteController</servlet-name>
         <url-pattern>/ManterFabricanteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterProdutoVendidoController</servlet-name>
+        <url-pattern>/ManterProdutoVendidoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaProdutoVendidoController</servlet-name>
+        <url-pattern>/PesquisaProdutoVendidoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterCategoriaController</servlet-name>
+        <url-pattern>/ManterCategoriaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaCategoriaController</servlet-name>
+        <url-pattern>/PesquisaCategoriaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TratamentoExcecao</servlet-name>
+        <url-pattern>/TratamentoExcecao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

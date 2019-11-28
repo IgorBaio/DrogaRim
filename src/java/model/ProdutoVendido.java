@@ -16,88 +16,83 @@ import java.util.List;
  * @author Igori
  */
 public class ProdutoVendido {
-    private int id;
-    private double preco;
-    private Produto produtos;
-    private Venda venda;
-    private int chaveProduto;
-    private int chaveVenda;
 
-    public ProdutoVendido(int id, double preco, Produto produtos, Venda venda) {
-        this.id = id;
+    private int idProdutoVendido;
+    private double preco;
+    private Produto produto;
+    private Venda venda;
+    private int idProduto;
+    private int idVenda;
+
+    public ProdutoVendido(int idProdutoVendido, double preco, Produto produto, Venda venda) {
+        this.idProdutoVendido = idProdutoVendido;
         this.preco = preco;
-        this.produtos = produtos;
+        this.produto = produto;
         this.venda = venda;
     }
 
-     
-
-    public Produto getProduto() throws ClassNotFoundException, SQLException{
-        if((this.chaveProduto != 0) && (this.produtos == null)){
-            this.produtos = ProdutoVendido.obterProduto(this.chaveProduto);
+    public Produto getProduto() throws ClassNotFoundException, SQLException {
+        if ((this.idProduto != 0) && (this.produto == null)) {
+            this.produto = Produto.obterProduto(this.idProduto);
         }
-        return produtos;
+        return this.produto;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-     public static Produto obterProduto(int id) throws ClassNotFoundException, SQLException{
-        return ProdutoDAO.obterProduto(id);
-    };
-    
-    
-    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
-        return ProdutoDAO.obterProdutos();
-    };
-    
-    public Venda getVenda() throws ClassNotFoundException, SQLException{
-        if((this.chaveVenda != 0) && (this.venda == null)){
-            this.venda = Venda.obterVenda(this.chaveVenda);
+    public Venda getVenda() throws ClassNotFoundException, SQLException {
+        if ((this.idVenda != 0) && (this.venda == null)) {
+            this.venda = Venda.obterVenda(this.idVenda);
         }
-        return venda;
+        return this.venda;
     }
 
-    public void setProdutos(Produto produtos) {
-        this.produtos = produtos;
+    public int getIdProdutoVendido() {
+        return idProdutoVendido;
     }
 
-    public static Venda obterVenda(int id) throws ClassNotFoundException, SQLException{
+    public void setIdProdutoVendido(int idProdutoVendido) {
+        this.idProdutoVendido = idProdutoVendido;
+    }
+//////////////////////////////////////////////////////////////////////////////////
+
+    public static ProdutoVendido obterProdutoVendido(int idProdutoVendido) throws ClassNotFoundException, SQLException {
+        return ProdutoVendidoDAO.obterProdutoVendido(idProdutoVendido);// Aqui acho que deveira entrar o idVenda, mas não sei como repassar esse valor no parâmetro onde a função tá sendo chamada
+    }
+
+    /**public static List<ProdutoVendido> obterProdutosVendidos() throws ClassNotFoundException, SQLException {
+        return ProdutoVendidoDAO.obterProdutosVendidos();
+    }**/
+
+    public static List<ProdutoVendido> obterProdutosVendidos(int idVenda) throws ClassNotFoundException, SQLException {
+        return ProdutoVendidoDAO.obterProdutosVendidos(idVenda);
+    }
+
+    public static Venda obterVenda(int id) throws ClassNotFoundException, SQLException {
         return VendaDAO.obterVenda(id);
-    };
-    
-    
-    public static List<Venda> obterVenda() throws ClassNotFoundException, SQLException{
+    }
+
+    public static List<Venda> obterVenda() throws ClassNotFoundException, SQLException {
         return VendaDAO.obterVendas();
-    };
-   
+    }
 
     public void setVenda(Venda venda) {
         this.venda = venda;
     }
 
-    public int getChaveProduto() {
-        return chaveProduto;
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public void setChaveProduto(int chaveProduto) {
-        this.chaveProduto = chaveProduto;
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
-    public int getChaveVenda() {
-        return chaveVenda;
+    public int getIdVenda() {
+        return idVenda;
     }
 
-    public void setChaveVenda(int chaveVenda) {
-        this.chaveVenda = chaveVenda;
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
     }
-    
-    
 
     public double getPreco() {
         return preco;
@@ -106,13 +101,26 @@ public class ProdutoVendido {
     public void setPreco(double preco) {
         this.preco = preco;
     }
-    
-    public void gravar() throws SQLException, ClassNotFoundException{
+
+    public void gravar() throws SQLException, ClassNotFoundException {
         ProdutoVendidoDAO.gravar(this);
     }
-    
-    public void excluir() throws SQLException, ClassNotFoundException{
+
+    public void excluir() throws SQLException, ClassNotFoundException {
         ProdutoVendidoDAO.excluir(this);
     }
-    
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        ProdutoVendidoDAO.alterar(this);
+    }
+
+    /**
+     * public static ProdutoVendido listarProdutoVendido(int idVenda) throws
+     * ClassNotFoundException, SQLException{ return
+     * ProdutoVendidoDAO.listarProdutoVendido(idVenda);
+    }
+    public static List<ProdutoVendido> listarProdutosVendidos() throws ClassNotFoundException, SQLException {
+        return ProdutoVendidoDAO.listarProdutosVendidos();
+    }*
+     */
 }

@@ -72,7 +72,7 @@ section hr {
   clear: both;
 }
 
-#filtroVenda, #filtroProduto, #filtroCliente, #filtroFabricante, #filtroFuncionario, #filtroEstoque {
+#filtroVenda, #filtroProduto, #filtroCliente, #filtroFabricante, #filtroFuncionario, #filtroEstoque, #filtroCategoria {
   float: left;
   width:235px;
   height:650px;
@@ -135,6 +135,12 @@ a.barralogo {
 
 }
 .listaFabricante table tr td {
+
+    width: 150px;
+
+}
+
+.listaCategoria table tr td {
 
     width: 150px;
 

@@ -6,6 +6,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.exit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,14 +16,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Fabricante;
 import model.Produto;
+import model.ProdutoVendido;
 import model.Venda;
 
 /**
  *
- * @author Igori
+ * @author mathe
  */
-public class ManterVendaController extends HttpServlet {
+public class ManterProdutoVendidoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,11 +35,11 @@ public class ManterVendaController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("confirmarOperacao")) {
             confirmarOperacao(request, response);
@@ -50,13 +54,17 @@ public class ManterVendaController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
+            request.setAttribute("vendas", Venda.obterVendas());
             request.setAttribute("produtos", Produto.obterProdutos());
+            //request.setAttribute("produtosVendidos", ProdutoVendido.listarProdutosVendidos());
+            //int idVenda = Integer.parseInt(request.getParameter("idVenda"));
+            // /\ ACHO QUE ISSO DEVERIA EXISTIR, SENDO O IDVENDA REPASSADO DA ABA DE VENDA. MAS NÃO ME ADIANTOU EM ND POR ENQUANTO
             if (!operacao.equals("Incluir")) {
-                int idVenda = Integer.parseInt(request.getParameter("idVenda"));
-                Venda venda = Venda.obterVenda(idVenda);
-                request.setAttribute("venda", venda);
+                int idProdutoVendido = Integer.parseInt(request.getParameter("idProdutoVendido"));
+                ProdutoVendido produtoVendido = ProdutoVendido.obterProdutoVendido(idProdutoVendido);
+                request.setAttribute("produtoVendido", produtoVendido);
             }
-            RequestDispatcher view = request.getRequestDispatcher("cadastrarVenda.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("cadastrarProdutoVendido.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
             throw e;
@@ -64,38 +72,45 @@ public class ManterVendaController extends HttpServlet {
             throw new ServletException(e);
         }
     }
-    
-    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException {
+
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, ClassNotFoundException {
         String operacao = request.getParameter("operacao");
+        int idProdutoVendido = Integer.parseInt(request.getParameter("txtIdProdutoVendido"));
+        Double preco = Double.parseDouble(request.getParameter("txtPreco"));
+        int idProduto = Integer.parseInt(request.getParameter("txtIdProduto"));
         int idVenda = Integer.parseInt(request.getParameter("txtIdVenda"));
-        String dataVenda = request.getParameter("txtDataVenda");
-//        double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
 
         try {
-//           Venda venda = new Venda(idVenda, dataVenda, precoTotal);
-           Venda venda = new Venda(idVenda, dataVenda);
+            Venda venda = null;
+            if (idVenda != 0) {
+                venda = Venda.obterVenda(idVenda);
+            }
 
-             if (operacao.equals("Incluir")) {
-                venda.gravar();
+            Produto produto = null;
+            if (idProduto != 0) {
+                produto = Produto.obterProduto(idProduto);
+            }
+
+            ProdutoVendido produtoVendido = new ProdutoVendido(idProdutoVendido, preco, produto, venda);
+            if (operacao.equals("Incluir")) {
+                produtoVendido.gravar();
             } else {
                 if (operacao.equals("Alterar")) {
-                    double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
-                    Venda venda1 = new Venda(idVenda, dataVenda, precoTotal);
-                    venda1.alterar();
-               }else{
-                    if(operacao.equals("Excluir")){
-                    venda.excluir();
+                    produtoVendido.alterar();
+                } else {
+                    if (operacao.equals("Excluir")) {
+                        produtoVendido.excluir();
                     }
                 }
             }
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoVendidoController?idVenda="+idVenda);
             view.forward(request, response);
-        } catch (IOException e) {
-            throw new ServletException(e);
+        } catch (IOException ex) {
+            throw new ServletException(ex);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -109,8 +124,10 @@ public class ManterVendaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ManterProdutoVendidoController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -127,8 +144,7 @@ public class ManterVendaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException | ClassNotFoundException ex) {
         }
     }
 

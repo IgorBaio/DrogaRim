@@ -120,9 +120,7 @@
                          if (!campoNumerico(form.txtCodCategoria.value)){
                             mensagem = mensagem + "Código da Categoria deve ser numérico\n";
                         }   
-                        if (!campoNumerico(form.txtNomeCategoria.value)){
-                            mensagem = mensagem + "Nome da Categoria deve ser numérico\n";
-                        }   
+                        
                         if (mensagem == "") {
                             return true;
                         } else {

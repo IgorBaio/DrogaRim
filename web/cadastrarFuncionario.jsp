@@ -135,15 +135,11 @@
                         if (!campoNumerico(form.txtCodFuncionario.value)){
                             mensagem = mensagem + "Código do Funcionário deve ser numérico\n";
                         }   
-                        if (!campoNumerico(form.txtLoginFuncionario.value)){
-                            mensagem = mensagem + "Login do Funcionário deve ser numérico\n";
-                        }   
+                        
                         if (!campoNumerico(form.txtSenhaFuncionario.value)){
                             mensagem = mensagem + "Senha do Funcionário deve ser numérico\n";
                         }   
-                        if (!campoNumerico(form.txtFuncaoFuncionario.value)){
-                            mensagem = mensagem + "Função do Funcionário deve ser numérico\n";
-                        }   
+                       
                         
                         if (mensagem == "") {
                             return true;

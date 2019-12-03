@@ -176,9 +176,7 @@
                         if (form.txtDataNascimentoCliente.value == "") {
                             mensagem = mensagem + "Data de nascimento deve ser preenchida\n";
                         }
-                        if (form.txtSexoCliente.value == "") {
-                            mensagem = mensagem + "Selecione o gênero\n";
-                        }
+                        
                         if (form.txtEmailCliente.value == "") {
                             mensagem = mensagem + "Informe o e-mail\n";
                         }
@@ -206,9 +204,7 @@
                         if (!campoNumerico(form.txtTelefoneCliente.value)) {
                             mensagem = mensagem + "Telefone deve ser numérico\n";
                         }
-                        if (!campoNumerico(form.txtNumeroCliente.value)) {
-                            mensagem = mensagem + "Número do endereço deve ser numérico\n";
-                        }
+                        
                         if (!campoNumerico(form.txtCpfCliente.value)) {
                             mensagem = mensagem + "CPF deve ser numérico\n";
                         }

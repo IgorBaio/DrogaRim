@@ -141,7 +141,7 @@
 
                     function campoNumerico(valor)
                     {
-                        var caracteresValidos = "0123456789.-";
+                        var caracteresValidos = "0123456789.-,";
                         var ehNumero = true;
                         var umCaracter;
                         for (i = 0; i < valor.length && ehNumero == true; i++)
@@ -191,12 +191,8 @@
                         if (!campoNumerico(form.txtIdProduto.value)){
                             mensagem = mensagem + "Código do Produto deve ser numérico\n";
                         }   
-                        if (!campoNumerico(form.txtReceita.value)){
-                            mensagem = mensagem + "Identificação da Receita do Produto deve ser numérico\n";
-                        }   
-                        if (!campoNumerico(form.txtPrecoProduto.value)){
-                            mensagem = mensagem + "Preço do Produto deve ser numérico\n";
-                        }   
+                       
+                       
                          
                         
                         if (mensagem == "") {

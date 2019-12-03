@@ -123,7 +123,7 @@
                 function validarFormulario(form) {
                     var mensagem;
                     mensagem = "";
-                    if (form.txtidVenda.value == "") {
+                    if (form.txtIdVenda.value == "") {
                         mensagem = mensagem + "Informe o Código da Venda\n";
                     }
                     if (form.txtDataVenda.value == "") {

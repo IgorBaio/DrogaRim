@@ -107,9 +107,7 @@
                         if (!campoNumerico(form.txtCodFabricante.value)){
                             mensagem = mensagem + "Código do Fabricante deve ser numérico\n";
                         }   
-                        if (!campoNumerico(form.txtNomeFabricante.value)){
-                            mensagem = mensagem + "Nome do Fabricante deve ser numérico\n";
-                        }   
+                       
                         if (mensagem == "") {
                             return true;
                         } else {

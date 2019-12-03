@@ -55,7 +55,7 @@
                     </td>
 
                     <td>
-                        <a href="ManterVendaController?acao=prepararOperacao&operacao=Incluir"  class="paginaSelecionada">
+                        <a href="ManterVendaController?acao=prepararOperacao&operacao=Incluir&v=0"  class="paginaSelecionada">
                             Nova venda
                         </a>
                     </td>
@@ -76,56 +76,75 @@
                         </tr>
                         <tr>
                             <td><label> Preço: </label></td>
-                            <td><input type="number" step="0.01" name="txtPrecoTotal" value="${venda.precoTotal}" <c:if test="${operacao != 'Alterar'}"> readonly</c:if>></td>
+                            <td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.precoTotal} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>
                         </tr>
-
-                    </table>
-                    <p><input type="submit" value="${operacao}" name="btnConfirmar"></p>
+                        <tr>
+                            <td><label>Cliente:</label></td>
+                            <td><select name="txtIdCliente" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                                <option value="0" <c:if test="${venda.cliente.idCliente == null}">selected</c:if>></option>
+                                <c:forEach items="${clientes}" var="cliente">
+                                    <option value="${cliente.idCliente}" <c:if test="${venda.cliente.idCliente == cliente.idCliente}">selected</c:if>>${cliente.nome}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                            <td><label>Funcionário:</label></td>
+                            <td><select name="txtIdFuncionario" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                                <option value="0" <c:if test="${venda.funcionario.idFuncionario == null}">selected</c:if>></option>
+                                <c:forEach items="${funcionarios}" var="funcionario">
+                                    <option value="${funcionario.idFuncionario}" <c:if test="${venda.funcionario.idFuncionario == funcionario.idFuncionario}">selected</c:if>>${funcionario.login}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <p><input type="submit" value="${operacao}" name="btnConfirmar"></p>
             </form>
             <SCRIPT language="JavaScript">
 
 
-                    function campoNumerico(valor)
+                function campoNumerico(valor)
+                {
+                    var caracteresValidos = "0123456789";
+                    var ehNumero = true;
+                    var umCaracter;
+                    for (i = 0; i < valor.length && ehNumero == true; i++)
                     {
-                        var caracteresValidos = "0123456789";
-                        var ehNumero = true;
-                        var umCaracter;
-                        for (i = 0; i < valor.length && ehNumero == true; i++)
+                        umCaracter = valor.charAt(i);
+                        if (caracteresValidos.indexOf(umCaracter) == -1)
                         {
-                            umCaracter = valor.charAt(i);
-                            if (caracteresValidos.indexOf(umCaracter) == -1)
-                            {
-                                ehNumero = false;
-                            }
-                        }
-                        return ehNumero;
-                    }
-
-                    function validarFormulario(form) {
-                        var mensagem;
-                        mensagem = "";
-                        if (form.txtidVenda.value == "") {
-                            mensagem = mensagem + "Informe o Código da Venda\n";
-                        }
-                        if (form.txtDataVenda.value == "") {
-                            mensagem = mensagem + "Informe a Data da Venda\n";
-                        }
-                        if (!campoNumerico(form.txtidVenda.value)){
-                            mensagem = mensagem + "Código da Venda deve ser numérico\n";
-                        }   
-                        if (!campoNumerico(form.txtDataVenda.value)){
-                            mensagem = mensagem + "Data da Venda deve ser numérico\n";
-                        }   
-                        if (mensagem == "") {
-                            return true;
-                        } else {
-                            alert(mensagem);
-                            return false;
+                            ehNumero = false;
                         }
                     }
+                    return ehNumero;
+                }
 
-                </SCRIPT>   
-            
+                function validarFormulario(form) {
+                    var mensagem;
+                    mensagem = "";
+                    if (form.txtidVenda.value == "") {
+                        mensagem = mensagem + "Informe o Código da Venda\n";
+                    }
+                    if (form.txtDataVenda.value == "") {
+                        mensagem = mensagem + "Informe a Data da Venda\n";
+                    }
+                    if (!campoNumerico(form.txtidVenda.value)) {
+                        mensagem = mensagem + "Código da Venda deve ser numérico\n";
+                    }
+                    if (!campoNumerico(form.txtDataVenda.value)) {
+                        mensagem = mensagem + "Data da Venda deve ser numérico\n";
+                    }
+                    if (mensagem == "") {
+                        return true;
+                    } else {
+                        alert(mensagem);
+                        return false;
+                    }
+                }
+
+            </SCRIPT>   
+
         </div>
     </section>
 </body>

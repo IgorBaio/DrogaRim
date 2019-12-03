@@ -85,9 +85,9 @@
                                     <option value="${produto.idProduto}" <c:if test="${produtoVendido.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome} - ${produto.preco} </option>
 
                                 </c:forEach>
-                            </select>
-                        </td>
-                    </tr>
+                                </select>
+                            </td>
+                        </tr>
 
                     <tr>
                         <td><label>Venda:</label></td>
@@ -99,6 +99,7 @@
                             </select>
                         </td>
                     </tr>
+                    
 
                 </table>
                 <p><input type="submit" value="${operacao}" name="btnConfirmar"></p>
@@ -108,7 +109,7 @@
 
                     function campoNumerico(valor)
                     {
-                        var caracteresValidos = "0123456789";
+                        var caracteresValidos = "0123456789.-";
                         var ehNumero = true;
                         var umCaracter;
                         for (i = 0; i < valor.length && ehNumero == true; i++)

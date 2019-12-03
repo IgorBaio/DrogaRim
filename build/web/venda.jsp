@@ -12,9 +12,9 @@
         <title>Venda</title>
     </head>
     <body>
-         <header>
+        <header>
             <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
-                <span class="usuario">Vendedor</span>
+            <span class="usuario">Vendedor</span>
             <nav>
                 <hr>
                 <table>
@@ -54,7 +54,7 @@
                     </td>
 
                     <td>
-                        <a href="ManterVendaController?acao=prepararOperacao&operacao=Incluir">
+                        <a href="ManterVendaController?acao=prepararOperacao&operacao=Incluir&v=0">
                             Nova venda
                         </a>
                     </td>
@@ -79,6 +79,8 @@
                             <td>Código</td>
                             <td>Data</td>
                             <td>$ total</td>
+                            <td>Cliente</td>
+                            <td>Funcionário</td>
                             <td>Produtos</td>
                             <td colspan=2>Ação</td>
                         </tr>
@@ -87,10 +89,13 @@
                                 <td><c:out value="${venda.idVenda}" /></td>
                                 <td><c:out value="${venda.dataVenda}" /></td>
                                 <td><c:out value="${venda.precoTotal}" /></td>
+                                <td><c:out value="${venda.cliente.nome}" /></td>
+                                <td><c:out value="${venda.funcionario.login}" /></td>
+
                                 <td><a href="PesquisaProdutoVendidoController?acao=prepararOperacao&operacao=obterProdutosVendidos?&idVenda=<c:out value="${venda.idVenda}"/>">Produtos</a></td>
                                 <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">Alterar</a></td>
                                 <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">Excluir</a></td>
-                                
+
                             </tr>
                         </c:forEach>
                     </table>

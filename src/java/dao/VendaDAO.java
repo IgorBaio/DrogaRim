@@ -58,53 +58,48 @@ public class VendaDAO {
         }
         return venda;
     }
-
+    
     private static Venda instanciarVenda(ResultSet rs) throws SQLException {
         Venda venda = new Venda(
                 rs.getInt("idVenda"),
                 rs.getString("data_venda"),
-                rs.getDouble("preco_total"));
-        
-        return venda;
-    } //+ rs.getDouble("select sum(preco) from produto_vendido where produto_vendido.idVenda = " + rs.getInt("idVenda")) 
+                rs.getDouble("preco_total"),
+                null, null);
+        venda.setIdCliente(rs.getInt("idCliente"));
+        venda.setIdFuncionario(rs.getInt("idFuncionario"));
 
-    public static void gravar(Venda venda) throws ClassNotFoundException, SQLException {
+        return venda;
+    }
+    
+      public static void gravar(Venda venda) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         PreparedStatement comando = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    //"insert into venda (idVenda, data_venda, preco_total, idProduto, valor_recebido,troco )"
-
-                    "insert into venda (idVenda, data_venda, preco_total)"
-                    + "values (?,?,0)");
+                    "insert into venda (idVenda, data_venda, idCliente, idFuncionario, preco_total)"
+                    + "values (?,?,?,?,0)");
             comando.setInt(1, venda.getIdVenda());
             comando.setString(2, venda.getDataVenda());
-            //comando.setDouble(3, venda.getPrecoTotal());
 
-//            comando.setDouble(5, venda.getValorRecebido());
-            // comando.setDouble(6, getTroco());
-            /*
-            if (venda.getCliente() == null){
-                comando.setNull(7, Types.INTEGER);
+            if (venda.getCliente() == null) {
+                comando.setNull(3, Types.INTEGER);
             } else {
-                comando.setInt(7, venda.getCliente().getIdCliente());
+                comando.setInt(3, venda.getCliente().getIdCliente());
             }
-            if (venda.getUsuario() == null){
-                comando.setNull(8, Types.INTEGER);
+            
+            if (venda.getFuncionario() == null) {
+                comando.setNull(4, Types.INTEGER);
             } else {
-                comando.setInt(8, venda.getUsuario().getIdUsuario());
+                comando.setInt(4, venda.getFuncionario().getIdFuncionario());
             }
-            if (venda.getFormaPagamento() == null){
-                comando.setNull(9, Types.INTEGER);
-            } else {
-                comando.setInt(9, venda.getFormaPagamento().getIdFormaPgto());
-            }*/
             comando.executeUpdate();
         } finally {
             fecharConexao(conexao, comando);
         }
     }
+    
+   
 
     public static void excluir(Venda venda) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
@@ -120,7 +115,8 @@ public class VendaDAO {
             fecharConexao(conexao, comando);
         }
     }
-
+    
+    
     public static void alterar(Venda venda) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
@@ -131,29 +127,12 @@ public class VendaDAO {
             comando = conexao.createStatement();
             stringSQL = "update venda set "
                     + "data_venda = '" + venda.getDataVenda() + "', "
+                    + "idCliente = " + venda.getCliente().getIdCliente() + ", "
+                    + "idFuncionario = " + venda.getFuncionario().getIdFuncionario() + ", "
                     + "preco_total = " + venda.getPrecoTotal() + " ";
 
-            stringSQL = stringSQL + "where idVenda = " + venda.getIdVenda() + " ;";
-            /*+ "idCliente = ";
-            if(venda.getCliente() == null){
-                stringSQL = stringSQL + null;
-            }else{
-                stringSQL = stringSQL + venda.getCliente().getIdCliente();
-            }
-            
-            stringSQL = stringSQL + ", idUsuario = ";
-            if (venda.getUsuario() == null){
-                stringSQL = stringSQL + null;
-            }else{
-                stringSQL = stringSQL + venda.getUsuario().getIdUsuario();
-            }
-            
-            stringSQL = stringSQL + ", idFormaPgto = ";
-            if(venda.getFormaPagamento() == null){
-                stringSQL = stringSQL + null;
-            }else{
-                stringSQL = stringSQL + venda.getFormaPagamento().getIdFormaPgto();
-            }*/
+            stringSQL = stringSQL + " where idVenda = " + venda.getIdVenda() + " ;";
+
             comando.execute(stringSQL);
         } finally {
             fecharConexao(conexao, comando);

@@ -14,6 +14,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cliente;
+import model.Funcionario;
 import model.Produto;
 import model.Venda;
 
@@ -50,7 +52,9 @@ public class ManterVendaController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("produtos", Produto.obterProdutos());
+            request.setAttribute("clientes", Cliente.obterClientes());
+            request.setAttribute("funcionarios", Funcionario.obterFuncionarios());
+
             if (!operacao.equals("Incluir")) {
                 int idVenda = Integer.parseInt(request.getParameter("idVenda"));
                 Venda venda = Venda.obterVenda(idVenda);
@@ -65,35 +69,51 @@ public class ManterVendaController extends HttpServlet {
         }
     }
     
+    
+    
     public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException {
         String operacao = request.getParameter("operacao");
         int idVenda = Integer.parseInt(request.getParameter("txtIdVenda"));
         String dataVenda = request.getParameter("txtDataVenda");
-//        double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
+        //double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
+        int idCliente = Integer.parseInt(request.getParameter("txtIdCliente"));
+        int idFuncionario = Integer.parseInt(request.getParameter("txtIdFuncionario"));
 
         try {
-//           Venda venda = new Venda(idVenda, dataVenda, precoTotal);
-           Venda venda = new Venda(idVenda, dataVenda);
+            Cliente cliente = null;
+            if (idCliente != 0) {
+                cliente = Cliente.obterCliente(idCliente);
+            }
+            Funcionario funcionario = null;
+            if (idCliente != 0) {
+                funcionario = Funcionario.obterFuncionario(idFuncionario);
+            }
+            //Venda venda = new Venda(idVenda, dataVenda, precoTotal);
+            Venda venda = new Venda(idVenda, dataVenda, cliente, funcionario);
 
-             if (operacao.equals("Incluir")) {
+            if (operacao.equals("Incluir")) {
                 venda.gravar();
             } else {
                 if (operacao.equals("Alterar")) {
                     double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
-                    Venda venda1 = new Venda(idVenda, dataVenda, precoTotal);
-                    venda1.alterar();
-               }else{
-                    if(operacao.equals("Excluir")){
-                    venda.excluir();
+                    venda = new Venda(idVenda, dataVenda, precoTotal, cliente, funcionario);
+                    venda.alterar();
+                } else {
+                    if (operacao.equals("Excluir")) {
+                        venda.excluir();
                     }
                 }
             }
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");
             view.forward(request, response);
         } catch (IOException e) {
             throw new ServletException(e);
         }
     }
+    
+    
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

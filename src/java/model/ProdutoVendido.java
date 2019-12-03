@@ -23,12 +23,15 @@ public class ProdutoVendido {
     private Venda venda;
     private int idProduto;
     private int idVenda;
+    public static double diferencaPreco ;
+           
 
     public ProdutoVendido(int idProdutoVendido, double preco, Produto produto, Venda venda) {
         this.idProdutoVendido = idProdutoVendido;
         this.preco = preco;
         this.produto = produto;
         this.venda = venda;
+        diferencaPreco = preco;
     }
 
     public Produto getProduto() throws ClassNotFoundException, SQLException {
@@ -97,7 +100,9 @@ public class ProdutoVendido {
     public double getPreco() {
         return preco;
     }
-
+    
+     
+    
     public void setPreco(double preco) {
         this.preco = preco;
     }
@@ -110,9 +115,10 @@ public class ProdutoVendido {
         ProdutoVendidoDAO.excluir(this);
     }
 
-    public void alterar() throws SQLException, ClassNotFoundException {
-        ProdutoVendidoDAO.alterar(this);
-    }
+//    public void alterar() throws SQLException, ClassNotFoundException {
+//       
+//        ProdutoVendidoDAO.alterar(this);
+//    }
 
     /**
      * public static ProdutoVendido listarProdutoVendido(int idVenda) throws

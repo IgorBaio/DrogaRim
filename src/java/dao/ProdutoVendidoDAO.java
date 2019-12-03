@@ -22,6 +22,7 @@ import model.Venda;
  * @author mathe
  */
 public class ProdutoVendidoDAO {
+    
 
     public static ProdutoVendido obterProdutoVendido(int idProdutoVendido) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
@@ -129,7 +130,6 @@ public class ProdutoVendidoDAO {
                     + produtoVendido.getVenda().getPrecoTotal()+
                     " where idVenda = "+produtoVendido.getVenda().getIdVenda());
             comando.executeUpdate();
-
         } finally {
             fecharConexao(conexao, comando);
         }
@@ -154,24 +154,32 @@ public class ProdutoVendidoDAO {
         }
     }
 
-    public static void alterar(ProdutoVendido produtoVendido) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
-        String stringSQL;
-
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            stringSQL = "update produto_vendido set "
-                    + "preco = " + produtoVendido.getPreco() + " ,"
-                    + "idProduto = " + produtoVendido.getIdProduto() + " , "
-                    + "idVenda = " + produtoVendido.getIdVenda() + " ";
-            stringSQL = stringSQL + "where idProdutoVendido = " + produtoVendido.getIdProdutoVendido() + ";";
-            comando.execute(stringSQL);
-
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-    }
+//    public static void alterar(ProdutoVendido produtoVendido) throws SQLException, ClassNotFoundException {
+//        Connection conexao = null;
+//        Statement comando = null;
+//        String stringSQL;
+//
+//        try {
+//           
+//            conexao = BD.getConexao();
+//            comando = conexao.createStatement();
+//            stringSQL = "update produto_vendido set "
+//                    + "preco = " + produtoVendido.getPreco() + " ,"
+//                    + "idProduto = " + produtoVendido.getProduto().getIdProduto() + " , "
+//                    + "idVenda = " + produtoVendido.getVenda().getIdVenda() + " ";
+//            stringSQL = stringSQL + "where idProdutoVendido = " + produtoVendido.getIdProdutoVendido() + ";";
+//            comando.execute(stringSQL);
+////            double diferenca = produtoVendido.getVenda().getPrecoTotal() - produtoVendido.getPreco();
+////            ProdutoVendido.diferencaPreco = ProdutoVendido.diferencaPreco - produtoVendido.getPreco();
+////            produtoVendido.getVenda().setPrecoTotal(produtoVendido.getPreco());
+//            stringSQL = "update venda set preco_total = preco_total - "+ ProdutoVendido.diferencaPreco +
+//                     " where idVenda = "+produtoVendido.getVenda().getIdVenda();
+//            comando.execute(stringSQL);
+//            ProdutoVendido.diferencaPreco =0;
+//
+//        } finally {
+//            fecharConexao(conexao, comando);
+//        }
+//    }
 
 }

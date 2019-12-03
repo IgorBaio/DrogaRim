@@ -20,27 +20,80 @@ public class Venda {
     private String dataVenda;
     private Funcionario funcionario;
     private double valorRecebido;
-//    private Cliente cliente;
-//    private int chaveFuncionario;
-//    private int chaveValorRecebido;
-//    private int chaveCliente;
-//    private int idProduto;
-//    private Produto produto;
+    private Cliente cliente;
+    private int idCliente;
+    private int idFuncionario;
 
     private int idProdutoVendido;
     private ProdutoVendido produtoVendido;
 
-    public Venda(int id, String dataVenda, double precoTotal ) {
+    public Venda(int id, String dataVenda, double precoTotal) {
         this.idVenda = id;
         this.precoTotal = precoTotal;
         this.dataVenda = dataVenda;
 
     }
+
     public Venda(int id, String dataVenda) {
         this.idVenda = id;
-        
+
         this.dataVenda = dataVenda;
 
+    }
+    
+     public Venda(int id, String dataVenda, double precoTotal, Cliente cliente, Funcionario funcionario ) {
+        this.idVenda = id;
+        this.precoTotal = precoTotal;
+        this.dataVenda = dataVenda;
+        this.cliente = cliente;
+        this.funcionario = funcionario;
+
+    }
+
+      public Venda(int id, String dataVenda, Cliente cliente, Funcionario funcionario ) {
+        this.idVenda = id;
+        this.dataVenda = dataVenda;
+        this.cliente = cliente;
+        this.funcionario = funcionario;
+
+    }
+      
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+      
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
+
+    public Funcionario getFuncionario() throws ClassNotFoundException, SQLException {
+        if ((this.idFuncionario != 0) && (this.funcionario == null)) {
+            this.funcionario = Funcionario.obterFuncionario(this.idFuncionario);
+        }
+        return this.funcionario;
+    }
+
+    public Cliente getCliente() throws ClassNotFoundException, SQLException {
+        if ((this.idCliente != 0) && (this.cliente == null)) {
+            this.cliente = Cliente.obterCliente(this.idCliente);
+        }
+        return this.cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public int getIdProdutoVendido() {
@@ -54,7 +107,7 @@ public class Venda {
     public static Venda obterVenda(int id) throws ClassNotFoundException, SQLException {
         return VendaDAO.obterVenda(id);
     }
-    
+
     public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException {
         return VendaDAO.obterVendas();
     }
@@ -84,13 +137,7 @@ public class Venda {
         this.dataVenda = dataVenda;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
+    
 
     public double getValorRecebido() {
         return valorRecebido;
@@ -107,7 +154,6 @@ public class Venda {
 //    public void setCliente(Cliente cliente) {
 //        this.cliente = cliente;
 //    }
-
     public void gravar() throws SQLException, ClassNotFoundException {
         VendaDAO.gravar(this);
     }

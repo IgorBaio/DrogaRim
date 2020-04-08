@@ -72,6 +72,14 @@
                             Cadastrar Categoria
                         </a>
                     </td>
+                    
+                     <td>
+                        <form action="RelatorioProdutoController" method="post">
+                            <a>Relatório por Id Fabricante</a>
+                            <input type="text" name="txtCodFabricante"/><br/>
+                            <input type="submit"/>
+                        </form>
+                    </td>
                 </tr>
             </table>
         </div>

@@ -42,10 +42,10 @@ public class ProdutoVendidocomFiltroVendaController extends HttpServlet {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
             parametros.put("Parameter1", Integer.parseInt(request.getParameter("txtCodProdutoVendidoXVenda")));
-            String relatorio = getServletContext().getRealPath("/WEB-INF/relatorio")+"/produtoVendidocomFiltroVenda.jasper";
+            String relatorio =  getServletContext().getRealPath("/WEB-INF/classes/relatorio")+"/produtoVendidocomFiltroVenda.jasper";
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
-            response.setHeader("Content-Disposition", "attachment;filename=relatorio.pdf");
+            response.setHeader("Content-Disposition", "attachment;filename=relatorioProdutoVendidoPorVenda"+ Integer.parseInt(request.getParameter("txtCodProdutoVendidoXVenda")) +".pdf");
             response.setContentType("application/pdf");
             response.getOutputStream().write(relat);
         } catch (SQLException ex) {

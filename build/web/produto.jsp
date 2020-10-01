@@ -12,8 +12,15 @@
         <link rel="stylesheet" href="style.css">
         <title>Lista de produtos</title>
     </head>
-
-    <body>
+    <script>
+        async function ControllerFabricante(){
+            let response = await fetch('http://localhost:8084/DrogaRIM/ManterProdutoController?acao=prepararOperacao&operacao=Incluir');
+            let body = await response.json();
+            console.log(body);
+   
+        }
+    </script>
+    <body onload="ControllerFabricante">
          <header>
             <a class="barralogo"  href=index.jsp><img src=logoDrogarim.png alt=Drogarim width="25%"/></a>
                 <span class="usuario">Vendedor</span>
@@ -72,13 +79,25 @@
                             Cadastrar Categoria
                         </a>
                     </td>
+                    <td>
+                        <a href="./RelatoriosProduto"><input type="submit" />Relatórios</a>
+                    </td>
                     
                      <td>
-                        <form action="RelatorioProdutoController" method="post">
-                            <a>Relatório por Id Fabricante</a>
-                            <input type="text" name="txtCodFabricante"/><br/>
+                        <form action="RelatorioProdutoController" method="post" name="frmManterProduto" onsubmit="return validarFormulario(this)">
+                          <label>Relatório por Fabricante:</label>
+                            <select name="txtCodFabricante" >
+                                    <option value="0" <c:if test="${produto.fabricante.idFabricante == null}">selected</c:if>></option>
+                                    <c:forEach items="${fabricantes}" var="fabricante">
+                                        <option value="${fabricante.idFabricante}" <c:if test="${produto.fabricante.idFabricante == fabricante.idFabricante}">selected</c:if>>${fabricante.nome}</option>
+                                    </c:forEach>
+                            </select>
+                            
                             <input type="submit"/>
                         </form>
+                         
+                         
+                                
                     </td>
                 </tr>
             </table>

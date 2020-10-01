@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Fabricante;
 import model.Produto;
 
 
@@ -34,6 +35,7 @@ public class PesquisaProdutoController extends HttpServlet {
             throws ServletException, IOException {
         try {
             request.setAttribute("produtos", Produto.obterProdutos());
+            request.setAttribute("fabricantes", Fabricante.obterFabricantes());
             RequestDispatcher view = request.getRequestDispatcher("produto.jsp");
             view.forward(request, response);
         }catch(ClassNotFoundException | SQLException e){

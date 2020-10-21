@@ -13,46 +13,48 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Fabricante;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
-/**
- *
- * @author mathe
- */
+
 public class FabricanteDAO {
     public static Fabricante obterFabricante(int idFabricante) throws ClassNotFoundException, SQLException{
-        Connection conexao = null;
-        Statement comando = null;
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Fabricante fabricante = null;
         try{
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery(
-            "select * from fabricante where idFabricante = "+idFabricante
-            );
-        rs.first();
-        fabricante = instanciarFabricante(rs);
-        }finally{
-            fecharConexao(conexao, comando);
+            tx.begin();
+            fabricante = em.find(Fabricante.class, idFabricante);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
         return fabricante;
     };
     
     public static List<Fabricante> obterFabricantes() throws ClassNotFoundException, SQLException{
-        Connection conexao = null;
-        Statement comando = null;
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         List<Fabricante> fabricantes = new ArrayList();
-        Fabricante fabricante = null;
         try{
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from fabricante");
-            while(rs.next()){
-                fabricante = instanciarFabricante(rs);
-                fabricantes.add(fabricante);
+            tx.begin();
+            TypedQuery<Fabricante> query = em.createQuery("select f from Fabricante f", Fabricante.class);
+            fabricantes = query.getResultList();
+            tx.commit();
+        }catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        }  finally{
-                   DAO.fecharConexao(conexao, comando); 
-                    }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
         return fabricantes;
     }
     
@@ -65,34 +67,41 @@ public class FabricanteDAO {
     }
     
     public static void gravar(Fabricante fabricante) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        PreparedStatement comando = null;
-        try{
-            conexao = BD.getConexao();
-            comando = conexao.prepareStatement ("insert into fabricante(idFabricante, nome) values (?, ?)");
-            comando.setInt(1, fabricante.getIdFabricante());
-            comando.setString(2, fabricante.getNome());
-            comando.executeUpdate();
-        }
-        finally {
-            fecharConexao(conexao, comando);
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            if (fabricante.getIdFabricante()!= null) {
+                em.merge(fabricante);
+            } else {
+                em.persist(fabricante);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
     
     public static void excluir(Fabricante fabricante) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
-        String stringSQL;
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            stringSQL = "delete from fabricante where idFabricante = " + fabricante.getIdFabricante();
-            comando.execute(stringSQL);
-        }
-        finally {
-            fecharConexao(conexao, comando);
-           
+            tx.begin();
+            em.remove(em.getReference(Fabricante.class, fabricante.getIdFabricante()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
     

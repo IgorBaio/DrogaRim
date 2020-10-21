@@ -8,13 +8,19 @@ package model;
 import dao.FabricanteDAO;
 import java.sql.SQLException;
 import java.util.List;
+import javax.persistence.Entity;
 
-/**
- *
- * @author mathe
- */
+import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
 public class Fabricante {
-    private int idFabricante;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer idFabricante;
     private String nome;
 
     public Fabricante(int idFabricante, String nome) {
@@ -30,7 +36,7 @@ public class Fabricante {
         return FabricanteDAO.obterFabricantes();
     }
 
-    public int getIdFabricante() {
+    public Integer getIdFabricante() {
         return idFabricante;
     }
 

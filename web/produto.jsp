@@ -72,11 +72,20 @@
                             Cadastrar Categoria
                         </a>
                     </td>
+                    <td>
+                        <a href="./RelatoriosProduto"><input type="submit"/>Relatórios</a>
+                    </td>
                     
                      <td>
-                        <form action="RelatorioProdutoController" method="post">
-                            <a>Relatório por Id Fabricante</a>
-                            <input type="text" name="txtCodFabricante"/><br/>
+                        <form action="RelatorioProdutoController" method="post" name="frmManterProduto" onsubmit="return validarFormulario(this)">
+                            <label>Relatório por Fabricante:</label>
+                            <select name="txtCodFabricante">
+                                    <option value="0" <c:if test="${produto.fabricante.idFabricante == null}">selected</c:if>></option>
+                                    <c:forEach items="${fabricantes}" var="fabricante">
+                                        <option value="${fabricante.idFabricante}" <c:if test="${produto.fabricante.idFabricante == fabricante.idFabricante}">selected</c:if>>${fabricante.nome}</option>
+                                    </c:forEach>
+                            </select>
+                            
                             <input type="submit"/>
                         </form>
                     </td>

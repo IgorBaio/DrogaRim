@@ -76,6 +76,10 @@
         <servlet-name>RelatorioProdutoController</servlet-name>
         <servlet-class>relatorio.RelatorioProdutoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioCategoriaController</servlet-name>
+        <servlet-class>relatorio.RelatorioCategoriaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaProdutoController</servlet-name>
         <url-pattern>/PesquisaProdutoController</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>RelatorioProdutoController</servlet-name>
         <url-pattern>/RelatorioProdutoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioCategoriaController</servlet-name>
+        <url-pattern>/RelatorioCategoriaController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -61,7 +61,12 @@
                 </tr>
             </table>
         </div>
-
+        <h1>Relatório</h1>
+        <form action="ProdutoVendidocomFiltroVendaController" method="post">
+            Entre com o código do pr x venda
+            <input type="text" name="txtCodProdutoVendidoXVenda"/><br/>
+            <input type="submit"/>
+        </form>
         <section>
             <div id="secaoVenda">
                 <div id="buscaVenda">
@@ -102,12 +107,7 @@
                 </div>
             </div>
         </section>
-        <h1>Relatório</h1>
-    <form action="ProdutoVendidocomFiltroVendaController" method="post">
-      Entre com o código do pr x venda
-      <input type="text" name="txtCodProdutoVendidoXVenda"/><br/>
-      <input type="submit"/>
-    </form>
+
     </body>
-        
-    </body>
+
+</body>

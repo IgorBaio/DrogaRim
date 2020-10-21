@@ -8,9 +8,15 @@ package model;
 import dao.ClienteDAO;
 import java.sql.SQLException;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
+@Entity
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idCliente;
     private String nome;
     private String cpf;

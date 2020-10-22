@@ -23,6 +23,10 @@ public class Fabricante {
     private Integer idFabricante;
     private String nome;
 
+    public Fabricante() {
+
+    }
+    
     public Fabricante(int idFabricante, String nome) {
         this.idFabricante = idFabricante;
         this.nome = nome;

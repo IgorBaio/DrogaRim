@@ -11,19 +11,30 @@ import dao.VendaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 /**
  *
  * @author Igori
  */
-public class ProdutoVendido {
 
-    private int idProdutoVendido;
+@Entity
+public class ProdutoVendido {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer idProdutoVendido;
     private double preco;
-    private Produto produto;
-    private Venda venda;
     private int idProduto;
     private int idVenda;
     public static double diferencaPreco ;
+    @ManyToOne
+    private Produto produto;
+    @ManyToOne
+    private Venda venda;
            
 
     public ProdutoVendido(int idProdutoVendido, double preco, Produto produto, Venda venda) {

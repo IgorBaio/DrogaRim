@@ -4,7 +4,9 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.Fabricante</class>    
     <class>model.Funcionario</class>    
-    <class>model.Categoria</class>
+    <class>model.Categoria</class>    
+    <class>model.ProdutoVendido</class>
+
 
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

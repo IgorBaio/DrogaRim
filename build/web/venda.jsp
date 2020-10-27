@@ -1,14 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta content="text/html">
         <link rel="stylesheet" href="style.css">
-
         <title>Venda</title>
     </head>
     <body>
@@ -89,12 +90,17 @@
                             <td>Produtos</td>
                             <td colspan=2>Ação</td>
                         </tr>
-                        <c:forEach items="${vendas}" var="venda">
+                        <c:if test="${vendas == null}">
+                            <p>Nenhuma venda cadastrada</p>
+                        </c:if>
+                        <c:if test="${vendas != null}"><c:forEach items="${vendas}" var="venda">
                             <tr>
                                 <td><c:out value="${venda.idVenda}" /></td>
                                 <td><c:out value="${venda.dataVenda}" /></td>
                                 <td><c:out value="${venda.precoTotal}" /></td>
-                                <td><c:out value="${venda.cliente.nome}" /></td>
+                                           
+                                <td>nome cliente</td>
+
                                 <td><c:out value="${venda.funcionario.login}" /></td>
 
                                 <td><a href="PesquisaProdutoVendidoController?acao=prepararOperacao&operacao=obterProdutosVendidos?&idVenda=<c:out value="${venda.idVenda}"/>">Produtos</a></td>
@@ -102,12 +108,10 @@
                                 <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">Excluir</a></td>
 
                             </tr>
-                        </c:forEach>
+                        </c:forEach></c:if>
                     </table>
                 </div>
             </div>
         </section>
-
     </body>
-
-</body>
+</html>

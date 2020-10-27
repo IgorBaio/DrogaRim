@@ -13,7 +13,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import model.Categoria;
+import model.Funcionario;
 
 /**
  *
@@ -21,20 +25,21 @@ import model.Categoria;
  */
 public class CategoriaDAO {
 
-    public static Categoria obterCategoria(int idCategoria) throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
+    public static Categoria obterCategoria(Integer idCategoria) throws ClassNotFoundException, SQLException {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Categoria categoria = null;
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery(
-                    "select * from categoria where idCategoria = " + idCategoria
-            );
-            rs.first();
-            categoria = instanciarCategoria(rs);
+        try{
+            tx.begin();
+            categoria = em.find(Categoria.class, idCategoria);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return categoria;
     }
@@ -42,20 +47,21 @@ public class CategoriaDAO {
     ;
     
     public static List<Categoria> obterCategorias() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
+         EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         List<Categoria> categorias = new ArrayList();
-        Categoria categoria = null;
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from categoria");
-            while (rs.next()) {
-                categoria = instanciarCategoria(rs);
-                categorias.add(categoria);
+        try{
+            tx.begin();
+            TypedQuery<Categoria> query = em.createQuery("select c from Categoria c", Categoria.class);
+            categorias = query.getResultList();
+            tx.commit();
+        }catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
+            throw new RuntimeException(e);
         } finally {
-            DAO.fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return categorias;
     }

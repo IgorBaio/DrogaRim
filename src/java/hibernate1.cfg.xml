@@ -44,7 +44,9 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
     <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/drogarimfull?zeroDateTimeBehavior=convertToNull</property>
-    <class-cache class="model.Fabricante" include="all" usage="read-only"/>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/drogarimfull</property>
+    <property name="show_sql">true</property>
+    <class-cache class="model.Fabricante" include="all" region="" usage="transactional"/>
+    <class-cache class="model.Funcionario" include="all" region="" usage="transactional"/>
   </session-factory>
 </hibernate-configuration>

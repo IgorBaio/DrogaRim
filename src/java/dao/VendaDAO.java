@@ -37,6 +37,8 @@ public class VendaDAO {
                 venda = instanciarVenda(rs);
                 vendas.add(venda);
             }
+           
+            
         } finally {
             fecharConexao(conexao, comando);
         }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package dao;
+
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,8 +18,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-
 public class FabricanteDAO {
+
+    private FabricanteDAO() {
+
+    }
+    
     public static Fabricante obterFabricante(int idFabricante) throws ClassNotFoundException, SQLException{
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -65,11 +70,12 @@ public class FabricanteDAO {
         );
         return fabricante;
     }
-    
+
     public static void gravar(Fabricante fabricante) throws SQLException, ClassNotFoundException {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        try {
+
+         try {
             tx.begin();
             if (fabricante.getIdFabricante()!= null) {
                 em.merge(fabricante);
@@ -86,11 +92,11 @@ public class FabricanteDAO {
             PersistenceUtil.close(em);
         }
     }
-    
+
     public static void excluir(Fabricante fabricante) throws SQLException, ClassNotFoundException {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        
+
         try {
             tx.begin();
             em.remove(em.getReference(Fabricante.class, fabricante.getIdFabricante()));
@@ -104,26 +110,25 @@ public class FabricanteDAO {
             PersistenceUtil.close(em);
         }
     }
-    
-    
-    public static void alterar(Fabricante fabricante) throws SQLException, ClassNotFoundException{
+
+    public static void alterar(Fabricante fabricante) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "update fabricante set "
-                    +"nome = '" + fabricante.getNome() +"' ";
-                    
-            stringSQL = stringSQL + "where idFabricante= '"+fabricante.getIdFabricante() +"' ";
+                    + "nome = '" + fabricante.getNome() + "' ";
+
+            stringSQL = stringSQL + "where idFabricante= '" + fabricante.getIdFabricante() + "' ";
             comando.execute(stringSQL);
-            
-        }finally{
+
+        } finally {
             fecharConexao(conexao, comando);
         }
-        
+
     }
-    
+
 }

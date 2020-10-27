@@ -33,7 +33,7 @@
                         </td>
 
                         <td>
-                            <a href="PesquisaProdutoController"  class="paginaSelecionada">Produto</a>
+                            <a href="PesquisaProdutoController" class="paginaSelecionada">Produto</a>
                         </td>
 
                         <td>
@@ -90,9 +90,6 @@
                             </select>
                             <input type="submit"/>
                         </form>
-                         
-                         
-                                
                     </td>
                 </tr>
             </table>
@@ -141,7 +138,7 @@
                                 <td><c:out value="${produto.quantidade}" /></td> 
                                 <td><c:out value="${produto.fabricante.nome}" /></td>
 
-                                <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}" />">Excluir</a></td>
+                                <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}"/>">Excluir</a></td>
                                 <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Alterar&idProduto=<c:out value="${produto.idProduto}"/>">Alterar</a></td>
                             </tr>
                         </c:forEach>

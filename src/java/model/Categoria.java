@@ -2,6 +2,10 @@ package model;
 import dao.CategoriaDAO;
 import java.sql.SQLException;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,10 +17,16 @@ import java.util.List;
  *
  * @author mathe
  */
+
+@Entity
 public class Categoria {
-        private int idCategoria;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idCategoria;
     private String nome;
 
+    public Categoria() {};
+    
     public Categoria(int idCategoria, String nome) {
         this.idCategoria = idCategoria;
         this.nome = nome;

@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pureza/Documents/LP/DrogaRim/DrogaRim/src/java/model/ProdutoVendido.java</file>
-            <file>file:/C:/Users/Pureza/Documents/LP/DrogaRim/DrogaRim/src/java/dao/ProdutoVendidoDAO.java</file>
-            <file>file:/C:/Users/Pureza/Documents/LP/DrogaRim/DrogaRim/src/java/model/Fabricante.java</file>
-            <file>file:/C:/Users/Pureza/Documents/LP/DrogaRim/DrogaRim/src/java/dao/FabricanteDAO.java</file>
-            <file>file:/C:/Users/Pureza/Documents/LP/DrogaRim/DrogaRim/src/java/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/Pureza/Documents/LP/DrogaRim/DrogaRim/src/java/dao/PersistenceUtil.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/hibernate1.cfg.xml</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/FabricanteDAO.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/model/Funcionario.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/PersistenceUtil.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/model/Fabricante.java</file>
         </group>
     </open-files>
 </project-private>

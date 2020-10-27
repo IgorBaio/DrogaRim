@@ -9,34 +9,31 @@ import dao.FabricanteDAO;
 import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.Entity;
-
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Fabricante {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idFabricante;
     private String nome;
 
     public Fabricante() {
-
     }
-    
+
     public Fabricante(int idFabricante, String nome) {
         this.idFabricante = idFabricante;
         this.nome = nome;
     }
-    
-    public static Fabricante obterFabricante(int idFabricante) throws ClassNotFoundException, SQLException{
+
+    public static Fabricante obterFabricante(Integer idFabricante) throws ClassNotFoundException, SQLException {
         return FabricanteDAO.obterFabricante(idFabricante);
     }
-    
-    public static List<Fabricante> obterFabricantes() throws ClassNotFoundException, SQLException{
+
+    public static List<Fabricante> obterFabricantes() throws ClassNotFoundException, SQLException {
         return FabricanteDAO.obterFabricantes();
     }
 
@@ -55,16 +52,17 @@ public class Fabricante {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    public void gravar() throws SQLException, ClassNotFoundException{
+
+    public void gravar() throws SQLException, ClassNotFoundException {
         FabricanteDAO.gravar(this);
     }
-        public void excluir() throws SQLException, ClassNotFoundException{
+
+    public void excluir() throws SQLException, ClassNotFoundException {
         FabricanteDAO.excluir(this);
     }
-         public void alterar() throws SQLException, ClassNotFoundException{
+
+    public void alterar() throws SQLException, ClassNotFoundException {
         FabricanteDAO.alterar(this);
     }
-        
-        
+
 }

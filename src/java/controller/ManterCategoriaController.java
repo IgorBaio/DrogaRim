@@ -42,6 +42,7 @@ public class ManterCategoriaController extends HttpServlet {
             }
         }
     }
+     
 
     public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {

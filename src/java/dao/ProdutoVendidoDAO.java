@@ -5,20 +5,14 @@
  */
 package dao;
 
-import static dao.DAO.fecharConexao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import model.ProdutoVendido;
-import model.Venda;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import model.ProdutoVendido;
 
 /**
  *
@@ -30,61 +24,80 @@ public class ProdutoVendidoDAO {
     public static void gravar(ProdutoVendido produtoVendido) throws SQLException, ClassNotFoundException {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
+
         try {
             tx.begin();
-            if (produtoVendido == null){
-                em.persist(produtoVendido);
-            } else{
+            if (produtoVendido.getIdProdutoVendido() != null) {
                 em.merge(produtoVendido);
+            } else {
+                em.persist(produtoVendido);
             }
             tx.commit();
-        } catch (Exception e){
-            tx.rollback();
-            System.err.println(e);
-        } finally{
-            em.close();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
     
     public static void excluir(ProdutoVendido produtoVendido) throws SQLException, ClassNotFoundException {
-        EntityManager em = PersistenceUtil.getEntityManager();
+       EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        try{
+
+        try {
             tx.begin();
-            em.remove(produtoVendido);
+            em.remove(em.getReference(ProdutoVendido.class, produtoVendido.getIdProdutoVendido()));
             tx.commit();
-        } catch (Exception e){
-            tx.rollback();
-            System.err.println(e);
-        }finally{
-            em.close();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
     
-    public static ProdutoVendido obterProdutoVendido(int idProdutoVendido) throws ClassNotFoundException, SQLException {
+    public static ProdutoVendido obterProdutoVendido(Integer idProdutoVendido) throws ClassNotFoundException, SQLException {
         EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         ProdutoVendido produtoVendido = null;
         try {
+            tx.begin();
             produtoVendido = em.find(ProdutoVendido.class, idProdutoVendido);
+            tx.commit();
         } catch (Exception e) {
-            System.err.println(e);
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            em.close();
+            PersistenceUtil.close(em);
         }
         return produtoVendido;
     }
 
     public static List<ProdutoVendido> obterProdutosVendidos(int idVenda) throws ClassNotFoundException, SQLException {
-        EntityManager em = PersistenceUtil.getEntityManager();
-        List<ProdutoVendido> produtosVendidos = new ArrayList<>();
+       EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<ProdutoVendido> produtoVendidos = new ArrayList();
         try {
-            produtosVendidos = em.createQuery("from ProdutoVendido pv where idVenda = " + idVenda).getResultList();
+            tx.begin();
+            TypedQuery<ProdutoVendido> query = em.createQuery("select pv from ProdutoVendido pv", ProdutoVendido.class);
+            produtoVendidos = query.getResultList();
+            tx.commit();
         } catch (Exception e) {
-            System.err.println(e);
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            em.close();
+            PersistenceUtil.close(em);
         }
-        return produtosVendidos;
+        return produtoVendidos;
     }
 
     /**

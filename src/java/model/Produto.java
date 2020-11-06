@@ -6,15 +6,22 @@
 package model;
 
 import dao.ProdutoDAO;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author Igori
  */
-public class Produto {
-
+@Entity
+public class Produto implements Serializable {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idProduto;
     private String nome;
     private String nomeFarmaco;
@@ -29,7 +36,9 @@ public class Produto {
     private Categoria categoria;
     private int idCategoria;
 
-    public Produto(int idProduto, String nome, String nomeFarmaco, double preco,
+    public Produto(){}
+    
+    public Produto(Integer idProduto, String nome, String nomeFarmaco, double preco,
             String tipo, boolean receita, boolean medicamento, String lote, int quantidade, Fabricante fabricante, Categoria categoria) {
         this.idProduto = idProduto;
         this.nome = nome;
@@ -55,11 +64,11 @@ public class Produto {
         this.fabricante = fabricante;
     }
 
-    public int getIdFabricante() {
+    public Integer getIdFabricante() {
         return idFabricante;
     }
 
-    public void setIdFabricante(int idFabricante) {
+    public void setIdFabricante(Integer idFabricante) {
         this.idFabricante = idFabricante;
     }
     
@@ -74,19 +83,19 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public int getIdCategoria() {
+    public Integer getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
 
-    public int getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -130,11 +139,11 @@ public class Produto {
         return ProdutoDAO.obterProdutos();
     }
 
-    public int getIdProduto() {
+    public Integer getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(int idProduto) {
+    public void setIdProduto(Integer idProduto) {
         this.idProduto = idProduto;
     }
 

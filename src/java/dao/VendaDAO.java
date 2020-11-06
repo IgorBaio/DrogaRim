@@ -14,6 +14,11 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import model.Fabricante;
+import model.Venda;
 import model.Venda;
 
 /**
@@ -23,98 +28,95 @@ import model.Venda;
 public class VendaDAO {
 
     public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Venda> vendas = new java.util.ArrayList<>();
-        Venda venda = null;
-
+      EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Venda> vendas = new ArrayList();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from venda");
-
-            while (rs.next()) {
-                venda = instanciarVenda(rs);
-                vendas.add(venda);
+            tx.begin();
+            TypedQuery<Venda> query = em.createQuery("select v from Venda v", Venda.class);
+            vendas = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-           
-            
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return vendas;
     }
 
-    public static Venda obterVenda(int idVenda) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
+    public static Venda obterVenda(Integer idVenda) throws SQLException, ClassNotFoundException {
+         EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Venda venda = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from venda where idVenda =" + idVenda);
-            rs.first();
-            venda = instanciarVenda(rs);
+            tx.begin();
+            venda = em.find(Venda.class, idVenda);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return venda;
     }
     
-    private static Venda instanciarVenda(ResultSet rs) throws SQLException {
-        Venda venda = new Venda(
-                rs.getInt("idVenda"),
-                rs.getString("data_venda"),
-                rs.getDouble("preco_total"),
-                null, null);
-        venda.setIdCliente(rs.getInt("idCliente"));
-        venda.setIdFuncionario(rs.getInt("idFuncionario"));
-
-        return venda;
-    }
+//    private static Venda instanciarVenda(ResultSet rs) throws SQLException {
+//        Venda venda = new Venda(
+//                rs.getInt("idVenda"),
+//                rs.getString("data_venda"),
+//                rs.getDouble("preco_total"),
+//                null, null);
+//        venda.setIdCliente(rs.getInt("idCliente"));
+//        venda.setIdVenda(rs.getInt("idVenda"));
+//
+//        return venda;
+//    }
     
       public static void gravar(Venda venda) throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        PreparedStatement comando = null;
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.prepareStatement(
-                    "insert into venda (idVenda, data_venda, idCliente, idFuncionario, preco_total)"
-                    + "values (?,?,?,?,0)");
-            comando.setInt(1, venda.getIdVenda());
-            comando.setString(2, venda.getDataVenda());
+            EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
 
-            if (venda.getCliente() == null) {
-                comando.setNull(3, Types.INTEGER);
+        try {
+            tx.begin();
+            if (venda.getIdVenda() != null) {
+                em.merge(venda);
             } else {
-                comando.setInt(3, venda.getCliente().getIdCliente());
+                em.persist(venda);
             }
-            
-            if (venda.getFuncionario() == null) {
-                comando.setNull(4, Types.INTEGER);
-            } else {
-                comando.setInt(4, venda.getFuncionario().getIdFuncionario());
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-            comando.executeUpdate();
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
     }
     
    
 
     public static void excluir(Venda venda) throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        String stringSQL;
+       EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
 
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            stringSQL = "delete from venda where idVenda = " + venda.getIdVenda() + ";";
-            comando.execute(stringSQL);
+            tx.begin();
+            em.remove(em.getReference(Venda.class, venda.getIdVenda()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
     }
     
@@ -130,7 +132,7 @@ public class VendaDAO {
             stringSQL = "update venda set "
                     + "data_venda = '" + venda.getDataVenda() + "', "
                     + "idCliente = " + venda.getCliente().getIdCliente() + ", "
-                    + "idFuncionario = " + venda.getFuncionario().getIdFuncionario() + ", "
+                    + "idVenda = " + venda.getIdVenda() + ", "
                     + "preco_total = " + venda.getPrecoTotal() + " ";
 
             stringSQL = stringSQL + " where idVenda = " + venda.getIdVenda() + " ;";

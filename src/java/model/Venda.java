@@ -6,42 +6,55 @@
 package model;
 
 import dao.VendaDAO;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Igori
  */
-public class Venda {
+@Entity
+public class Venda implements Serializable {
 
-    private int idVenda;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idVenda;
     private double precoTotal;
     private String dataVenda;
+    @ManyToOne
     private Funcionario funcionario;
     private double valorRecebido;
+    @ManyToOne
     private Cliente cliente;
-    private int idCliente;
-    private int idFuncionario;
-
-    private int idProdutoVendido;
+    private Integer idCliente;
+    private Integer idFuncionario;
+    private Integer idProdutoVendido;
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="idVenda")
     private ProdutoVendido produtoVendido;
 
-    public Venda(int id, String dataVenda, double precoTotal) {
+    public Venda() {
+    }
+
+    public Venda(Integer id, String dataVenda, double precoTotal) {
         this.idVenda = id;
         this.precoTotal = precoTotal;
         this.dataVenda = dataVenda;
-
     }
 
-    public Venda(int id, String dataVenda) {
+    public Venda(Integer id, String dataVenda) {
         this.idVenda = id;
-
         this.dataVenda = dataVenda;
-
     }
-    
-     public Venda(int id, String dataVenda, double precoTotal, Cliente cliente, Funcionario funcionario ) {
+
+    public Venda(Integer id, String dataVenda, double precoTotal, Cliente cliente, Funcionario funcionario) {
         this.idVenda = id;
         this.precoTotal = precoTotal;
         this.dataVenda = dataVenda;
@@ -50,23 +63,23 @@ public class Venda {
 
     }
 
-      public Venda(int id, String dataVenda, Cliente cliente, Funcionario funcionario ) {
+    public Venda(Integer id, String dataVenda, Cliente cliente, Funcionario funcionario) {
         this.idVenda = id;
         this.dataVenda = dataVenda;
         this.cliente = cliente;
         this.funcionario = funcionario;
 
     }
-      
+
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-      
-    public int getIdFuncionario() {
+
+    public Integer getIdFuncionario() {
         return idFuncionario;
     }
 
-    public void setIdFuncionario(int idFuncionario) {
+    public void setIdFuncionario(Integer idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
 
@@ -88,23 +101,23 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public int getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
-    public int getIdProdutoVendido() {
+    public Integer getIdProdutoVendido() {
         return idProdutoVendido;
     }
 
-    public void setIdProdutoVendido(int idProdutoVendido) {
+    public void setIdProdutoVendido(Integer idProdutoVendido) {
         this.idProdutoVendido = idProdutoVendido;
     }
 
-    public static Venda obterVenda(int id) throws ClassNotFoundException, SQLException {
+    public static Venda obterVenda(Integer id) throws ClassNotFoundException, SQLException {
         return VendaDAO.obterVenda(id);
     }
 
@@ -116,11 +129,11 @@ public class Venda {
         return precoTotal;
     }
 
-    public int getIdVenda() {
+    public Integer getIdVenda() {
         return idVenda;
     }
 
-    public void setIdenda(int id) {
+    public void setIdVenda(Integer id) {
         this.idVenda = id;
     }
 
@@ -136,8 +149,6 @@ public class Venda {
     public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
     }
-
-    
 
     public double getValorRecebido() {
         return valorRecebido;

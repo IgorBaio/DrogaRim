@@ -78,8 +78,9 @@
                         <a href="ManterCategoriaController?acao=prepararOperacao&operacao=Incluir">
                             Cadastrar Categoria
                         </a>
-                    </td>                    
-                     <td>
+                    </td>
+                       
+                    <td>
                         <form action="RelatorioProdutoController" method="post" name="frmManterProduto" onsubmit="return validarFormulario(this)">
                             <label>Relatório por Fabricante:</label>
                             <select name="txtCodFabricante">

@@ -99,7 +99,7 @@
                                 <td><c:out value="${venda.dataVenda}" /></td>
                                 <td><c:out value="${venda.precoTotal}" /></td>
                                            
-                                <td>nome cliente</td>
+                                <td><c:out value="${venda.getCliente().getNome()}" /></td>
 
                                 <td><c:out value="${venda.getFuncionario().getLogin()}" /></td>
 

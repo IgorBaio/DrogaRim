@@ -97,7 +97,7 @@ public class ManterVendaController extends HttpServlet {
                 if (operacao.equals("Alterar")) {
                     double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
                     venda = new Venda(idVenda, dataVenda, precoTotal, cliente, funcionario);
-                    venda.alterar();
+//                    venda.alterar();
                 } else {
                     if (operacao.equals("Excluir")) {
                         venda.excluir();

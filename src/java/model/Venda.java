@@ -33,8 +33,8 @@ public class Venda implements Serializable {
     private double valorRecebido;
     @ManyToOne
     private Cliente cliente;
-    private Integer idCliente;
-    private Integer idFuncionario;
+//    private Integer idCliente;
+//    private Integer idFuncionario;
 
     public Venda() {
     }
@@ -71,39 +71,46 @@ public class Venda implements Serializable {
         this.funcionario = funcionario;
     }
 
-    public Integer getIdFuncionario() {
-        return idFuncionario;
-    }
-
-    public void setIdFuncionario(Integer idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
-
-    public Funcionario getFuncionario() throws ClassNotFoundException, SQLException {
-        if ((this.idFuncionario != 0) && (this.funcionario == null)) {
-            this.funcionario = Funcionario.obterFuncionario(this.idFuncionario);
-        }
+    public Funcionario getFuncionario(){
         return this.funcionario;
     }
-
-    public Cliente getCliente() throws ClassNotFoundException, SQLException {
-        if ((this.idCliente != 0) && (this.cliente == null)) {
-            this.cliente = Cliente.obterCliente(this.idCliente);
-        }
+    
+       public Cliente getCliente(){
         return this.cliente;
     }
+//    public Integer getIdFuncionario() {
+//        return idFuncionario;
+//    }
+//
+//    public void setIdFuncionario(Integer idFuncionario) {
+//        this.idFuncionario = idFuncionario;
+//    }
+//
+//    public Funcionario getFuncionario() throws ClassNotFoundException, SQLException {
+//        if ((this.idFuncionario != 0) && (this.funcionario == null)) {
+//            this.funcionario = Funcionario.obterFuncionario(this.idFuncionario);
+//        }
+//        return this.funcionario;
+//    }
+//
+//    public Cliente getCliente() throws ClassNotFoundException, SQLException {
+//        if ((this.idCliente != 0) && (this.cliente == null)) {
+//            this.cliente = Cliente.obterCliente(this.idCliente);
+//        }
+//        return this.cliente;
+//    }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Integer getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
+//    public void setCliente(Cliente cliente) {
+//        this.cliente = cliente;
+//    }
+//
+//    public Integer getIdCliente() {
+//        return idCliente;
+//    }
+//
+//    public void setIdCliente(Integer idCliente) {
+//        this.idCliente = idCliente;
+//    }
 
 //    public Integer getIdProdutoVendido() {
 //        return idProdutoVendido;
@@ -177,7 +184,7 @@ public class Venda implements Serializable {
         VendaDAO.excluir(this);
     }
 
-    public void alterar() throws SQLException, ClassNotFoundException {
-        VendaDAO.alterar(this);
-    }
+//    public void alterar() throws SQLException, ClassNotFoundException {
+//        VendaDAO.alterar(this);
+//    }
 }

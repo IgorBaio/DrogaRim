@@ -7,18 +7,13 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import model.Fabricante;
-import model.Venda;
 import model.Venda;
 
 /**
@@ -121,25 +116,25 @@ public class VendaDAO {
     }
     
     
-    public static void alterar(Venda venda) throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        String stringSQL;
-
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            stringSQL = "update venda set "
-                    + "data_venda = '" + venda.getDataVenda() + "', "
-                    + "idCliente = " + venda.getCliente().getIdCliente() + ", "
-                    + "idVenda = " + venda.getIdVenda() + ", "
-                    + "preco_total = " + venda.getPrecoTotal() + " ";
-
-            stringSQL = stringSQL + " where idVenda = " + venda.getIdVenda() + " ;";
-
-            comando.execute(stringSQL);
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-    }
+//    public static void alterar(Venda venda) throws ClassNotFoundException, SQLException {
+//        Connection conexao = null;
+//        Statement comando = null;
+//        String stringSQL;
+//
+//        try {
+//            conexao = BD.getConexao();
+//            comando = conexao.createStatement();
+//            stringSQL = "update venda set "
+//                    + "data_venda = '" + venda.getDataVenda() + "', "
+//                    + "idCliente = " + venda.getCliente().getIdCliente() + ", "
+//                    + "idVenda = " + venda.getIdVenda() + ", "
+//                    + "preco_total = " + venda.getPrecoTotal() + " ";
+//
+//            stringSQL = stringSQL + " where idVenda = " + venda.getIdVenda() + " ;";
+//
+//            comando.execute(stringSQL);
+//        } finally {
+//            fecharConexao(conexao, comando);
+//        }
+//    }
 }

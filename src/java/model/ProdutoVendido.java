@@ -13,11 +13,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -38,7 +36,6 @@ public class ProdutoVendido implements Serializable {
     @ManyToOne
     private Produto produto;
     @ManyToOne
-    @JoinColumn(name = "idVenda")
     private Venda venda;
 
     public ProdutoVendido() {

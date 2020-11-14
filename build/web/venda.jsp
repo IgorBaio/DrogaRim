@@ -101,7 +101,7 @@
                                            
                                 <td>nome cliente</td>
 
-                                <td><c:out value="${venda.funcionario.login}" /></td>
+                                <td><c:out value="${venda.getFuncionario().getLogin()}" /></td>
 
                                 <td><a href="PesquisaProdutoVendidoController?acao=prepararOperacao&operacao=obterProdutosVendidos?&idVenda=<c:out value="${venda.idVenda}"/>">Produtos</a></td>
                                 <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">Alterar</a></td>

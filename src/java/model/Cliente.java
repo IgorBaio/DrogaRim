@@ -6,7 +6,6 @@
 package model;
 
 import dao.ClienteDAO;
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.Entity;
@@ -14,9 +13,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Cliente {
 
-    private int idCliente;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idCliente;
     private String nome;
     private String cpf;
     private String telefone;
@@ -34,7 +36,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nome, String cpf, String telefone, String email, String numeroCasa, String complemento, String dataNascimento, boolean sexo, String cep, String logradouro, String bairro, String cidade, String uf) {
+    public Cliente(Integer idCliente, String nome, String cpf, String telefone, String email, String numeroCasa, String complemento, String dataNascimento, boolean sexo, String cep, String logradouro, String bairro, String cidade, String uf) {
         this.idCliente = idCliente;
         this.nome = nome;
         this.cpf = cpf;
@@ -79,11 +81,11 @@ public class Cliente {
         return ClienteDAO.obterCliente(idCliente);
     }
 
-    public int getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 

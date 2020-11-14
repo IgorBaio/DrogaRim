@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -36,9 +35,6 @@ public class Venda implements Serializable {
     private Cliente cliente;
     private Integer idCliente;
     private Integer idFuncionario;
-    private Integer idProdutoVendido;
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="idVenda")
-    private ProdutoVendido produtoVendido;
 
     public Venda() {
     }
@@ -109,13 +105,21 @@ public class Venda implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Integer getIdProdutoVendido() {
-        return idProdutoVendido;
-    }
-
-    public void setIdProdutoVendido(Integer idProdutoVendido) {
-        this.idProdutoVendido = idProdutoVendido;
-    }
+//    public Integer getIdProdutoVendido() {
+//        return idProdutoVendido;
+//    }
+//
+//    public void setIdProdutoVendido(Integer idProdutoVendido) {
+//        this.idProdutoVendido = idProdutoVendido;
+//    }
+//
+//    public ProdutoVendido getProdutoVendido() {
+//        return produtoVendido;
+//    }
+//
+//    public void setIdProdutoVendido(ProdutoVendido produtoVendido) {
+//        this.produtoVendido = produtoVendido;
+//    }
 
     public static Venda obterVenda(Integer id) throws ClassNotFoundException, SQLException {
         return VendaDAO.obterVenda(id);

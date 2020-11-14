@@ -4,12 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/hibernate1.cfg.xml</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/FabricanteDAO.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/model/Funcionario.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/FuncionarioDAO.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/PersistenceUtil.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/model/Fabricante.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/ProdutoVendidoDAO.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/web/cadastrarVenda.jsp</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/model/Cliente.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/model/ProdutoVendido.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/model/Venda.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/mathe/Desktop/DrogaRim/web/venda.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -6,42 +6,52 @@
 package model;
 
 import dao.VendaDAO;
+import dao.ProdutoVendidoDAO;
+
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Igori
  */
-public class Venda {
+@Entity
+public class Venda implements Serializable {
 
-    private int idVenda;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idVenda;
     private double precoTotal;
     private String dataVenda;
+    @ManyToOne
     private Funcionario funcionario;
     private double valorRecebido;
+    @ManyToOne
     private Cliente cliente;
-    private int idCliente;
-    private int idFuncionario;
+//    private Integer idCliente;
+//    private Integer idFuncionario;
 
-    private int idProdutoVendido;
-    private ProdutoVendido produtoVendido;
+    public Venda() {
+    }
 
-    public Venda(int id, String dataVenda, double precoTotal) {
+    public Venda(Integer id, String dataVenda, double precoTotal) {
         this.idVenda = id;
         this.precoTotal = precoTotal;
         this.dataVenda = dataVenda;
-
     }
 
-    public Venda(int id, String dataVenda) {
+    public Venda(Integer id, String dataVenda) {
         this.idVenda = id;
-
         this.dataVenda = dataVenda;
-
     }
-    
-     public Venda(int id, String dataVenda, double precoTotal, Cliente cliente, Funcionario funcionario ) {
+
+    public Venda(Integer id, String dataVenda, double precoTotal, Cliente cliente, Funcionario funcionario) {
         this.idVenda = id;
         this.precoTotal = precoTotal;
         this.dataVenda = dataVenda;
@@ -50,61 +60,74 @@ public class Venda {
 
     }
 
-      public Venda(int id, String dataVenda, Cliente cliente, Funcionario funcionario ) {
+    public Venda(Integer id, String dataVenda, Cliente cliente, Funcionario funcionario) {
         this.idVenda = id;
         this.dataVenda = dataVenda;
         this.cliente = cliente;
         this.funcionario = funcionario;
 
     }
-      
+
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-      
-    public int getIdFuncionario() {
-        return idFuncionario;
-    }
 
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
-
-    public Funcionario getFuncionario() throws ClassNotFoundException, SQLException {
-        if ((this.idFuncionario != 0) && (this.funcionario == null)) {
-            this.funcionario = Funcionario.obterFuncionario(this.idFuncionario);
-        }
+    public Funcionario getFuncionario() {
         return this.funcionario;
     }
 
-    public Cliente getCliente() throws ClassNotFoundException, SQLException {
-        if ((this.idCliente != 0) && (this.cliente == null)) {
-            this.cliente = Cliente.obterCliente(this.idCliente);
-        }
+    public Cliente getCliente() {
         return this.cliente;
     }
+//    public Integer getIdFuncionario() {
+//        return idFuncionario;
+//    }
+//
+//    public void setIdFuncionario(Integer idFuncionario) {
+//        this.idFuncionario = idFuncionario;
+//    }
+//
+//    public Funcionario getFuncionario() throws ClassNotFoundException, SQLException {
+//        if ((this.idFuncionario != 0) && (this.funcionario == null)) {
+//            this.funcionario = Funcionario.obterFuncionario(this.idFuncionario);
+//        }
+//        return this.funcionario;
+//    }
+//
+//    public Cliente getCliente() throws ClassNotFoundException, SQLException {
+//        if ((this.idCliente != 0) && (this.cliente == null)) {
+//            this.cliente = Cliente.obterCliente(this.idCliente);
+//        }
+//        return this.cliente;
+//    }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public int getIdProdutoVendido() {
-        return idProdutoVendido;
-    }
-
-    public void setIdProdutoVendido(int idProdutoVendido) {
-        this.idProdutoVendido = idProdutoVendido;
-    }
-
-    public static Venda obterVenda(int id) throws ClassNotFoundException, SQLException {
+//    public void setCliente(Cliente cliente) {
+//        this.cliente = cliente;
+//    }
+//
+//    public Integer getIdCliente() {
+//        return idCliente;
+//    }
+//
+//    public void setIdCliente(Integer idCliente) {
+//        this.idCliente = idCliente;
+//    }
+//    public Integer getIdProdutoVendido() {
+//        return idProdutoVendido;
+//    }
+//
+//    public void setIdProdutoVendido(Integer idProdutoVendido) {
+//        this.idProdutoVendido = idProdutoVendido;
+//    }
+//
+//    public ProdutoVendido getProdutoVendido() {
+//        return produtoVendido;
+//    }
+//
+//    public void setIdProdutoVendido(ProdutoVendido produtoVendido) {
+//        this.produtoVendido = produtoVendido;
+//    }
+    public static Venda obterVenda(Integer id) throws ClassNotFoundException, SQLException {
         return VendaDAO.obterVenda(id);
     }
 
@@ -112,20 +135,26 @@ public class Venda {
         return VendaDAO.obterVendas();
     }
 
-    public double getPrecoTotal() {
-        return precoTotal;
+    public double getPrecoTotal() throws ClassNotFoundException, SQLException {
+        double precoCalculado = 0;
+        for (ProdutoVendido p : ProdutoVendidoDAO.obterProdutosVendidos(this.idVenda)) {
+            precoCalculado += p.getPreco();
+        }
+        
+        return this.precoTotal + precoCalculado;
+
     }
 
-    public int getIdVenda() {
+    public Integer getIdVenda() {
         return idVenda;
     }
 
-    public void setIdenda(int id) {
+    public void setIdVenda(Integer id) {
         this.idVenda = id;
     }
 
     public void setPrecoTotal(double precoTotal) {
-        this.precoTotal = 0;
+//        this.precoTotal = 0;
         this.precoTotal = precoTotal;
     }
 
@@ -136,8 +165,6 @@ public class Venda {
     public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
     }
-
-    
 
     public double getValorRecebido() {
         return valorRecebido;
@@ -163,6 +190,6 @@ public class Venda {
     }
 
     public void alterar() throws SQLException, ClassNotFoundException {
-        VendaDAO.alterar(this);
+        VendaDAO.gravar(this);
     }
 }

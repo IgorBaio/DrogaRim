@@ -63,13 +63,13 @@ public class FabricanteDAO {
         return fabricantes;
     }
     
-    public static Fabricante instanciarFabricante(ResultSet rs) throws SQLException {
-        Fabricante fabricante = new Fabricante(
-                rs.getInt("idFabricante"),
-                rs.getString("nome")
-        );
-        return fabricante;
-    }
+//    public static Fabricante instanciarFabricante(ResultSet rs) throws SQLException {
+//        Fabricante fabricante = new Fabricante(
+//                rs.getInt("idFabricante"),
+//                rs.getString("nome")
+//        );
+//        return fabricante;
+//    }
 
     public static void gravar(Fabricante fabricante) throws SQLException, ClassNotFoundException {
         EntityManager em = PersistenceUtil.getEntityManager();

@@ -1,5 +1,6 @@
 package model;
 import dao.CategoriaDAO;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Categoria {
+public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCategoria;
@@ -40,11 +41,11 @@ public class Categoria {
         return CategoriaDAO.obterCategorias();
     }
 
-    public int getIdCategoria() {
+    public Integer getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
 
@@ -63,7 +64,7 @@ public class Categoria {
         CategoriaDAO.excluir(this);
     }
          public void alterar() throws SQLException, ClassNotFoundException{
-        CategoriaDAO.alterar(this);
+        CategoriaDAO.gravar(this);
     }
         
         

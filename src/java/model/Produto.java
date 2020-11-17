@@ -6,15 +6,24 @@
 package model;
 
 import dao.ProdutoDAO;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Igori
  */
-public class Produto {
+@Entity
+public class Produto implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProduto;
     private String nome;
     private String nomeFarmaco;
@@ -24,12 +33,17 @@ public class Produto {
     private boolean medicamento;
     private String lote;
     private int quantidade;
+    @ManyToOne
     private Fabricante fabricante;
-    private int idFabricante;
+//    private int idFabricante;
+    @ManyToOne
     private Categoria categoria;
-    private int idCategoria;
+//    private int idCategoria;
 
-    public Produto(int idProduto, String nome, String nomeFarmaco, double preco,
+    public Produto() {
+    }
+
+    public Produto(Integer idProduto, String nome, String nomeFarmaco, double preco,
             String tipo, boolean receita, boolean medicamento, String lote, int quantidade, Fabricante fabricante, Categoria categoria) {
         this.idProduto = idProduto;
         this.nome = nome;
@@ -44,49 +58,49 @@ public class Produto {
         this.fabricante = fabricante;
     }
 
-    public Fabricante getFabricante() throws ClassNotFoundException, SQLException {
-        if ((this.idFabricante != 0) && (this.fabricante == null)) {
-            this.fabricante = Fabricante.obterFabricante(this.idFabricante);
-        }
-        return this.fabricante;
-    }
+//    public Fabricante getFabricante() throws ClassNotFoundException, SQLException {
+//        if ((this.idFabricante != 0) && (this.fabricante == null)) {
+//            this.fabricante = Fabricante.obterFabricante(this.idFabricante);
+//        }
+//        return this.fabricante;
+//    }
 
-    public void setFabricante(Fabricante fabricante) {
-        this.fabricante = fabricante;
-    }
+//    public Integer getIdFabricante() {
+//        return idFabricante;
+//    }
 
-    public int getIdFabricante() {
-        return idFabricante;
-    }
+//    public void setIdFabricante(Integer idFabricante) {
+//        this.idFabricante = idFabricante;
+//    }
 
-    public void setIdFabricante(int idFabricante) {
-        this.idFabricante = idFabricante;
-    }
-    
-     public Categoria getCategoria() throws ClassNotFoundException, SQLException {
-        if ((this.idCategoria != 0) && (this.categoria == null)) {
-            this.categoria = Categoria.obterCategoria(this.idCategoria);
-        }
-        return this.categoria;
-    }
+//    public Categoria getCategoria() throws ClassNotFoundException, SQLException {
+//        if ((this.idCategoria != 0) && (this.categoria == null)) {
+//            this.categoria = Categoria.obterCategoria(this.idCategoria);
+//        }
+//        return this.categoria;
+//    }
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public Categoria getCategoria() {
+        return this.categoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public Fabricante getFabricante() {
+        return this.fabricante;
+    }
+    
+    public void setFabricante(Fabricante fabricante) {
+        this.fabricante = fabricante;
     }
 
-    public int getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -130,11 +144,11 @@ public class Produto {
         return ProdutoDAO.obterProdutos();
     }
 
-    public int getIdProduto() {
+    public Integer getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(int idProduto) {
+    public void setIdProduto(Integer idProduto) {
         this.idProduto = idProduto;
     }
 
@@ -171,6 +185,6 @@ public class Produto {
     }
 
     public void alterar() throws SQLException, ClassNotFoundException {
-        ProdutoDAO.alterar(this);
+        ProdutoDAO.gravar(this);
     }
 }

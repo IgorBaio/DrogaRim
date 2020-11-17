@@ -87,6 +87,6 @@ public class Funcionario {
     }
 
     public void alterar() throws SQLException, ClassNotFoundException {
-        FuncionarioDAO.alterar(this);
+        FuncionarioDAO.gravar(this);
     }
 }

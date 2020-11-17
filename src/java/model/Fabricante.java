@@ -62,7 +62,7 @@ public class Fabricante {
     }
 
     public void alterar() throws SQLException, ClassNotFoundException {
-        FabricanteDAO.alterar(this);
+        FabricanteDAO.gravar(this);
     }
 
 }

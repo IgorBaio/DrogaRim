@@ -89,13 +89,13 @@
                         <c:forEach items="${produtosVendidos}" var="produtoVendido">
                             <tr>
                                 <td><c:out value="${produtoVendido.idProdutoVendido}" /></td>
-                                <td><c:out value="${produtoVendido.idProduto}" /></td>  
+                                <td><c:out value="${produtoVendido.produto.idProduto}" /></td>  
                                 <td><c:out value="${produtoVendido.preco}" /></td>
-                                <td><c:out value="${produtoVendido.idVenda}" /></td>
+                                <td><c:out value="${produtoVendido.venda.idVenda}" /></td>
 
 
-                                <td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Excluir&idProdutoVendido=<c:out value="${produtoVendido.idProdutoVendido}" />">Excluir</a></td>
-                                <!--<td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Alterar&idProdutoVendido=<c:out value="${produtoVendido.idProdutoVendido}"/>">Alterar</a></td>-->
+                                <td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Excluir&idProdutoVendido=<c:out value="${produtoVendido.produto.idProduto}" />">Excluir</a></td>
+                                <!--<td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Alterar&idProdutoVendido=<c:out value="${produtoVendido.venda.idVenda}"/>">Alterar</a></td>-->
                             </tr>
                         </c:forEach>
                         <tr>

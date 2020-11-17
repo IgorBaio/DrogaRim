@@ -94,21 +94,19 @@
                             <p>Nenhuma venda cadastrada</p>
                         </c:if>
                         <c:if test="${vendas != null}"><c:forEach items="${vendas}" var="venda">
-                            <tr>
-                                <td><c:out value="${venda.idVenda}" /></td>
-                                <td><c:out value="${venda.dataVenda}" /></td>
-                                <td><c:out value="${venda.precoTotal}" /></td>
-                                           
-                                <td>nome cliente</td>
+                                <tr>
+                                    <td><c:out value="${venda.idVenda}" /></td>
+                                    <td><c:out value="${venda.dataVenda}" /></td>
+                                    <td><c:out value="${venda.getPrecoTotal()}" /></td>                                           
+                                    <td><c:out value="${venda.cliente.getNome()}" /></td>
+                                    <td><c:out value="${venda.funcionario.getLogin()}" /></td>
 
-                                <td><c:out value="${venda.funcionario.login}" /></td>
+                                    <td><a href="PesquisaProdutoVendidoController?acao=prepararOperacao&operacao=obterProdutosVendidos?&idVenda=<c:out value="${venda.idVenda}"/>">Produtos</a></td>
+                                    <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">Alterar</a></td>
+                                    <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">Excluir</a></td>
 
-                                <td><a href="PesquisaProdutoVendidoController?acao=prepararOperacao&operacao=obterProdutosVendidos?&idVenda=<c:out value="${venda.idVenda}"/>">Produtos</a></td>
-                                <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">Alterar</a></td>
-                                <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">Excluir</a></td>
-
-                            </tr>
-                        </c:forEach></c:if>
+                                </tr>
+                            </c:forEach></c:if>
                     </table>
                 </div>
             </div>

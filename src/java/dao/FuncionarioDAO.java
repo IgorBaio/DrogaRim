@@ -7,8 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import model.Fabricante;
 import model.Funcionario;
 
 /**
@@ -64,17 +62,17 @@ public class FuncionarioDAO {
         return funcionarios;
     }
 
-    public static Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
-
-        Funcionario funcionario = new Funcionario(
-                rs.getInt("idFuncionario"),
-                rs.getString("funcao"),
-                rs.getString("login"),
-                rs.getString("senha")
-        );
-
-        return funcionario;
-    }
+//    public static Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
+//
+//        Funcionario funcionario = new Funcionario(
+//                rs.getInt("idFuncionario"),
+//                rs.getString("funcao"),
+//                rs.getString("login"),
+//                rs.getString("senha")
+//        );
+//
+//        return funcionario;
+//    }
 
     public static void gravar(Funcionario funcionario) throws SQLException, ClassNotFoundException {
         EntityManager em = PersistenceUtil.getEntityManager();
@@ -104,7 +102,7 @@ public class FuncionarioDAO {
 
         try {
             tx.begin();
-            em.remove(em.getReference(Fabricante.class, funcionario.getIdFuncionario()));
+            em.remove(em.getReference(Funcionario.class, funcionario.getIdFuncionario()));
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {

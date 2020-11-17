@@ -6,11 +6,12 @@
 package model;
 
 import dao.VendaDAO;
+import dao.ProdutoVendidoDAO;
+
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -71,11 +72,11 @@ public class Venda implements Serializable {
         this.funcionario = funcionario;
     }
 
-    public Funcionario getFuncionario(){
+    public Funcionario getFuncionario() {
         return this.funcionario;
     }
-    
-       public Cliente getCliente(){
+
+    public Cliente getCliente() {
         return this.cliente;
     }
 //    public Integer getIdFuncionario() {
@@ -111,7 +112,6 @@ public class Venda implements Serializable {
 //    public void setIdCliente(Integer idCliente) {
 //        this.idCliente = idCliente;
 //    }
-
 //    public Integer getIdProdutoVendido() {
 //        return idProdutoVendido;
 //    }
@@ -127,7 +127,6 @@ public class Venda implements Serializable {
 //    public void setIdProdutoVendido(ProdutoVendido produtoVendido) {
 //        this.produtoVendido = produtoVendido;
 //    }
-
     public static Venda obterVenda(Integer id) throws ClassNotFoundException, SQLException {
         return VendaDAO.obterVenda(id);
     }
@@ -136,8 +135,14 @@ public class Venda implements Serializable {
         return VendaDAO.obterVendas();
     }
 
-    public double getPrecoTotal() {
-        return precoTotal;
+    public double getPrecoTotal() throws ClassNotFoundException, SQLException {
+        double precoCalculado = 0;
+        for (ProdutoVendido p : ProdutoVendidoDAO.obterProdutosVendidos(this.idVenda)) {
+            precoCalculado += p.getPreco();
+        }
+        
+        return this.precoTotal + precoCalculado;
+
     }
 
     public Integer getIdVenda() {
@@ -149,7 +154,7 @@ public class Venda implements Serializable {
     }
 
     public void setPrecoTotal(double precoTotal) {
-        this.precoTotal = 0;
+//        this.precoTotal = 0;
         this.precoTotal = precoTotal;
     }
 
@@ -184,7 +189,7 @@ public class Venda implements Serializable {
         VendaDAO.excluir(this);
     }
 
-//    public void alterar() throws SQLException, ClassNotFoundException {
-//        VendaDAO.alterar(this);
-//    }
+    public void alterar() throws SQLException, ClassNotFoundException {
+        VendaDAO.gravar(this);
+    }
 }

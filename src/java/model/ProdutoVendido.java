@@ -22,7 +22,6 @@ import javax.persistence.ManyToOne;
  *
  * @author Igori
  */
-
 @Entity
 public class ProdutoVendido implements Serializable {
 
@@ -30,8 +29,8 @@ public class ProdutoVendido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProdutoVendido;
     private double preco;
-    private Integer idProduto;
-    private Integer idVenda;
+//    private Integer idProduto;
+//    private Integer idVenda;
     public static double diferencaPreco;
     @ManyToOne
     private Produto produto;
@@ -50,17 +49,21 @@ public class ProdutoVendido implements Serializable {
     }
 
     public Produto getProduto() throws ClassNotFoundException, SQLException {
-        if ((this.idProduto != 0) && (this.produto == null)) {
-            this.produto = Produto.obterProduto(this.idProduto);
-        }
+
         return this.produto;
     }
 
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
     public Venda getVenda() throws ClassNotFoundException, SQLException {
-        if ((this.idVenda != 0) && (this.venda == null)) {
-            this.venda = Venda.obterVenda(this.idVenda);
-        }
+
         return this.venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
     }
 
     public Integer getIdProdutoVendido() {
@@ -76,13 +79,7 @@ public class ProdutoVendido implements Serializable {
         return ProdutoVendidoDAO.obterProdutoVendido(idProdutoVendido);// Aqui acho que deveira entrar o idVenda, mas não sei como repassar esse valor no parâmetro onde a função tá sendo chamada
     }
 
-    /**
-     * public static List<ProdutoVendido> obterProdutosVendidos() throws
-     * ClassNotFoundException, SQLException { return
-     * ProdutoVendidoDAO.obterProdutosVendidos();
-    }*
-     */
-    public static List<ProdutoVendido> obterProdutosVendidos(int idVenda) throws ClassNotFoundException, SQLException {
+    public static List<ProdutoVendido> obterProdutosVendidos(Integer idVenda) throws ClassNotFoundException, SQLException {
         return ProdutoVendidoDAO.obterProdutosVendidos(idVenda);
     }
 
@@ -94,26 +91,18 @@ public class ProdutoVendido implements Serializable {
         return VendaDAO.obterVendas();
     }
 
-    public void setVenda(Venda venda) {
-        this.venda = venda;
-    }
-
-    public Integer getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Integer idProduto) {
-        this.idProduto = idProduto;
-    }
-
-    public Integer getIdVenda() {
-        return idVenda;
-    }
-
-    public void setIdVenda(Integer idVenda) {
-        this.idVenda = idVenda;
-    }
-
+//    public Integer getIdProduto() {
+//        return idProduto;
+//    }
+//    public void setIdProduto(Integer idProduto) {
+//        this.idProduto = idProduto;
+//    }
+//    public Integer getIdVenda() {
+//        return idVenda;
+//    }
+//    public void setIdVenda(Integer idVenda) {
+//        this.idVenda = idVenda;
+//    }
     public double getPreco() {
         return preco;
     }
@@ -130,10 +119,10 @@ public class ProdutoVendido implements Serializable {
         ProdutoVendidoDAO.excluir(this);
     }
 
-//    public void alterar() throws SQLException, ClassNotFoundException {
-//       
-//        ProdutoVendidoDAO.alterar(this);
-//    }
+    public void alterar() throws SQLException, ClassNotFoundException {
+       
+        ProdutoVendidoDAO.gravar(this);
+    }
     /**
      * public static ProdutoVendido listarProdutoVendido(int idVenda) throws
      * ClassNotFoundException, SQLException{ return

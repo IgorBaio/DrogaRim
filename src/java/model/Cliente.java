@@ -201,7 +201,7 @@ public class Cliente {
         ClienteDAO.excluir(this);
     }
      public void alterar() throws SQLException, ClassNotFoundException{
-        ClienteDAO.alterar(this);
+        ClienteDAO.gravar(this);
     }
     
 }

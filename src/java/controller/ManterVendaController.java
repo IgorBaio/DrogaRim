@@ -75,7 +75,7 @@ public class ManterVendaController extends HttpServlet {
         String operacao = request.getParameter("operacao");
         int idVenda = Integer.parseInt(request.getParameter("txtIdVenda"));
         String dataVenda = request.getParameter("txtDataVenda");
-        //double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
+        double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
         int idCliente = Integer.parseInt(request.getParameter("txtIdCliente"));
         int idFuncionario = Integer.parseInt(request.getParameter("txtIdFuncionario"));
 
@@ -95,9 +95,9 @@ public class ManterVendaController extends HttpServlet {
                 venda.gravar();
             } else {
                 if (operacao.equals("Alterar")) {
-                    double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
+                    precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
                     venda = new Venda(idVenda, dataVenda, precoTotal, cliente, funcionario);
-//                    venda.alterar();
+                    venda.alterar();
                 } else {
                     if (operacao.equals("Excluir")) {
                         venda.excluir();

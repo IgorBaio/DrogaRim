@@ -80,7 +80,7 @@ public class ProdutoVendidoDAO {
         return produtoVendido;
     }
 
-    public static List<ProdutoVendido> obterProdutosVendidos(int idVenda) throws ClassNotFoundException, SQLException {
+    public static List<ProdutoVendido> obterProdutosVendidos(Integer idVenda) throws ClassNotFoundException, SQLException {
        EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<ProdutoVendido> produtoVendidos = new ArrayList();
@@ -126,17 +126,17 @@ public class ProdutoVendidoDAO {
      * comando); } return produtoVendido;
     }*
      */
-    public static ProdutoVendido instanciarProdutoVendido(ResultSet rs) throws SQLException {
-        ProdutoVendido produtoVendido = new ProdutoVendido(
-                rs.getInt("idProdutoVendido"),
-                rs.getDouble("preco"),
-                null,
-                null);
-        produtoVendido.setIdProduto(rs.getInt("idProduto"));
-        produtoVendido.setIdVenda(rs.getInt("idVenda"));
-
-        return produtoVendido;
-    }
+//    public static ProdutoVendido instanciarProdutoVendido(ResultSet rs) throws SQLException {
+//        ProdutoVendido produtoVendido = new ProdutoVendido(
+//                rs.getInt("idProdutoVendido"),
+//                rs.getDouble("preco"),
+//                null,
+//                null);
+//        produtoVendido.setIdProduto(rs.getInt("idProduto"));
+//        produtoVendido.setIdVenda(rs.getInt("idVenda"));
+//
+//        return produtoVendido;
+//    }
 
 //    public static void alterar(ProdutoVendido produtoVendido) throws SQLException, ClassNotFoundException {
 //        Connection conexao = null;

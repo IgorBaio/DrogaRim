@@ -124,33 +124,33 @@ public class ProdutoDAO {
         }
     }
 
-    public static void alterar(Produto produto) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
-        String stringSQL;
-
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            stringSQL = "update produto set "
-                    + "nome = '" + produto.getNome() + "' ,"
-                    + "nome_farmaco = '" + produto.getNomeFarmaco() + "' ,"
-                    + "preco = " + produto.getPreco() + " ,"
-                    + "tipo = '" + produto.getTipo() + "' ,"
-                    + "receita = " + produto.isReceita() + " ,"
-                    + "medicamento = " + produto.isMedicamento() + " ,"
-                    + "lote = '" + produto.getLote() + "' ,"
-                    + "quantidade = " + produto.getQuantidade() + " , "
-                    + "idCategoria = " + produto.getIdCategoria() + " , "
-                    + "idFabricante = " + produto.getIdFabricante() + " ";
-
-            stringSQL = stringSQL + "where idProduto = " + produto.getIdProduto() + " ";
-            comando.execute(stringSQL);
-
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-
-    }
+//    public static void alterar(Produto produto) throws SQLException, ClassNotFoundException {
+//        Connection conexao = null;
+//        Statement comando = null;
+//        String stringSQL;
+//
+//        try {
+//            conexao = BD.getConexao();
+//            comando = conexao.createStatement();
+//            stringSQL = "update produto set "
+//                    + "nome = '" + produto.getNome() + "' ,"
+//                    + "nome_farmaco = '" + produto.getNomeFarmaco() + "' ,"
+//                    + "preco = " + produto.getPreco() + " ,"
+//                    + "tipo = '" + produto.getTipo() + "' ,"
+//                    + "receita = " + produto.isReceita() + " ,"
+//                    + "medicamento = " + produto.isMedicamento() + " ,"
+//                    + "lote = '" + produto.getLote() + "' ,"
+//                    + "quantidade = " + produto.getQuantidade() + " , "
+//                    + "idCategoria = " + produto.getIdCategoria() + " , "
+//                    + "idFabricante = " + produto.getIdFabricante() + " ";
+//
+//            stringSQL = stringSQL + "where idProduto = " + produto.getIdProduto() + " ";
+//            comando.execute(stringSQL);
+//
+//        } finally {
+//            fecharConexao(conexao, comando);
+//        }
+//
+//    }
 
 }

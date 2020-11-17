@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <td><label> Preço: </label></td>
-                            <td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.precoTotal} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>
+                            <td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.getPrecoTotal()} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td><label>Cliente:</label></td>

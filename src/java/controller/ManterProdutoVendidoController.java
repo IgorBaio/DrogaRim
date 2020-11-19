@@ -92,6 +92,12 @@ public class ManterProdutoVendidoController extends HttpServlet {
             }
 
             ProdutoVendido produtoVendido = new ProdutoVendido(idProdutoVendido, preco, produto, venda);
+            if(produtoVendido.getPreco() == 0){
+                produtoVendido.setPreco(produtoVendido.getProduto().getPreco());
+            }else{
+                double novoPreco = produtoVendido.getProduto().getPreco() - produtoVendido.getPreco();
+                produtoVendido.setPreco(novoPreco);
+            }
             if (operacao.equals("Incluir")) {
                 produtoVendido.gravar();
             } else {

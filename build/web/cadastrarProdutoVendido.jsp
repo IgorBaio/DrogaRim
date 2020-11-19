@@ -72,10 +72,6 @@
                         <td><input type="number" name="txtIdProdutoVendido" value="${produtoVendido.idProdutoVendido}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
 
-                        <tr>
-                            <td><label> Preço: </label></td>
-                            <td><input type="number" name="txtPreco" value="${produtoVendido.preco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
 
                         <tr>
                             <td><label>Produto:</label></td>
@@ -87,6 +83,10 @@
                                 </c:forEach>
                                 </select>
                             </td>
+                        </tr>
+                        <tr>
+                            <td><label> Desconto R$: </label></td>
+                            <td><input type="number" name="txtPreco" value="${produtoVendido.preco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
 
                     <tr>

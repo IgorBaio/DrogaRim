@@ -94,7 +94,7 @@
                                 <td><c:out value="${produtoVendido.venda.idVenda}" /></td>
 
 
-                                <td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Excluir&idProdutoVendido=<c:out value="${produtoVendido.produto.idProduto}" />">Excluir</a></td>
+                                <td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Excluir&idProdutoVendido=<c:out value="${produtoVendido.getIdProdutoVendido()}" />">Excluir</a></td>
                                 <!--<td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Alterar&idProdutoVendido=<c:out value="${produtoVendido.venda.idVenda}"/>">Alterar</a></td>-->
                             </tr>
                         </c:forEach>

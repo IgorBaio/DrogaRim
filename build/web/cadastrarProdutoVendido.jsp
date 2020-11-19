@@ -130,7 +130,7 @@
                             mensagem = mensagem + "Informe o Código do Produto Vendido\n";
                         }
                         if (form.txtPreco.value == "") {
-                            mensagem = mensagem + "Informe o Preço do Produto Vendido\n";
+                            mensagem = mensagem + "Informe o Desconto do Produto Vendido\n";
                         }
                         if (form.txtIdProduto.value == "") {
                             mensagem = mensagem + "Informe o Código do Produto\n";

@@ -73,7 +73,7 @@ public class ManterVendaController extends HttpServlet {
     
     public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException {
         String operacao = request.getParameter("operacao");
-        int idVenda = Integer.parseInt(request.getParameter("txtIdVenda"));
+        String idVenda = request.getParameter("txtIdVenda");
         String dataVenda = request.getParameter("txtDataVenda");
         double precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
         int idCliente = Integer.parseInt(request.getParameter("txtIdCliente"));
@@ -89,14 +89,21 @@ public class ManterVendaController extends HttpServlet {
                 funcionario = Funcionario.obterFuncionario(idFuncionario);
             }
             //Venda venda = new Venda(idVenda, dataVenda, precoTotal);
-            Venda venda = new Venda(idVenda, dataVenda, cliente, funcionario);
-
+            Venda venda;
+            if(idVenda.equals("")){
+                venda = new Venda(dataVenda, precoTotal, cliente, funcionario);
+            }else{
+               int intIdVenda = Integer.parseInt(idVenda);
+               venda = new Venda(intIdVenda, dataVenda, precoTotal, cliente, funcionario);
+            }
+                
+            System.out.println("\n\n\n\n\n "+venda.getIdVenda()+" "+venda.getDataVenda()+" "+venda.getPrecoTotal()+" "+venda.getCliente().getNome()+" "+" "+venda.getFuncionario().getLogin()+"\n\n\n\n\n ");
             if (operacao.equals("Incluir")) {
                 venda.gravar();
             } else {
                 if (operacao.equals("Alterar")) {
                     precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
-                    venda = new Venda(idVenda, dataVenda, precoTotal, cliente, funcionario);
+                    venda = new Venda( dataVenda, precoTotal, cliente, funcionario);
                     venda.alterar();
                 } else {
                     if (operacao.equals("Excluir")) {

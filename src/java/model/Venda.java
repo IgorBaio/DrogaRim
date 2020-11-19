@@ -59,9 +59,24 @@ public class Venda implements Serializable {
         this.funcionario = funcionario;
 
     }
+    public Venda( String dataVenda, double precoTotal, Cliente cliente, Funcionario funcionario) {
+        
+        this.precoTotal = precoTotal;
+        this.dataVenda = dataVenda;
+        this.cliente = cliente;
+        this.funcionario = funcionario;
+
+    }
 
     public Venda(Integer id, String dataVenda, Cliente cliente, Funcionario funcionario) {
         this.idVenda = id;
+        this.dataVenda = dataVenda;
+        this.cliente = cliente;
+        this.funcionario = funcionario;
+
+    }
+    public Venda( String dataVenda, Cliente cliente, Funcionario funcionario) {
+     
         this.dataVenda = dataVenda;
         this.cliente = cliente;
         this.funcionario = funcionario;
@@ -141,7 +156,7 @@ public class Venda implements Serializable {
             precoCalculado += p.getPreco();
         }
         
-        return this.precoTotal + precoCalculado;
+        return this.precoTotal; //+ precoCalculado;
 
     }
 
@@ -155,7 +170,8 @@ public class Venda implements Serializable {
 
     public void setPrecoTotal(double precoTotal) {
 //        this.precoTotal = 0;
-        this.precoTotal = precoTotal;
+        this.precoTotal += precoTotal;
+        System.out.print(this.precoTotal);
     }
 
     public String getDataVenda() {

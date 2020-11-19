@@ -98,8 +98,10 @@ public class ManterProdutoVendidoController extends HttpServlet {
                 double novoPreco = produtoVendido.getProduto().getPreco() - produtoVendido.getPreco();
                 produtoVendido.setPreco(novoPreco);
             }
+            venda.setPrecoTotal(produtoVendido.getPreco());
             if (operacao.equals("Incluir")) {
                 produtoVendido.gravar();
+                venda.gravar();
             } else {
 //                if (operacao.equals("Alterar")) {
 //                    produtoVendido.alterar();

@@ -79,9 +79,9 @@
                                 </select>
                             </td>
                         </tr>-->
-                        <tr>
-                            <td>Código do funcionário</td>
-                            <td><input type="number" name="txtCodFuncionario" value="${funcionario.idFuncionario}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>/></td>
+                            <tr>
+                                <td <c:if test="${operacao == 'Incluir'}"> style="display: none;"</c:if>>Código do funcionário</td>
+                                <td><input name="txtCodFuncionario" <c:if test="${operacao == 'Incluir'}"> value='0' type='hidden'</c:if> <c:if test="${operacao != 'Incluir'}"> type="number"  value="${funcionario.idFuncionario}"</c:if> readonly/></td>
                             </tr>
                             <tr>
                                 <td>Login</td>
@@ -120,9 +120,9 @@
                     function validarFormulario(form) {
                         var mensagem;
                         mensagem = "";
-                        if (form.txtCodFuncionario.value == "") {
-                            mensagem = mensagem + "Informe o Código do Funcionário\n";
-                        }
+//                        if (form.txtCodFuncionario.value == "") {
+//                            mensagem = mensagem + "Informe o Código do Funcionário\n";
+//                        }
                         if (form.txtLoginFuncionario.value == "") {
                             mensagem = mensagem + "Informe o Nome do Funcionário\n";
                         }

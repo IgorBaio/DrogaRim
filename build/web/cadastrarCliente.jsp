@@ -70,8 +70,8 @@
                     <table>
 
                         <tr>
-                            <td><label for="codigo">Código do cliente</label></td>
-                            <td><input type="text" name="txtCodCliente" id="codigo" value="${cliente.idCliente}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if> /></td>
+                            <td><label for="codigo"<c:if test="${operacao == 'Incluir'}"> style="display: none;"</c:if>>Código do cliente</label></td>
+                            <td><input name="txtCodCliente" id="codigo" <c:if test="${operacao == 'Incluir'}"> value='0' type='hidden'</c:if> <c:if test="${operacao != 'Incluir'}"> type="text"  value="${cliente.idCliente}"</c:if> readonly/></td>
                             </tr>
                             <tr>
                                 <td>Nome</td>
@@ -158,9 +158,9 @@
                     function validarFormulario(form) {
                         var mensagem;
                         mensagem = "";
-                        if (form.txtCodCliente.value == "") {
-                            mensagem = mensagem + "Informe o Código do Cliente\n";
-                        }
+//                        if (form.txtCodCliente.value == "") {
+//                            mensagem = mensagem + "Informe o Código do Cliente\n";
+//                        }
                         if (form.txtNomeCliente.value == "") {
                             mensagem = mensagem + "Informe o Nome do Cliente\n";
                         }
@@ -176,7 +176,7 @@
                         if (form.txtDataNascimentoCliente.value == "") {
                             mensagem = mensagem + "Data de nascimento deve ser preenchida\n";
                         }
-                        
+
                         if (form.txtEmailCliente.value == "") {
                             mensagem = mensagem + "Informe o e-mail\n";
                         }
@@ -204,7 +204,7 @@
                         if (!campoNumerico(form.txtTelefoneCliente.value)) {
                             mensagem = mensagem + "Telefone deve ser numérico\n";
                         }
-                        
+
                         if (!campoNumerico(form.txtCpfCliente.value)) {
                             mensagem = mensagem + "CPF deve ser numérico\n";
                         }

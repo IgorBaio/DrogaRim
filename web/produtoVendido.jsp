@@ -94,12 +94,12 @@
                                 <td><c:out value="${produtoVendido.venda.idVenda}" /></td>
 
 
-                                <td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Excluir&idProdutoVendido=<c:out value="${produtoVendido.getIdProdutoVendido()}" />">Excluir</a></td>
+                                <td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Excluir&idProdutoVendido=<c:out value="${produtoVendido.getIdProdutoVendido()}&idVenda=${idVenda}" />">Excluir</a></td>
                                 <!--<td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Alterar&idProdutoVendido=<c:out value="${produtoVendido.venda.idVenda}"/>">Alterar</a></td>-->
                             </tr>
                         </c:forEach>
                         <tr>
-                            <td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Incluir">Add item</a></td>
+                            <td><a href="ManterProdutoVendidoController?acao=prepararOperacao&operacao=Incluir&idVenda=${idVenda}">Add item</a></td>
                         </tr>
                     </table>
                 </div>

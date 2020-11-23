@@ -101,8 +101,8 @@
                                     <td><c:out value="${venda.cliente.getNome()}" /></td>
                                     <td><c:out value="${venda.funcionario.getLogin()}" /></td>
 
-                                    <td><a href="PesquisaProdutoVendidoController?acao=prepararOperacao&operacao=obterProdutosVendidos?&idVenda=<c:out value="${venda.idVenda}"/>">Produtos</a></td>
-                                    <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">Alterar</a></td>
+                                    <td><a href="PesquisaProdutoVendidoController?acao=prepararOperacao&operacao=obterProdutosVendidos?&idVenda=<c:out value="${venda.getIdVenda()}"/>">Produtos</a></td>
+                                    <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.getIdVenda()}"/>">Alterar</a></td>
                                     <td><a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.getIdVenda()}"/>">Excluir</a></td>
 
                                 </tr>

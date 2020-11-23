@@ -76,8 +76,8 @@
                 <form action="ManterCategoriaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCategoria" onsubmit="return validarFormulario(this)">
                     <table>
                         <tr>
-                            <td>Código categoria</td>
-                            <td><input type="number" name="txtCodCategoria" id="idCategoria" value="${categoria.idCategoria}" /></td>
+                            <td <c:if test="${operacao == 'Incluir'}"> style="display: none;"</c:if>>Código categoria</td>
+                            <td><input name="txtCodCategoria" id="idCategoria"  <c:if test="${operacao == 'Incluir'}"> value='0' type='hidden'</c:if> <c:if test="${operacao != 'Incluir'}"> value="${categoria.idCategoria}"</c:if> readonly/></td>
                         </tr>
                         <tr>
                             <td>Nome</td>
@@ -111,9 +111,9 @@
                     function validarFormulario(form) {
                         var mensagem;
                         mensagem = "";
-                        if (form.txtCodCategoria.value == "") {
-                            mensagem = mensagem + "Informe o Código da Categoria\n";
-                        }
+//                        if (form.txtCodCategoria.value == "") {
+//                            mensagem = mensagem + "Informe o Código da Categoria\n";
+//                        }
                         if (form.txtNomeCategoria.value == "") {
                             mensagem = mensagem + "Informe o Nome da Categoria\n";
                         }

@@ -75,9 +75,9 @@
             <div id="cadastrarProduto">
                 <form action="ManterProdutoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterProduto" onsubmit="return validarFormulario(this)">
                     <table>
-                        <tr>
-                            <td><label for="idProduto">Código</label></td>
-                            <td> <input type="number" name="txtIdProduto" id="idProduto" value="${produto.idProduto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>/></td>
+                            <tr>
+                                <td><label for="idProduto"<c:if test="${operacao == 'Incluir'}"> style="display: none;"</c:if>>Código</label></td>
+                                <td> <input name="txtIdProduto" id="idProduto" <c:if test="${operacao == 'Incluir'}"> value='0' type='hidden'</c:if> <c:if test="${operacao != 'Incluir'}"> value="${produto.idProduto}" type="number"  </c:if> readonly/></td>
                             </tr>
                             <tr>
                                 <td><label for="nomeComercial">Nome Comercial</label></td>
@@ -158,9 +158,9 @@
                     function validarFormulario(form) {
                         var mensagem;
                         mensagem = "";
-                        if (form.txtIdProduto.value == "") {
-                            mensagem = mensagem + "Informe o Código do Produto\n";
-                        }
+//                        if (form.txtIdProduto.value == "") {
+//                            mensagem = mensagem + "Informe o Código do Produto\n";
+//                        }
                         if (form.txtNomeComercial.value == "") {
                             mensagem = mensagem + "Informe o Nome Comercial do Produto\n";
                         }

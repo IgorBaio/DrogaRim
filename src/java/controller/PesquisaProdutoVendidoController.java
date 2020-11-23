@@ -36,6 +36,8 @@ public class PesquisaProdutoVendidoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
+        int idVenda = Integer.parseInt(request.getParameter("idVenda"));
+        request.setAttribute("idVenda", idVenda);
         request.setAttribute("produtosVendidos", ProdutoVendido.obterProdutosVendidos(Integer.parseInt(request.getParameter("idVenda"))));
         RequestDispatcher view = request.getRequestDispatcher("produtoVendido.jsp");
         view.forward(request, response);

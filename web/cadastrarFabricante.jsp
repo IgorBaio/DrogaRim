@@ -66,8 +66,8 @@
                 <form action="ManterFabricanteController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterFabricante" onsubmit="return validarFormulario(this)">
                     <table>
                         <tr>
-                            <td>Código do fabricante</td>
-                            <td><input type="number" name="txtCodFabricante" id="idFabricante" value="${fabricante.idFabricante}" /></td>
+                            <td <c:if test="${operacao == 'Incluir'}"> style="display: none;"</c:if>>Código do fabricante</td>
+                            <td><input name="txtCodFabricante" id="idFabricante" <c:if test="${operacao == 'Incluir'}"> value='0' type='hidden'</c:if> <c:if test="${operacao != 'Incluir'}">type="number"  value="${fabricante.idFabricante}"</c:if> readonly/></td>
                         </tr>
                         <tr>
                             <td>Nome</td>
@@ -98,9 +98,9 @@
                     function validarFormulario(form) {
                         var mensagem;
                         mensagem = "";
-                        if (form.txtCodFabricante.value == "") {
-                            mensagem = mensagem + "Informe o Código do Fabricante\n";
-                        }
+//                        if (form.txtCodFabricante.value == "") {
+//                            mensagem = mensagem + "Informe o Código do Fabricante\n";
+//                        }
                         if (form.txtNomeFabricante.value == "") {
                             mensagem = mensagem + "Informe o Nome do Fabricante\n";
                         }

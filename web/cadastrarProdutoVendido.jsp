@@ -68,38 +68,39 @@
                 <table>
 
                     <tr>
-                        <td><label>Id:</label></td>
-                        <td><input type="number" name="txtIdProdutoVendido" value="${produtoVendido.idProdutoVendido}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <td><label <c:if test="${operacao == 'Incluir'}"> style="display: none;"</c:if>>Id:</label></td>
+                        <td><input name="txtIdProdutoVendido"  <c:if test="${operacao == 'Incluir'}"> value='0' type='hidden'</c:if> <c:if test="${operacao != 'Incluir'}">  type="number" value="${produtoVendido.idProdutoVendido}"</c:if> readonly/></td>
                         </tr>
-
-
                         <tr>
                             <td><label>Produto:</label></td>
-                            <td><select name="txtIdProduto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                                <td><select name="txtIdProduto" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                                 <option value="0" <c:if test="${produtoVendido.produto.idProduto == null}">selected</c:if>></option>
                                 <c:forEach items="${produtos}" var="produto">
                                     <option value="${produto.idProduto}" <c:if test="${produtoVendido.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome} - ${produto.preco} </option>
 
                                 </c:forEach>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label> Desconto R$: </label></td>
-                            <td><input type="number" name="txtPreco" value="${produtoVendido.preco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-
-                    <tr>
-                        <td><label>Venda:</label></td>
-                        <td><select name="txtIdVenda" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                                <option value="${venda.idVenda}" <c:if test="${produtoVendido.venda.idVenda == null}">selected</c:if>>${venda.idVenda}</option>
-                                <c:forEach items="${vendas}" var="venda">
-                                    <option value="${venda.idVenda}" <c:if test="${produtoVendido.venda.idVenda == venda.idVenda}">selected</c:if>>${venda.idVenda} </option>
-                                </c:forEach>
                             </select>
                         </td>
                     </tr>
-                    
+                    <tr>
+                        <td><label> Desconto R$: </label></td>
+                        <td><input type="number" name="txtPreco" value="${produtoVendido.preco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            
+                            <td><label>Venda:</label></td>
+                            <td>
+                                <input type="number" name="txtIdVenda" value="${idVenda}" readonly/>
+
+<!--                                <select name="txtIdVenda" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                                <option value="${venda.idVenda}" <c:if test="${produtoVendido.venda.idVenda == null}">selected</c:if>>${idVenda}</option>
+                        <c:forEach items="${vendas}" var="venda">
+                            <option value="${venda.idVenda}" <c:if test="${produtoVendido.venda.idVenda == venda.idVenda}">selected</c:if>>${venda.idVenda} </option>
+                        </c:forEach>
+                    </select>-->
+                        </td>
+                    </tr>
+
 
                 </table>
                 <p><input type="submit" value="${operacao}" name="btnConfirmar"></p>
@@ -107,60 +108,60 @@
             <SCRIPT language="JavaScript">
 
 
-                    function campoNumerico(valor)
+                function campoNumerico(valor)
+                {
+                    var caracteresValidos = "0123456789.-";
+                    var ehNumero = true;
+                    var umCaracter;
+                    for (i = 0; i < valor.length && ehNumero == true; i++)
                     {
-                        var caracteresValidos = "0123456789.-";
-                        var ehNumero = true;
-                        var umCaracter;
-                        for (i = 0; i < valor.length && ehNumero == true; i++)
+                        umCaracter = valor.charAt(i);
+                        if (caracteresValidos.indexOf(umCaracter) == -1)
                         {
-                            umCaracter = valor.charAt(i);
-                            if (caracteresValidos.indexOf(umCaracter) == -1)
-                            {
-                                ehNumero = false;
-                            }
-                        }
-                        return ehNumero;
-                    }
-
-                    function validarFormulario(form) {
-                        var mensagem;
-                        mensagem = "";
-                        if (form.txtIdProdutoVendido.value == "") {
-                            mensagem = mensagem + "Informe o Código do Produto Vendido\n";
-                        }
-                        if (form.txtPreco.value == "") {
-                            mensagem = mensagem + "Informe o Desconto do Produto Vendido\n";
-                        }
-                        if (form.txtIdProduto.value == "") {
-                            mensagem = mensagem + "Informe o Código do Produto\n";
-                        }
-                        if (form.txtIdVenda.value == "") {
-                            mensagem = mensagem + "Informe o Código da Venda\n";
-                        }
-                        if (!campoNumerico(form.txtIdProdutoVendido.value)){
-                            mensagem = mensagem + "Código do Produto Vendidodeve ser numérico\n";
-                        }   
-                        if (!campoNumerico(form.txtPreco.value)){
-                            mensagem = mensagem + "Preço do Produto Vendido deve ser numérico\n";
-                        }   
-                        if (!campoNumerico(form.txtIdProduto.value)){
-                            mensagem = mensagem + "Código do Produto deve ser numérico\n";
-                        }   
-                        if (!campoNumerico(form.txtIdVenda.value)){
-                            mensagem = mensagem + "Código da Venda deve ser numérico\n";
-                        }   
-                        
-                        if (mensagem == "") {
-                            return true;
-                        } else {
-                            alert(mensagem);
-                            return false;
+                            ehNumero = false;
                         }
                     }
+                    return ehNumero;
+                }
 
-                </SCRIPT>   
-            
+                function validarFormulario(form) {
+                    var mensagem;
+                    mensagem = "";
+//                        if (form.txtIdProdutoVendido.value == "") {
+//                            mensagem = mensagem + "Informe o Código do Produto Vendido\n";
+//                        }
+                    if (form.txtPreco.value == "") {
+                        mensagem = mensagem + "Informe o Desconto do Produto Vendido\n";
+                    }
+                    if (form.txtIdProduto.value == "") {
+                        mensagem = mensagem + "Informe o Código do Produto\n";
+                    }
+                    if (form.txtIdVenda.value == "") {
+                        mensagem = mensagem + "Informe o Código da Venda\n";
+                    }
+                    if (!campoNumerico(form.txtIdProdutoVendido.value)) {
+                        mensagem = mensagem + "Código do Produto Vendidodeve ser numérico\n";
+                    }
+                    if (!campoNumerico(form.txtPreco.value)) {
+                        mensagem = mensagem + "Preço do Produto Vendido deve ser numérico\n";
+                    }
+                    if (!campoNumerico(form.txtIdProduto.value)) {
+                        mensagem = mensagem + "Código do Produto deve ser numérico\n";
+                    }
+                    if (!campoNumerico(form.txtIdVenda.value)) {
+                        mensagem = mensagem + "Código da Venda deve ser numérico\n";
+                    }
+
+                    if (mensagem == "") {
+                        return true;
+                    } else {
+                        alert(mensagem);
+                        return false;
+                    }
+                }
+
+            </SCRIPT>   
+
         </div>
     </section>
 </body>

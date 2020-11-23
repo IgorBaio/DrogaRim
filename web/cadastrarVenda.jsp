@@ -67,31 +67,32 @@
             <form action="ManterVendaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterVenda" onsubmit="return validarFormulario(this)">
                 <table>
                     <tr>
-                        <td><label> Id:</label></td>
-                        <td><input type="number" name="txtIdVenda" value="${venda.idVenda}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>    
-                            <td><label> Data da venda: </label></td>
-                            <td><input type="date" name="txtDataVenda" value="${venda.dataVenda}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td><label> Preço: </label></td>
-                            <td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.precoTotal} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>
-                            <!--<td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.getPrecoTotal()} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>-->
-                        </tr>
-                        <tr>
-                            <td><label>Cliente:</label></td>
-                            <td><select name="txtIdCliente" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                                <option value="0" <c:if test="${venda.cliente.idCliente == null}">selected</c:if>></option>
-                                <c:forEach items="${clientes}" var="cliente">
-                                    <option value="${cliente.idCliente}" <c:if test="${venda.cliente.idCliente == cliente.idCliente}">selected</c:if>>${cliente.nome}</option>
-                                </c:forEach>
+                        <td><label <c:if test="${operacao == 'Incluir'}"> style="display: none;"</c:if>> Id:</label></td>
+                        <td><input name="txtIdVenda" <c:if test="${operacao == 'Incluir'}"> value='0' type='hidden'</c:if> <c:if test="${operacao != 'Incluir'}"> value="${venda.idVenda}"</c:if> readonly/></td>
+                    </tr>
+                    <tr>    
+                        <td><label> Data da venda: </label></td>
+                        <td><input type="date" name="txtDataVenda" value="${venda.dataVenda}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    </tr>
+                    <tr>
+                        <td><label> Preço: </label></td>
+                        <td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.precoTotal} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>
+                        <!--<td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.getPrecoTotal()} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>-->
+                    </tr>
+                    <tr>
+                        <td><label>Cliente:</label></td>
+                        <td>
+                            <select name="txtIdCliente" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <option value="0" <c:if test="${venda.cliente.idCliente == null}">selected</c:if>></option>
+                            <c:forEach items="${clientes}" var="cliente">
+                                <option value="${cliente.idCliente}" <c:if test="${venda.cliente.idCliente == cliente.idCliente}">selected</c:if>>${cliente.nome}</option>
+                            </c:forEach>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                            <td><label>Funcionário:</label></td>
-                            <td><select name="txtIdFuncionario" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <td><label>Funcionário:</label></td>
+                        <td><select name="txtIdFuncionario" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                                 <option value="0" <c:if test="${venda.funcionario.idFuncionario == null}">selected</c:if>></option>
                                 <c:forEach items="${funcionarios}" var="funcionario">
                                     <option value="${funcionario.idFuncionario}" <c:if test="${venda.funcionario.idFuncionario == funcionario.idFuncionario}">selected</c:if>>${funcionario.login}</option>

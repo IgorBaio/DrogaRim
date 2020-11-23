@@ -53,16 +53,17 @@ public class ManterProdutoVendidoController extends HttpServlet {
     public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
+            int idVenda = Integer.parseInt(request.getParameter("idVenda"));
+            request.setAttribute("idVenda", idVenda);
             request.setAttribute("operacao", operacao);
             request.setAttribute("vendas", Venda.obterVendas());
             request.setAttribute("produtos", Produto.obterProdutos());
             //request.setAttribute("produtosVendidos", ProdutoVendido.listarProdutosVendidos());
-            //int idVenda = Integer.parseInt(request.getParameter("idVenda"));
-            // /\ ACHO QUE ISSO DEVERIA EXISTIR, SENDO O IDVENDA REPASSADO DA ABA DE VENDA. MAS NÃO ME ADIANTOU EM ND POR ENQUANTO
             if (!operacao.equals("Incluir")) {
                 int idProdutoVendido = Integer.parseInt(request.getParameter("idProdutoVendido"));
                 ProdutoVendido produtoVendido = ProdutoVendido.obterProdutoVendido(idProdutoVendido);
                 request.setAttribute("produtoVendido", produtoVendido);
+
             }
             RequestDispatcher view = request.getRequestDispatcher("cadastrarProdutoVendido.jsp");
             view.forward(request, response);
@@ -92,9 +93,9 @@ public class ManterProdutoVendidoController extends HttpServlet {
             }
 
             ProdutoVendido produtoVendido = new ProdutoVendido(idProdutoVendido, preco, produto, venda);
-            if(produtoVendido.getPreco() == 0){
+            if (produtoVendido.getPreco() == 0) {
                 produtoVendido.setPreco(produtoVendido.getProduto().getPreco());
-            }else{
+            } else {
                 double novoPreco = produtoVendido.getProduto().getPreco() - produtoVendido.getPreco();
                 produtoVendido.setPreco(novoPreco);
             }
@@ -103,15 +104,16 @@ public class ManterProdutoVendidoController extends HttpServlet {
                 produtoVendido.gravar();
                 venda.gravar();
             } else {
-//                if (operacao.equals("Alterar")) {
-//                    produtoVendido.alterar();
-//                } else {
+                if (operacao.equals("Alterar")) {
+                    produtoVendido.alterar();
+                } else {
                     if (operacao.equals("Excluir")) {
                         produtoVendido.excluir();
-//                    }
+//                    
+                    }
                 }
             }
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoVendidoController?idVenda="+idVenda);
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoVendidoController?idVenda=" + idVenda);
             view.forward(request, response);
         } catch (IOException ex) {
             throw new ServletException(ex);

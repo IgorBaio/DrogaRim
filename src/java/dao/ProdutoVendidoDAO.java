@@ -86,7 +86,7 @@ public class ProdutoVendidoDAO {
         List<ProdutoVendido> produtoVendidos = new ArrayList();
         try {
             tx.begin();
-            TypedQuery<ProdutoVendido> query = em.createQuery("select pv from ProdutoVendido pv", ProdutoVendido.class);
+            TypedQuery<ProdutoVendido> query = em.createQuery("select pv from ProdutoVendido pv where pv.venda.idVenda = "+idVenda+"", ProdutoVendido.class);
             produtoVendidos = query.getResultList();
             tx.commit();
         } catch (Exception e) {

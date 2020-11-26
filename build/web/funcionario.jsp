@@ -88,7 +88,6 @@
                                 <td><c:out value="${funcionario.idFuncionario}" /></td>
                                 <td><c:out value="${funcionario.funcao}" /></td>
                                 <td><c:out value="${funcionario.login}" /></td>
-                                <td><c:out value="${funcionario.senha}" /></td>    
                                 <td><a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Excluir&idFuncionario=<c:out value="${funcionario.idFuncionario}" />">Excluir</a></td>
                                 <td><a href="ManterFuncionarioController?acao=prepararOperacao&operacao=Alterar&idFuncionario=<c:out value="${funcionario.idFuncionario}"/>">Alterar</a></td>
                             </tr>

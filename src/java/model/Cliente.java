@@ -53,26 +53,6 @@ public class Cliente {
         this.uf = uf;
     }
     
-    
-    
-//    
-//    public Cliente(int idCliente, String nome, String cpf, String estado, String data, boolean sexo, String email, String cep, String logradouro, String numeroCasa, String cidade, String bairro, String complemento, String telefone) {
-//        this.idCliente = idCliente;
-//        this.nome = nome;
-//        this.cpf = cpf;
-//        this.telefone = telefone;
-//        this.email = email;
-//        this.numeroCasa = numeroCasa;
-//        this.complemento = complemento;
-//        this.dataNascimento = dataNascimento;
-//        this.sexo = sexo;
-//         this.cep = cep;
-//        this.logradouro = logradouro;
-//        this.bairro = bairro;
-//        this.cidade = cidade;
-//        this.uf = uf;
-//    }
-    
     public static List<Cliente> obterClientes() throws ClassNotFoundException, SQLException{
         return ClienteDAO.obterClientes();
     }

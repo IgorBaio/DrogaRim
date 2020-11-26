@@ -100,8 +100,8 @@
                             </tr>
                             <tr>
                                 <td>Sexo</td>
-                                <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>M</td>
-                            <td><input type="radio" name="txtSexoCliente" value="${cliente.sexo}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>F</td>
+                                <td><input type="radio" name="txtSexoCliente" <c:if test="${cliente.sexo == true}"> checked </c:if> value="true"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>M</td>
+                                <td><input type="radio" name="txtSexoCliente" <c:if test="${cliente.sexo != true}"> checked </c:if> value="false"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>F</td>
                             </tr>
                             <tr>
                                 <td>E-Mail</td>
@@ -115,7 +115,7 @@
                                 <td>Logradouro</td>
                                 <td><input type="text" name="txtLogradouroCliente" value="${cliente.logradouro}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                                 <td>Número</td>
-                                <td><input type="number" name="txtNumeroCliente" value="${cliente.logradouro}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
+                                <td><input type="number" name="txtNumeroCliente" value="${cliente.numeroCasa}"  <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/></td>
                             </tr>
                             <tr>
                                 <td>Cidade</td>

@@ -19,23 +19,9 @@ import model.Funcionario;
 import model.Produto;
 import model.Venda;
 
-/**
- *
- * @author Igori
- */
 public class ManterVendaController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.sql.SQLException
-     */
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
@@ -97,13 +83,15 @@ public class ManterVendaController extends HttpServlet {
                venda = new Venda(intIdVenda, dataVenda, precoTotal, cliente, funcionario);
             }
                 
-            System.out.println("\n\n\n\n\n "+venda.getIdVenda()+" "+venda.getDataVenda()+" "+venda.getPrecoTotal()+" "+venda.getCliente().getNome()+" "+" "+venda.getFuncionario().getLogin()+"\n\n\n\n\n ");
             if (operacao.equals("Incluir")) {
                 venda.gravar();
             } else {
                 if (operacao.equals("Alterar")) {
                     precoTotal = Double.parseDouble(request.getParameter("txtPrecoTotal"));
-                    venda = new Venda( dataVenda, precoTotal, cliente, funcionario);
+                    venda.setDataVenda(dataVenda);
+                    venda.setPrecoTotalUpdate(precoTotal);
+                    venda.setCliente(cliente);
+                    venda.setFuncionario(funcionario);
                     venda.alterar();
                 } else {
                     if (operacao.equals("Excluir")) {

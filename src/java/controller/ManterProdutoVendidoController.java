@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -21,23 +16,9 @@ import model.Produto;
 import model.ProdutoVendido;
 import model.Venda;
 
-/**
- *
- * @author mathe
- */
+
 public class ManterProdutoVendidoController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * @throws java.sql.SQLException
-     * @throws java.lang.ClassNotFoundException
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
@@ -58,7 +39,6 @@ public class ManterProdutoVendidoController extends HttpServlet {
             request.setAttribute("operacao", operacao);
             request.setAttribute("vendas", Venda.obterVendas());
             request.setAttribute("produtos", Produto.obterProdutos());
-            //request.setAttribute("produtosVendidos", ProdutoVendido.listarProdutosVendidos());
             if (!operacao.equals("Incluir")) {
                 int idProdutoVendido = Integer.parseInt(request.getParameter("idProdutoVendido"));
                 ProdutoVendido produtoVendido = ProdutoVendido.obterProdutoVendido(idProdutoVendido);
@@ -99,17 +79,19 @@ public class ManterProdutoVendidoController extends HttpServlet {
                 double novoPreco = produtoVendido.getProduto().getPreco() - produtoVendido.getPreco();
                 produtoVendido.setPreco(novoPreco);
             }
-            venda.setPrecoTotal(produtoVendido.getPreco());
             if (operacao.equals("Incluir")) {
+                venda.setPrecoTotal(produtoVendido.getPreco());
                 produtoVendido.gravar();
-                venda.gravar();
+                venda.alterar();
             } else {
                 if (operacao.equals("Alterar")) {
                     produtoVendido.alterar();
                 } else {
                     if (operacao.equals("Excluir")) {
+                        System.out.print(preco);
+                        venda.setPrecoTotalExclusion(preco);
                         produtoVendido.excluir();
-//                    
+                        venda.alterar();
                     }
                 }
             }

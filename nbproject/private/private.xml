@@ -3,15 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/web/produtoVendido.jsp</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/dao/ProdutoVendidoDAO.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/controller/ManterVendaController.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/controller/PesquisaProdutoVendidoController.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/model/ProdutoVendido.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/controller/ManterClienteController.java</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/web/cadastrarProdutoVendido.jsp</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/web/venda.jsp</file>
-            <file>file:/C:/Users/mathe/Desktop/DrogaRim/src/java/controller/ManterProdutoVendidoController.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/model/Cliente.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/FuncionarioDAO.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/model/Venda.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/FabricanteDAO.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/BD.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/controller/ManterVendaController.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/model/Fabricante.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/ClienteDAO.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/controller/ManterProdutoVendidoController.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/ProdutoVendidoDAO.java</file>
+            <file>file:/D:/Projects/DrogaRim/web/cadastrarProdutoVendido.jsp</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/model/Funcionario.java</file>
+            <file>file:/D:/Projects/DrogaRim/web/cadastrarVenda.jsp</file>
+            <file>file:/D:/Projects/DrogaRim/web/venda.jsp</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/VendaDAO.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/model/ProdutoVendido.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/DAO.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/META-INF/persistence.xml</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/CategoriaDAO.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/dao/PersistenceUtil.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/controller/PesquisaVendaController.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/model/Categoria.java</file>
+            <file>file:/D:/Projects/DrogaRim/src/java/model/Produto.java</file>
         </group>
     </open-files>
 </project-private>

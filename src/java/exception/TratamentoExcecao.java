@@ -28,19 +28,16 @@ public class TratamentoExcecao extends HttpServlet {
                 ("javax.servlet.error.status_code");
         String nomeServlet = (String) request.getAttribute
                 ("javax.servlet.error.servlet_name");
-        String uriRequisicao = (String) request.getAttribute
-                ("javax.servlet.error.servlet_uri");        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String titulo = "Informação Exceção";
             String tipoDocto = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n";
         out.println(tipoDocto + "<html>\n <head><title>" + titulo + 
-                "</title></head><body>\n");
-            out.println("<h2>Informação sobre a exceção</h2>");
+                "</title></head><body style='text-align:center;'>\n");
+            out.println("<div style='display:flex;justify-content:center; '><h2 style='display:inline; padding:20px; margin-top:10px; background:linear-gradient(to right, red , blue);color:white;'>Informação sobre a exceção</h2></div></br></br></br>");
             out.println("Código do status:" + codigoStatus + "</br></br>" );
             out.println("Nome do servlet: " + nomeServlet + "</br></br>");
             out.println("Tipo de exceção: " + excecao.getClass().getName()+ "</br></br>");            
-            out.println("URI da requisição: "+ uriRequisicao + "</br></br>");
             out.println("Mensagem: " + excecao.getMessage());
             out.println("</body>");
             out.println("</html>");

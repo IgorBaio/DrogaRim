@@ -76,8 +76,7 @@
                     </tr>
                     <tr>
                         <td><label> Preço: </label></td>
-                        <td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.precoTotal} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>
-                        <!--<td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.getPrecoTotal()} </c:if><c:if test="${operacao != 'Alterar'}"> value = 0 readonly</c:if>></td>-->
+                        <td><input type="number" step="0.01" name="txtPrecoTotal"  <c:if test="${operacao == 'Alterar'}"> value=${venda.precoTotal} </c:if><c:if test="${operacao == 'Incluir'}"> value = 0 readonly</c:if><c:if test="${operacao == 'Excluir'}"> value = ${venda.precoTotal} readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td><label>Cliente:</label></td>
@@ -125,6 +124,9 @@
                 function validarFormulario(form) {
                     var mensagem;
                     mensagem = "";
+//                    if (form.txtIdVenda.value == "") {
+//                        mensagem = mensagem + "Informe o Código da Venda\n";
+//                    }
                     if (form.txtDataVenda.value == "") {
                         mensagem = mensagem + "Informe a Data da Venda\n";
                     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import dao.ProdutoDAO;
@@ -15,10 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author Igori
- */
 @Entity
 public class Produto implements Serializable {
 
@@ -35,10 +26,8 @@ public class Produto implements Serializable {
     private int quantidade;
     @ManyToOne
     private Fabricante fabricante;
-//    private int idFabricante;
     @ManyToOne
     private Categoria categoria;
-//    private int idCategoria;
 
     public Produto() {
     }
@@ -57,28 +46,6 @@ public class Produto implements Serializable {
         this.quantidade = quantidade;
         this.fabricante = fabricante;
     }
-
-//    public Fabricante getFabricante() throws ClassNotFoundException, SQLException {
-//        if ((this.idFabricante != 0) && (this.fabricante == null)) {
-//            this.fabricante = Fabricante.obterFabricante(this.idFabricante);
-//        }
-//        return this.fabricante;
-//    }
-
-//    public Integer getIdFabricante() {
-//        return idFabricante;
-//    }
-
-//    public void setIdFabricante(Integer idFabricante) {
-//        this.idFabricante = idFabricante;
-//    }
-
-//    public Categoria getCategoria() throws ClassNotFoundException, SQLException {
-//        if ((this.idCategoria != 0) && (this.categoria == null)) {
-//            this.categoria = Categoria.obterCategoria(this.idCategoria);
-//        }
-//        return this.categoria;
-//    }
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;

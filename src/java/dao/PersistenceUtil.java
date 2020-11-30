@@ -1,21 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author spock
- */
 public class PersistenceUtil {
-
-//    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("DROGARIM");
-//    
     
     public EntityManager getConexao() {
         return emf.createEntityManager();

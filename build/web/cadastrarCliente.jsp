@@ -158,9 +158,6 @@
                     function validarFormulario(form) {
                         var mensagem;
                         mensagem = "";
-//                        if (form.txtCodCliente.value == "") {
-//                            mensagem = mensagem + "Informe o Código do Cliente\n";
-//                        }
                         if (form.txtNomeCliente.value == "") {
                             mensagem = mensagem + "Informe o Nome do Cliente\n";
                         }

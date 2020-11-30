@@ -80,7 +80,8 @@
                     <table>
                         <tr>
                             <td>Id Prod Venda</td>
-                            <td>id Produto</td>
+                            <td>Id Produto</td>
+                            <td>Nome Produto</td>
                             <td>Preço</td>
                             <td>Id Venda</td>
                             <td colspan="2">Ação</td>
@@ -90,6 +91,7 @@
                             <tr>
                                 <td><c:out value="${produtoVendido.idProdutoVendido}" /></td>
                                 <td><c:out value="${produtoVendido.produto.idProduto}" /></td>  
+                                <td><c:out value="${produtoVendido.produto.nome}" /></td>  
                                 <td><c:out value="${produtoVendido.preco}" /></td>
                                 <td><c:out value="${produtoVendido.venda.idVenda}" /></td>
 

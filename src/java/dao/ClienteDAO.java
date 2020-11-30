@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import static dao.DAO.fecharConexao;
@@ -17,12 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import model.Cliente;
-import model.Cliente;
 
-/**
- *
- * @author mathe
- */
 public class ClienteDAO {
     public static Cliente obterCliente(Integer id) throws ClassNotFoundException, SQLException{
          EntityManager em = PersistenceUtil.getEntityManager();
@@ -63,27 +53,6 @@ public class ClienteDAO {
         }
         return clientes;
     }
-    
-//    public static Cliente instanciarCliente(ResultSet rs) throws SQLException {
-//        Cliente cliente = new Cliente(
-//                    rs.getInt("IDCLIENTE"),
-//                    rs.getString("nome"),
-//                    rs.getString("cpf"),
-//                    rs.getString("telefone"),
-//                    rs.getString("email"),
-//                    rs.getString("numeroCasa"),
-//                    rs.getString("complemento"),
-//                    rs.getString("data_nascimento"),
-//                    rs.getBoolean("sexo"),
-//                    rs.getString("cep"),
-//                    rs.getString("logradouro"),
-//                    rs.getString("bairro"),
-//                    rs.getString("cidade"),
-//                    rs.getString("uf")
-//                    
-//        );
-//                    return cliente;
-//        }
     
     public static void  gravar(Cliente cliente) throws SQLException, ClassNotFoundException {
         EntityManager em = PersistenceUtil.getEntityManager();

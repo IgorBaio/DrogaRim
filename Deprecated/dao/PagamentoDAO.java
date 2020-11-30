@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dao;
 
 import static dao.DAO.fecharConexao;
@@ -15,10 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Pagamento;
 
-/**
- *
- * @author Igori
- */
 public class PagamentoDAO {
     public static Pagamento obterPagamento(int id) throws ClassNotFoundException, SQLException{
         Connection conexao = null;
@@ -74,7 +66,6 @@ public class PagamentoDAO {
             comando = conexao.prepareStatement ("insert into pagamentos (idPagamento, tipo) values (?, ?)");
             comando.setInt(1, pagamento.getId());
             comando.setString(2,pagamento.getTipo());
-           // comando.setDouble(5, pagamento.getPreco()); >>>>>>>>>>> necessário criar preço no banco de dados? <<<<<<<<<<<<
             comando.executeUpdate();
         }
         finally {

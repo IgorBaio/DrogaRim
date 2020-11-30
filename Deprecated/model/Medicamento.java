@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- *
- * @author Igori
- */
 public class Medicamento  {
     private String categoria;
     private String tipo;
@@ -16,24 +7,6 @@ public class Medicamento  {
     private String contraIndicacao;
     private String nomeFarmaco;
 
-   /* public Medicamento(int id,String nome, float preco, String lote, Estoque estoque, String categoria,
-            String tipo, boolean receita, String contraIndicacao, String nomeFarmaco) {
-        //super(id,nome, preco, lote, estoque);
-        this.categoria = categoria;
-        this.contraIndicacao= contraIndicacao;
-        this.nomeFarmaco = nomeFarmaco;
-        this.receita = receita;
-        this.tipo = tipo;
-    }
-*/
-    //public Medicamento(int id, String nome, float preco, String lote, String categoria, String contraINd, boolean receita, String nomeFarma, Object endereco) {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    //}
-
-    
-
-
-    
     public String getNomeFarmaco() {
         return nomeFarmaco;
     }

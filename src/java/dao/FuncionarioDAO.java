@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import static dao.DAO.fecharConexao;
@@ -17,10 +12,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import model.Funcionario;
 
-/**
- *
- * @author Igori
- */
 public class FuncionarioDAO {
 
     public static Funcionario obterFuncionario(Integer id) throws ClassNotFoundException, SQLException {
@@ -61,18 +52,6 @@ public class FuncionarioDAO {
         }
         return funcionarios;
     }
-
-//    public static Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
-//
-//        Funcionario funcionario = new Funcionario(
-//                rs.getInt("idFuncionario"),
-//                rs.getString("funcao"),
-//                rs.getString("login"),
-//                rs.getString("senha")
-//        );
-//
-//        return funcionario;
-//    }
 
     public static void gravar(Funcionario funcionario) throws SQLException, ClassNotFoundException {
         EntityManager em = PersistenceUtil.getEntityManager();

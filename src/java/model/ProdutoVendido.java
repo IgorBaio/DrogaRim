@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import dao.ProdutoDAO;
@@ -18,10 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author Igori
- */
 @Entity
 public class ProdutoVendido implements Serializable {
 
@@ -29,8 +20,6 @@ public class ProdutoVendido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProdutoVendido;
     private double preco;
-//    private Integer idProduto;
-//    private Integer idVenda;
     public static double diferencaPreco;
     @ManyToOne
     private Produto produto;
@@ -73,10 +62,9 @@ public class ProdutoVendido implements Serializable {
     public void setIdProdutoVendido(Integer idProdutoVendido) {
         this.idProdutoVendido = idProdutoVendido;
     }
-//////////////////////////////////////////////////////////////////////////////////
 
     public static ProdutoVendido obterProdutoVendido(int idProdutoVendido) throws ClassNotFoundException, SQLException {
-        return ProdutoVendidoDAO.obterProdutoVendido(idProdutoVendido);// Aqui acho que deveira entrar o idVenda, mas não sei como repassar esse valor no parâmetro onde a função tá sendo chamada
+        return ProdutoVendidoDAO.obterProdutoVendido(idProdutoVendido);
     }
 
     public static List<ProdutoVendido> obterProdutosVendidos(Integer idVenda) throws ClassNotFoundException, SQLException {
@@ -91,18 +79,6 @@ public class ProdutoVendido implements Serializable {
         return VendaDAO.obterVendas();
     }
 
-//    public Integer getIdProduto() {
-//        return idProduto;
-//    }
-//    public void setIdProduto(Integer idProduto) {
-//        this.idProduto = idProduto;
-//    }
-//    public Integer getIdVenda() {
-//        return idVenda;
-//    }
-//    public void setIdVenda(Integer idVenda) {
-//        this.idVenda = idVenda;
-//    }
     public double getPreco() {
         return preco;
     }
@@ -123,12 +99,5 @@ public class ProdutoVendido implements Serializable {
        
         ProdutoVendidoDAO.gravar(this);
     }
-    /**
-     * public static ProdutoVendido listarProdutoVendido(int idVenda) throws
-     * ClassNotFoundException, SQLException{ return
-     * ProdutoVendidoDAO.listarProdutoVendido(idVenda); } public static
-     * List<ProdutoVendido> listarProdutosVendidos() throws
-     * ClassNotFoundException, SQLException { return
-     * ProdutoVendidoDAO.listarProdutosVendidos(); }*
-     */
+    
 }

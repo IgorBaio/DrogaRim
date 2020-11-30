@@ -80,7 +80,6 @@
                             <td>Código</td>
                             <td>Função</td>
                             <td>Login</td>
-                            <td>Senha</td>
                             <td>Ação</td>                   
                         </tr>
                         <c:forEach items="${funcionarios}" var="funcionario">

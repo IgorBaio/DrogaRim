@@ -120,9 +120,6 @@
                     function validarFormulario(form) {
                         var mensagem;
                         mensagem = "";
-//                        if (form.txtCodFuncionario.value == "") {
-//                            mensagem = mensagem + "Informe o Código do Funcionário\n";
-//                        }
                         if (form.txtLoginFuncionario.value == "") {
                             mensagem = mensagem + "Informe o Nome do Funcionário\n";
                         }

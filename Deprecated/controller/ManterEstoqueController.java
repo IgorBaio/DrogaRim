@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -18,10 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Estoque;
 import model.Produto;
 
-/**
- *
- * @author Igori
- */
 public class ManterEstoqueController extends HttpServlet {
 
     /**
@@ -50,7 +41,6 @@ public class ManterEstoqueController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("produtos", Produto.obterProdutos());
-           // request.setAttribute("fabricantes", Fabricante.obterFabricantes());
            if (!operacao.equals("Incluir")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Estoque estoque = Estoque.obterEstoque(id);

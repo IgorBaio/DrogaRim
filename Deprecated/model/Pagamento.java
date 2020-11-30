@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import dao.PagamentoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Igori
- */
 public class Pagamento {
 
     private int id;
@@ -46,10 +37,6 @@ public class Pagamento {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-   // public void gravar() throws SQLException, ClassNotFoundException {
-     //   PagamentoDAO.gravar(this);
-    //}
 
     public void excluir() throws SQLException, ClassNotFoundException {
         PagamentoDAO.excluir(this);

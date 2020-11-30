@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import dao.PessoaDAO;
@@ -84,9 +79,6 @@ public class Pessoa {
         this.complemento = complemento;
     }
 
-    
-    
-
     public Endereco getEndereco() throws ClassNotFoundException, SQLException{
         if((this.chaveEndereco != 0) && (this.endereco == null)){
             this.endereco = Endereco.obterEndereco(this.chaveEndereco);
@@ -153,7 +145,5 @@ public class Pessoa {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
-    
     
 }

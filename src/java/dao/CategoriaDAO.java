@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
-
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,10 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import model.Categoria;
 
-/**
- *
- * @author mathe
- */
 public class CategoriaDAO {
 
     public static Categoria obterCategoria(Integer idCategoria) throws ClassNotFoundException, SQLException {
@@ -61,14 +51,6 @@ public class CategoriaDAO {
         return categorias;
     }
 
-//    public static Categoria instanciarCategoria(ResultSet rs) throws SQLException {
-//        Categoria categoria = new Categoria(
-//                rs.getInt("idCategoria"),
-//                rs.getString("nome")
-//        );
-//        return categoria;
-//    }
-
     public static void gravar(Categoria categoria) throws SQLException, ClassNotFoundException {
          EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -109,23 +91,4 @@ public class CategoriaDAO {
         }
     }
 
-//    public static void alterar(Categoria categoria) throws SQLException, ClassNotFoundException {
-//        Connection conexao = null;
-//        Statement comando = null;
-//        String stringSQL;
-//
-//        try {
-//            conexao = BD.getConexao();
-//            comando = conexao.createStatement();
-//            stringSQL = "update categoria set "
-//                    + "nome = '" + categoria.getNome() + "' ";
-//
-//            stringSQL = stringSQL + "where idCategoria= '" + categoria.getIdCategoria() + "' ";
-//            comando.execute(stringSQL);
-//
-//        } finally {
-//            fecharConexao(conexao, comando);
-//        }
-//
-//    }
 }
